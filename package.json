@@ -4,9 +4,8 @@
   "description": "apischema based generated typescript code",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "./node_modules/typescript/bin/tsc -p .",
-    "build": "./node_modules/typescript/bin/tsc -p ."
+    "test": "echo \"nothing to test\"",
+    "build": "echo \"nothing to build\""
   },
   "repository": {
     "type": "git",
