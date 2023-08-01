@@ -1,6 +1,6 @@
 {
   "name": "@naonaoonline/apitscode",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "apischema based generated typescript code",
   "type": "module",
   "scripts": {
@@ -18,15 +18,17 @@
   },
   "homepage": "https://github.com/NaoNaoOnline/apitscode",
   "dependencies": {
-    "@protobuf-ts/plugin": "^2.9.0",
-    "@protobuf-ts/protoc": "^2.9.0",
-    "@protobuf-ts/runtime": "^2.9.0",
-    "@protobuf-ts/runtime-rpc": "^2.9.0",
-    "@protobuf-ts/twirp-transport": "^2.9.0",
-    "@types/node-fetch": "^2.5.8",
+    "@protobuf-ts/plugin": "^2.9.1",
+    "@protobuf-ts/protoc": "^2.9.1",
+    "@protobuf-ts/runtime": "^2.9.1",
+    "@protobuf-ts/runtime-rpc": "^2.9.1",
+    "@protobuf-ts/twirp-transport": "^2.9.1",
     "abort-controller": "^3.0.0",
-    "node-fetch": "^2.6.0",
-    "ts-node": "^8.10.2",
+    "node-fetch": "^3.3.2",
+    "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.8"
   }
 }
