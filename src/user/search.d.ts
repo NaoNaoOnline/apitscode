@@ -79,7 +79,10 @@ export interface SearchI_Object {
  */
 export interface SearchI_Object_Intern {
   /**
-   * user is the ID of the user being searched.
+   * user is the ID of the user being searched. If user is left empty, the
+   * current user sending the request is looked up and returned based on the
+   * given authorization parameters. Given an OAuth access token its encoded
+   * subject claim may refer to the internally persisted user object.
    *
    * @generated from protobuf field: string user = 100;
    */
@@ -106,6 +109,7 @@ export interface SearchI_Object_Public {}
  *                     "user": "551265"
  *                 },
  *                 "public": {
+ *                     "imag": "https://gravatar.com/9050f8ea",
  *                     "name": "xh3b4sd"
  *                 }
  *             },
@@ -165,9 +169,15 @@ export interface SearchO_Object_Intern {
  */
 export interface SearchO_Object_Public {
   /**
+   * imag is the URL pointing to the user's profile picture.
+   *
+   * @generated from protobuf field: string imag = 100;
+   */
+  imag: string;
+  /**
    * name is the user name.
    *
-   * @generated from protobuf field: string name = 100;
+   * @generated from protobuf field: string name = 200;
    */
   name: string;
 }

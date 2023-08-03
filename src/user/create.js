@@ -170,11 +170,12 @@ export const CreateI_Object_Intern = new CreateI_Object_Intern$Type();
 class CreateI_Object_Public$Type extends MessageType {
     constructor() {
         super("user.CreateI_Object_Public", [
-            { no: 100, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "imag", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { name: "" };
+        const message = { imag: "", name: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -185,7 +186,10 @@ class CreateI_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string name */ 100:
+                case /* string imag */ 100:
+                    message.imag = reader.string();
+                    break;
+                case /* string name */ 200:
                     message.name = reader.string();
                     break;
                 default:
@@ -200,9 +204,12 @@ class CreateI_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string name = 100; */
+        /* string imag = 100; */
+        if (message.imag !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.imag);
+        /* string name = 200; */
         if (message.name !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.name);
+            writer.tag(200, WireType.LengthDelimited).string(message.name);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

@@ -14,6 +14,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "public": {
+ *                     "imag": "https://gravatar.com/9050f8ea",
  *                     "name": "xh3b4sd"
  *                 }
  *             }
@@ -59,9 +60,15 @@ export interface CreateI_Object_Intern {}
  */
 export interface CreateI_Object_Public {
   /**
+   * imag is the URL pointing to the user's profile picture.
+   *
+   * @generated from protobuf field: string imag = 100;
+   */
+  imag: string;
+  /**
    * name is the user name.
    *
-   * @generated from protobuf field: string name = 100;
+   * @generated from protobuf field: string name = 200;
    */
   name: string;
 }
