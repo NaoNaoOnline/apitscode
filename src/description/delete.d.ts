@@ -8,7 +8,7 @@ import type { IBinaryReader } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
- * DeleteI is the input for deleting event descriptions.
+ * DeleteI is the input for deleting descriptions.
  *
  *     {
  *         "object": [
@@ -66,7 +66,7 @@ export interface DeleteI_Object_Intern {
  */
 export interface DeleteI_Object_Public {}
 /**
- * DeleteO is the output for deleting event descriptions.
+ * DeleteO is the output for deleting descriptions.
  *
  *     {
  *         "object": [

@@ -18,8 +18,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                     "disc": "https://discord.gg/Flashbots",
  *                     "kind": "host",
  *                     "name": "Flashbots",
- *                     "twit": "https://twitter.com/Flashbots",
- *                     "user": "551265"
+ *                     "twit": "https://twitter.com/Flashbots"
  *                 }
  *             }
  *         ]
@@ -94,12 +93,6 @@ export interface CreateI_Object_Public {
    * @generated from protobuf field: string twit = 500;
    */
   twit: string;
-  /**
-   * user is the user ID creating this label.
-   *
-   * @generated from protobuf field: string user = 600;
-   */
-  user: string;
 }
 /**
  * CreateO is the output for creating labels.

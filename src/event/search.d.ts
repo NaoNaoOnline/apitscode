@@ -20,7 +20,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "intern": {
- *                     "labl": "863826"
+ *                     "cate": "863826"
  *                 }
  *             }
  *         ]
@@ -79,11 +79,17 @@ export interface SearchI_Object {
  */
 export interface SearchI_Object_Intern {
   /**
-   * labl is the label ID for which events are being searched.
+   * cate is the ID of the category label for which events are being searched.
    *
-   * @generated from protobuf field: string labl = 100;
+   * @generated from protobuf field: string cate = 100;
    */
-  labl: string;
+  cate: string;
+  /**
+   * host is the ID of the host label for which events are being searched.
+   *
+   * @generated from protobuf field: string host = 200;
+   */
+  host: string;
 }
 /**
  * @generated from protobuf message event.SearchI_Object_Public
@@ -103,15 +109,15 @@ export interface SearchI_Object_Public {}
  *             {
  *                 "intern": {
  *                     "crtd": "1689001255",
- *                     "evnt": "551265"
+ *                     "evnt": "778237",
+ *                     "user": "551265"
  *                 },
  *                 "public": {
+ *                     "cate": "863826",
  *                     "dura": "3600",
  *                     "host": "551265",
- *                     "labl": "863826",
  *                     "link": "https://google.com",
- *                     "time": "1689001255",
- *                     "user": "551265"
+ *                     "time": "1689001255"
  *                 }
  *             },
  *             ...
@@ -164,29 +170,36 @@ export interface SearchO_Object_Intern {
    * @generated from protobuf field: string evnt = 200;
    */
   evnt: string;
+  /**
+   * user is the ID of the user who created this event.
+   *
+   * @generated from protobuf field: string user = 300;
+   */
+  user: string;
 }
 /**
  * @generated from protobuf message event.SearchO_Object_Public
  */
 export interface SearchO_Object_Public {
   /**
-   * dura is the estimated duration of the event.
+   * cate is the comma separated list of label IDs under which the event is
+   * categorized.
    *
-   * @generated from protobuf field: string dura = 100;
+   * @generated from protobuf field: string cate = 100;
+   */
+  cate: string;
+  /**
+   * dura is the estimated duration of the event in seconds.
+   *
+   * @generated from protobuf field: string dura = 200;
    */
   dura: string;
   /**
    * host is the internal host ID expected to host the event.
    *
-   * @generated from protobuf field: string host = 200;
+   * @generated from protobuf field: string host = 300;
    */
   host: string;
-  /**
-   * labl is the label ID under which the event is categorized.
-   *
-   * @generated from protobuf field: string labl = 300;
-   */
-  labl: string;
   /**
    * link is the online location at which the event is expected to take place.
    * For IRL events this may just be some informational website.
@@ -201,14 +214,6 @@ export interface SearchO_Object_Public {
    * @generated from protobuf field: string time = 500;
    */
   time: string;
-  /**
-   * user is the user ID creating this event. Effectively hosts may be the very
-   * users creating their own events within NaoNao. Regardless anyone should be
-   * able to create events for any host.
-   *
-   * @generated from protobuf field: string user = 600;
-   */
-  user: string;
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();

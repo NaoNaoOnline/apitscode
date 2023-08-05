@@ -219,11 +219,12 @@ export const SearchI_Object = new SearchI_Object$Type();
 class SearchI_Object_Intern$Type extends MessageType {
     constructor() {
         super("event.SearchI_Object_Intern", [
-            { no: 100, name: "labl", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "cate", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "host", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { labl: "" };
+        const message = { cate: "", host: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -234,8 +235,11 @@ class SearchI_Object_Intern$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string labl */ 100:
-                    message.labl = reader.string();
+                case /* string cate */ 100:
+                    message.cate = reader.string();
+                    break;
+                case /* string host */ 200:
+                    message.host = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -249,9 +253,12 @@ class SearchI_Object_Intern$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string labl = 100; */
-        if (message.labl !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.labl);
+        /* string cate = 100; */
+        if (message.cate !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.cate);
+        /* string host = 200; */
+        if (message.host !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.host);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -427,11 +434,12 @@ class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
         super("event.SearchO_Object_Intern", [
             { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "evnt", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "evnt", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { crtd: "", evnt: "" };
+        const message = { crtd: "", evnt: "", user: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -447,6 +455,9 @@ class SearchO_Object_Intern$Type extends MessageType {
                     break;
                 case /* string evnt */ 200:
                     message.evnt = reader.string();
+                    break;
+                case /* string user */ 300:
+                    message.user = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -466,6 +477,9 @@ class SearchO_Object_Intern$Type extends MessageType {
         /* string evnt = 200; */
         if (message.evnt !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.evnt);
+        /* string user = 300; */
+        if (message.user !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -480,16 +494,15 @@ export const SearchO_Object_Intern = new SearchO_Object_Intern$Type();
 class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("event.SearchO_Object_Public", [
-            { no: 100, name: "dura", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "host", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "labl", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 100, name: "cate", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "dura", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "host", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 400, name: "link", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 600, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 500, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { dura: "", host: "", labl: "", link: "", time: "", user: "" };
+        const message = { cate: "", dura: "", host: "", link: "", time: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -500,23 +513,20 @@ class SearchO_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string dura */ 100:
+                case /* string cate */ 100:
+                    message.cate = reader.string();
+                    break;
+                case /* string dura */ 200:
                     message.dura = reader.string();
                     break;
-                case /* string host */ 200:
+                case /* string host */ 300:
                     message.host = reader.string();
-                    break;
-                case /* string labl */ 300:
-                    message.labl = reader.string();
                     break;
                 case /* string link */ 400:
                     message.link = reader.string();
                     break;
                 case /* string time */ 500:
                     message.time = reader.string();
-                    break;
-                case /* string user */ 600:
-                    message.user = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -530,24 +540,21 @@ class SearchO_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string dura = 100; */
+        /* string cate = 100; */
+        if (message.cate !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.cate);
+        /* string dura = 200; */
         if (message.dura !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.dura);
-        /* string host = 200; */
+            writer.tag(200, WireType.LengthDelimited).string(message.dura);
+        /* string host = 300; */
         if (message.host !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.host);
-        /* string labl = 300; */
-        if (message.labl !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.labl);
+            writer.tag(300, WireType.LengthDelimited).string(message.host);
         /* string link = 400; */
         if (message.link !== "")
             writer.tag(400, WireType.LengthDelimited).string(message.link);
         /* string time = 500; */
         if (message.time !== "")
             writer.tag(500, WireType.LengthDelimited).string(message.time);
-        /* string user = 600; */
-        if (message.user !== "")
-            writer.tag(600, WireType.LengthDelimited).string(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

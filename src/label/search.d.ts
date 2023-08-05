@@ -103,15 +103,15 @@ export interface SearchI_Object_Public {}
  *             {
  *                 "intern": {
  *                     "crtd": "1689001255",
- *                     "labl": "863826"
+ *                     "labl": "863826",
+ *                     "user": "551265"
  *                 },
  *                 "public": {
  *                     "desc": "Flashbots researches implications of MEV",
  *                     "disc": "https://discord.gg/Flashbots",
  *                     "kind": "host",
  *                     "name": "Flashbots",
- *                     "twit": "https://twitter.com/Flashbots",
- *                     "user": "551265"
+ *                     "twit": "https://twitter.com/Flashbots"
  *                 }
  *             },
  *             ...
@@ -164,6 +164,12 @@ export interface SearchO_Object_Intern {
    * @generated from protobuf field: string labl = 200;
    */
   labl: string;
+  /**
+   * user is the ID of the user who created this label.
+   *
+   * @generated from protobuf field: string user = 300;
+   */
+  user: string;
 }
 /**
  * @generated from protobuf message label.SearchO_Object_Public
@@ -200,12 +206,6 @@ export interface SearchO_Object_Public {
    * @generated from protobuf field: string twit = 500;
    */
   twit: string;
-  /**
-   * user is the user ID creating this label.
-   *
-   * @generated from protobuf field: string user = 600;
-   */
-  user: string;
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();

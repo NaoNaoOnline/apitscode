@@ -8,7 +8,7 @@ import type { IBinaryReader } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
- * UpdateI is the input for updating event descriptions.
+ * UpdateI is the input for updating descriptions.
  *
  *     {
  *         "object": [
@@ -86,7 +86,7 @@ export interface UpdateI_Object_Update {
   val?: string;
 }
 /**
- * UpdateO is the output for updating event descriptions.
+ * UpdateO is the output for updating descriptions.
  *
  *     {
  *         "object": [

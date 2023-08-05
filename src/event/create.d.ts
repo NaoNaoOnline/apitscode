@@ -14,12 +14,11 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "public": {
+ *                     "cate": "863826",
  *                     "dura": "3600",
  *                     "host": "551265",
- *                     "labl": "863826",
  *                     "link": "https://google.com",
- *                     "time": "1689001255",
- *                     "user": "551265"
+ *                     "time": "1689001255"
  *                 }
  *             }
  *         ]
@@ -64,23 +63,24 @@ export interface CreateI_Object_Intern {}
  */
 export interface CreateI_Object_Public {
   /**
-   * dura is the estimated duration of the event.
+   * cate is the comma separated list of label IDs under which the event is
+   * categorized.
    *
-   * @generated from protobuf field: string dura = 100;
+   * @generated from protobuf field: string cate = 100;
+   */
+  cate: string;
+  /**
+   * dura is the estimated duration of the event in seconds.
+   *
+   * @generated from protobuf field: string dura = 200;
    */
   dura: string;
   /**
    * host is the internal host ID expected to host the event.
    *
-   * @generated from protobuf field: string host = 200;
+   * @generated from protobuf field: string host = 300;
    */
   host: string;
-  /**
-   * labl is the label ID under which the event is categorized.
-   *
-   * @generated from protobuf field: string labl = 300;
-   */
-  labl: string;
   /**
    * link is the online location at which the event is expected to take place.
    * For IRL events this may just be some informational website.
@@ -95,14 +95,6 @@ export interface CreateI_Object_Public {
    * @generated from protobuf field: string time = 500;
    */
   time: string;
-  /**
-   * user is the user ID creating this event. Effectively hosts may be the very
-   * users creating their own events within NaoNao. Regardless anyone should be
-   * able to create events for any host.
-   *
-   * @generated from protobuf field: string user = 600;
-   */
-  user: string;
 }
 /**
  * CreateO is the output for creating events.
@@ -112,7 +104,7 @@ export interface CreateI_Object_Public {
  *             {
  *                 "intern": {
  *                     "crtd": "1689001255",
- *                     "evnt": "551265"
+ *                     "evnt": "778237"
  *                 }
  *             }
  *         ]

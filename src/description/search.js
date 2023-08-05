@@ -427,11 +427,12 @@ class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
         super("description.SearchO_Object_Intern", [
             { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "desc", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "desc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { crtd: "", desc: "" };
+        const message = { crtd: "", desc: "", user: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -447,6 +448,9 @@ class SearchO_Object_Intern$Type extends MessageType {
                     break;
                 case /* string desc */ 200:
                     message.desc = reader.string();
+                    break;
+                case /* string user */ 300:
+                    message.user = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -466,6 +470,9 @@ class SearchO_Object_Intern$Type extends MessageType {
         /* string desc = 200; */
         if (message.desc !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.desc);
+        /* string user = 300; */
+        if (message.user !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -482,12 +489,11 @@ class SearchO_Object_Public$Type extends MessageType {
         super("description.SearchO_Object_Public", [
             { no: 100, name: "evnt", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "vote", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 300, name: "vote", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { evnt: "", text: "", user: "", vote: "" };
+        const message = { evnt: "", text: "", vote: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -504,10 +510,7 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string text */ 200:
                     message.text = reader.string();
                     break;
-                case /* string user */ 300:
-                    message.user = reader.string();
-                    break;
-                case /* string vote */ 400:
+                case /* string vote */ 300:
                     message.vote = reader.string();
                     break;
                 default:
@@ -528,12 +531,9 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string text = 200; */
         if (message.text !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.text);
-        /* string user = 300; */
-        if (message.user !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.user);
-        /* string vote = 400; */
+        /* string vote = 300; */
         if (message.vote !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.vote);
+            writer.tag(300, WireType.LengthDelimited).string(message.vote);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

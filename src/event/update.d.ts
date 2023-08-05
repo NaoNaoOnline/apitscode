@@ -14,7 +14,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "intern": {
- *                     "evnt": "551265"
+ *                     "evnt": "778237"
  *                 }
  *                 "public": [
  *                     {

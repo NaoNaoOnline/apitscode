@@ -20,7 +20,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "intern": {
- *                     "evnt": "551265"
+ *                     "evnt": "778237"
  *                 }
  *             }
  *         ]
@@ -103,12 +103,12 @@ export interface SearchI_Object_Public {}
  *             {
  *                 "intern": {
  *                     "crtd": "1689001255",
- *                     "desc": "98972893"
+ *                     "desc": "98972893",
+ *                     "user": "551265"
  *                 },
  *                 "public": {
- *                     "evnt": "551265",
+ *                     "evnt": "778237",
  *                     "text": "In this Hackathon we build awesome stuff!",
- *                     "user": "551265",
  *                     "vote": "7"
  *                 }
  *             },
@@ -162,34 +162,34 @@ export interface SearchO_Object_Intern {
    * @generated from protobuf field: string desc = 200;
    */
   desc: string;
+  /**
+   * user is the ID of the user who created this description.
+   *
+   * @generated from protobuf field: string user = 300;
+   */
+  user: string;
 }
 /**
  * @generated from protobuf message description.SearchO_Object_Public
  */
 export interface SearchO_Object_Public {
   /**
-   * evnt is the event ID this description is added to.
+   * evnt is the event ID this description is mapped to.
    *
    * @generated from protobuf field: string evnt = 100;
    */
   evnt: string;
   /**
-   * text is the event description explaining what the event is about.
+   * text is the description explaining what this event is about.
    *
    * @generated from protobuf field: string text = 200;
    */
   text: string;
   /**
-   * user is the user ID creating this event description.
+   * vote is the aggregated quality measurement for this description based on
+   * user likes and dislikes.
    *
-   * @generated from protobuf field: string user = 300;
-   */
-  user: string;
-  /**
-   * vote is the aggregated quality measurement for this event description based
-   * on user likes and dislikes.
-   *
-   * @generated from protobuf field: string vote = 400;
+   * @generated from protobuf field: string vote = 300;
    */
   vote: string;
 }
