@@ -220,11 +220,12 @@ class SearchI_Object_Intern$Type extends MessageType {
     constructor() {
         super("event.SearchI_Object_Intern", [
             { no: 100, name: "cate", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "host", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "evnt", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "host", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { cate: "", host: "" };
+        const message = { cate: "", evnt: "", host: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -238,7 +239,10 @@ class SearchI_Object_Intern$Type extends MessageType {
                 case /* string cate */ 100:
                     message.cate = reader.string();
                     break;
-                case /* string host */ 200:
+                case /* string evnt */ 200:
+                    message.evnt = reader.string();
+                    break;
+                case /* string host */ 300:
                     message.host = reader.string();
                     break;
                 default:
@@ -256,9 +260,12 @@ class SearchI_Object_Intern$Type extends MessageType {
         /* string cate = 100; */
         if (message.cate !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.cate);
-        /* string host = 200; */
+        /* string evnt = 200; */
+        if (message.evnt !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.evnt);
+        /* string host = 300; */
         if (message.host !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.host);
+            writer.tag(300, WireType.LengthDelimited).string(message.host);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

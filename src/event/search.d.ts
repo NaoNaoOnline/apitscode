@@ -85,9 +85,15 @@ export interface SearchI_Object_Intern {
    */
   cate: string;
   /**
+   * evnt is the ID of the event being searched.
+   *
+   * @generated from protobuf field: string evnt = 200;
+   */
+  evnt: string;
+  /**
    * host is the ID of the host label for which events are being searched.
    *
-   * @generated from protobuf field: string host = 200;
+   * @generated from protobuf field: string host = 300;
    */
   host: string;
 }
