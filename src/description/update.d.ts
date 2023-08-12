@@ -18,9 +18,9 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 }
  *                 "update": [
  *                     {
- *                         "ope": "replace",
+ *                         "ope": "add",
  *                         "pat": "/obj/property/vote",
- *                         "val": "5"
+ *                         "val": "1"
  *                     }
  *                 ]
  *             }

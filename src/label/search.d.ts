@@ -79,7 +79,8 @@ export interface SearchI_Object {
  */
 export interface SearchI_Object_Intern {
   /**
-   * kind is the label type for which events are being searched.
+   * kind is the label type for which events are being searched, e.g. host for
+   * host labels and cate for category labels.
    *
    * @generated from protobuf field: string kind = 100;
    */

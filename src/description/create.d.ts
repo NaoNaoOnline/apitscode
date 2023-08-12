@@ -15,8 +15,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *             {
  *                 "public": {
  *                     "evnt": "778237",
- *                     "text": "In this Hackathon we build awesome stuff!",
- *                     "vote": "7"
+ *                     "text": "In this Hackathon we build awesome stuff!"
  *                 }
  *             }
  *         ]
@@ -72,13 +71,6 @@ export interface CreateI_Object_Public {
    * @generated from protobuf field: string text = 200;
    */
   text: string;
-  /**
-   * vote is the aggregated quality measurement for this description based on
-   * user likes and dislikes.
-   *
-   * @generated from protobuf field: string vote = 300;
-   */
-  vote: string;
 }
 /**
  * CreateO is the output for creating descriptions.

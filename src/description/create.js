@@ -171,12 +171,11 @@ class CreateI_Object_Public$Type extends MessageType {
     constructor() {
         super("description.CreateI_Object_Public", [
             { no: 100, name: "evnt", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "vote", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { evnt: "", text: "", vote: "" };
+        const message = { evnt: "", text: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -192,9 +191,6 @@ class CreateI_Object_Public$Type extends MessageType {
                     break;
                 case /* string text */ 200:
                     message.text = reader.string();
-                    break;
-                case /* string vote */ 300:
-                    message.vote = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -214,9 +210,6 @@ class CreateI_Object_Public$Type extends MessageType {
         /* string text = 200; */
         if (message.text !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.text);
-        /* string vote = 300; */
-        if (message.vote !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.vote);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
