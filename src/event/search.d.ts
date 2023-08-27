@@ -19,7 +19,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         ],
  *         "object": [
  *             {
- *                 "intern": {
+ *                 "public": {
  *                     "cate": "863826"
  *                 }
  *             }
@@ -79,28 +79,30 @@ export interface SearchI_Object {
  */
 export interface SearchI_Object_Intern {
   /**
+   * evnt is the ID of the event being searched. If searching for a particular
+   * event, the search query object must neither contain cate or host.
+   *
+   * @generated from protobuf field: string evnt = 100;
+   */
+  evnt: string;
+}
+/**
+ * @generated from protobuf message event.SearchI_Object_Public
+ */
+export interface SearchI_Object_Public {
+  /**
    * cate is the ID of the category label for which events are being searched.
    *
    * @generated from protobuf field: string cate = 100;
    */
   cate: string;
   /**
-   * evnt is the ID of the event being searched.
-   *
-   * @generated from protobuf field: string evnt = 200;
-   */
-  evnt: string;
-  /**
    * host is the ID of the host label for which events are being searched.
    *
-   * @generated from protobuf field: string host = 300;
+   * @generated from protobuf field: string host = 200;
    */
   host: string;
 }
-/**
- * @generated from protobuf message event.SearchI_Object_Public
- */
-export interface SearchI_Object_Public {}
 /**
  * SearchO is the output for searching events.
  *

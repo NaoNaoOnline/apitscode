@@ -77,7 +77,11 @@ export interface SearchI_Object {
 /**
  * @generated from protobuf message description.SearchI_Object_Intern
  */
-export interface SearchI_Object_Intern {
+export interface SearchI_Object_Intern {}
+/**
+ * @generated from protobuf message description.SearchI_Object_Public
+ */
+export interface SearchI_Object_Public {
   /**
    * evnt is the event ID for which descriptions are being searched.
    *
@@ -85,10 +89,6 @@ export interface SearchI_Object_Intern {
    */
   evnt: string;
 }
-/**
- * @generated from protobuf message description.SearchI_Object_Public
- */
-export interface SearchI_Object_Public {}
 /**
  * SearchO is the output for searching descriptions.
  *
@@ -108,11 +108,6 @@ export interface SearchI_Object_Public {}
  *                 },
  *                 "public": {
  *                     "evnt": "778237",
- *                     "rctn": {
- *                         "113714405": {
- *                             "amnt": 7
- *                         }
- *                     },
  *                     "text": "In this Hackathon we build awesome stuff!"
  *                 }
  *             },
@@ -184,34 +179,11 @@ export interface SearchO_Object_Public {
    */
   evnt: string;
   /**
-   * TODO remove reaction map once vote API is implemented for managing
-   * decoupled user reactions.
-   *
-   * rctn is the map of aggregated quality measurement for this description
-   * based on user reactions where the map key is the reaction ID.
-   *
-   * @generated from protobuf field: map<string, description.SearchO_Object_Public_Rctn> rctn = 200;
-   */
-  rctn: {
-    [key: string]: SearchO_Object_Public_Rctn;
-  };
-  /**
    * text is the description explaining what this event is about.
    *
-   * @generated from protobuf field: string text = 300;
+   * @generated from protobuf field: string text = 200;
    */
   text: string;
-}
-/**
- * @generated from protobuf message description.SearchO_Object_Public_Rctn
- */
-export interface SearchO_Object_Public_Rctn {
-  /**
-   * amnt is the number of times the accociated reaction got used.
-   *
-   * @generated from protobuf field: int32 amnt = 100;
-   */
-  amnt: number;
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();
@@ -414,7 +386,6 @@ declare class SearchO_Object_Public$Type extends MessageType<SearchO_Object_Publ
     options: BinaryReadOptions,
     target?: SearchO_Object_Public,
   ): SearchO_Object_Public;
-  private binaryReadMap200;
   internalBinaryWrite(
     message: SearchO_Object_Public,
     writer: IBinaryWriter,
@@ -425,25 +396,4 @@ declare class SearchO_Object_Public$Type extends MessageType<SearchO_Object_Publ
  * @generated MessageType for protobuf message description.SearchO_Object_Public
  */
 export declare const SearchO_Object_Public: SearchO_Object_Public$Type;
-declare class SearchO_Object_Public_Rctn$Type extends MessageType<SearchO_Object_Public_Rctn> {
-  constructor();
-  create(
-    value?: PartialMessage<SearchO_Object_Public_Rctn>,
-  ): SearchO_Object_Public_Rctn;
-  internalBinaryRead(
-    reader: IBinaryReader,
-    length: number,
-    options: BinaryReadOptions,
-    target?: SearchO_Object_Public_Rctn,
-  ): SearchO_Object_Public_Rctn;
-  internalBinaryWrite(
-    message: SearchO_Object_Public_Rctn,
-    writer: IBinaryWriter,
-    options: BinaryWriteOptions,
-  ): IBinaryWriter;
-}
-/**
- * @generated MessageType for protobuf message description.SearchO_Object_Public_Rctn
- */
-export declare const SearchO_Object_Public_Rctn: SearchO_Object_Public_Rctn$Type;
 export {};

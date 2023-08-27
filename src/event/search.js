@@ -219,13 +219,59 @@ export const SearchI_Object = new SearchI_Object$Type();
 class SearchI_Object_Intern$Type extends MessageType {
     constructor() {
         super("event.SearchI_Object_Intern", [
-            { no: 100, name: "cate", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "evnt", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "host", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "evnt", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { cate: "", evnt: "", host: "" };
+        const message = { evnt: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string evnt */ 100:
+                    message.evnt = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string evnt = 100; */
+        if (message.evnt !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.evnt);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message event.SearchI_Object_Intern
+ */
+export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class SearchI_Object_Public$Type extends MessageType {
+    constructor() {
+        super("event.SearchI_Object_Public", [
+            { no: 100, name: "cate", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "host", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = { cate: "", host: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -239,10 +285,7 @@ class SearchI_Object_Intern$Type extends MessageType {
                 case /* string cate */ 100:
                     message.cate = reader.string();
                     break;
-                case /* string evnt */ 200:
-                    message.evnt = reader.string();
-                    break;
-                case /* string host */ 300:
+                case /* string host */ 200:
                     message.host = reader.string();
                     break;
                 default:
@@ -260,38 +303,9 @@ class SearchI_Object_Intern$Type extends MessageType {
         /* string cate = 100; */
         if (message.cate !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.cate);
-        /* string evnt = 200; */
-        if (message.evnt !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.evnt);
-        /* string host = 300; */
+        /* string host = 200; */
         if (message.host !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.host);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message event.SearchI_Object_Intern
- */
-export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class SearchI_Object_Public$Type extends MessageType {
-    constructor() {
-        super("event.SearchI_Object_Public", []);
-    }
-    create(value) {
-        const message = {};
-        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-        if (value !== undefined)
-            reflectionMergePartial(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
-    }
-    internalBinaryWrite(message, writer, options) {
+            writer.tag(200, WireType.LengthDelimited).string(message.host);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

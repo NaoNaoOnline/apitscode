@@ -218,7 +218,33 @@ export const SearchI_Object = new SearchI_Object$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchI_Object_Intern$Type extends MessageType {
     constructor() {
-        super("label.SearchI_Object_Intern", [
+        super("label.SearchI_Object_Intern", []);
+    }
+    create(value) {
+        const message = {};
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        return target ?? this.create();
+    }
+    internalBinaryWrite(message, writer, options) {
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message label.SearchI_Object_Intern
+ */
+export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class SearchI_Object_Public$Type extends MessageType {
+    constructor() {
+        super("label.SearchI_Object_Public", [
             { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "labl", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
@@ -259,32 +285,6 @@ class SearchI_Object_Intern$Type extends MessageType {
         /* string labl = 200; */
         if (message.labl !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.labl);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message label.SearchI_Object_Intern
- */
-export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class SearchI_Object_Public$Type extends MessageType {
-    constructor() {
-        super("label.SearchI_Object_Public", []);
-    }
-    create(value) {
-        const message = {};
-        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-        if (value !== undefined)
-            reflectionMergePartial(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
-    }
-    internalBinaryWrite(message, writer, options) {
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

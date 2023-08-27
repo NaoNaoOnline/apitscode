@@ -19,7 +19,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         ],
  *         "object": [
  *             {
- *                 "intern": {
+ *                 "public": {
  *                     "kind": "host"
  *                 }
  *             }
@@ -77,7 +77,11 @@ export interface SearchI_Object {
 /**
  * @generated from protobuf message label.SearchI_Object_Intern
  */
-export interface SearchI_Object_Intern {
+export interface SearchI_Object_Intern {}
+/**
+ * @generated from protobuf message label.SearchI_Object_Public
+ */
+export interface SearchI_Object_Public {
   /**
    * kind is the label type for which events are being searched, e.g. host for
    * host labels and cate for category labels.
@@ -92,10 +96,6 @@ export interface SearchI_Object_Intern {
    */
   labl: string;
 }
-/**
- * @generated from protobuf message label.SearchI_Object_Public
- */
-export interface SearchI_Object_Public {}
 /**
  * SearchO is the output for searching labels.
  *

@@ -19,7 +19,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         ],
  *         "object": [
  *             {
- *                 "intern": {
+ *                 "public": {
  *                     "desc": "98972893"
  *                 }
  *             }
@@ -77,19 +77,19 @@ export interface SearchI_Object {
 /**
  * @generated from protobuf message vote.SearchI_Object_Intern
  */
-export interface SearchI_Object_Intern {
+export interface SearchI_Object_Intern {}
+/**
+ * @generated from protobuf message vote.SearchI_Object_Public
+ */
+export interface SearchI_Object_Public {
   /**
-   * desc is the ID of the description the user voted on. Given a description
-   * ID, all of the calling user's votes on that description can be looked up.
+   * desc is the ID of the description all users voted on. Given a description
+   * ID, all votes on that description can be looked up.
    *
    * @generated from protobuf field: string desc = 100;
    */
   desc: string;
 }
-/**
- * @generated from protobuf message vote.SearchI_Object_Public
- */
-export interface SearchI_Object_Public {}
 /**
  * SearchO is the output for searching votes.
  *
