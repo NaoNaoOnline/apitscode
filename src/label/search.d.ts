@@ -77,7 +77,14 @@ export interface SearchI_Object {
 /**
  * @generated from protobuf message label.SearchI_Object_Intern
  */
-export interface SearchI_Object_Intern {}
+export interface SearchI_Object_Intern {
+  /**
+   * labl is the ID of the label being searched.
+   *
+   * @generated from protobuf field: string labl = 100;
+   */
+  labl: string;
+}
 /**
  * @generated from protobuf message label.SearchI_Object_Public
  */
@@ -89,12 +96,6 @@ export interface SearchI_Object_Public {
    * @generated from protobuf field: string kind = 100;
    */
   kind: string;
-  /**
-   * labl is the ID of the label being searched.
-   *
-   * @generated from protobuf field: string labl = 200;
-   */
-  labl: string;
 }
 /**
  * SearchO is the output for searching labels.

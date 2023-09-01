@@ -218,19 +218,40 @@ export const SearchI_Object = new SearchI_Object$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchI_Object_Intern$Type extends MessageType {
     constructor() {
-        super("label.SearchI_Object_Intern", []);
+        super("label.SearchI_Object_Intern", [
+            { no: 100, name: "labl", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value) {
-        const message = {};
+        const message = { labl: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string labl */ 100:
+                    message.labl = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string labl = 100; */
+        if (message.labl !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.labl);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -245,12 +266,11 @@ export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
 class SearchI_Object_Public$Type extends MessageType {
     constructor() {
         super("label.SearchI_Object_Public", [
-            { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "labl", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { kind: "", labl: "" };
+        const message = { kind: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -263,9 +283,6 @@ class SearchI_Object_Public$Type extends MessageType {
             switch (fieldNo) {
                 case /* string kind */ 100:
                     message.kind = reader.string();
-                    break;
-                case /* string labl */ 200:
-                    message.labl = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -282,9 +299,6 @@ class SearchI_Object_Public$Type extends MessageType {
         /* string kind = 100; */
         if (message.kind !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.kind);
-        /* string labl = 200; */
-        if (message.labl !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.labl);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
