@@ -62,15 +62,6 @@ export interface SearchI_Filter_Chunking {
   pointer: string;
 }
 /**
- * SearchI_Object defines search queries for fetching event objects in various
- * ways, see properties of SearchI_Object_Intern and SearchI_Object_Public
- * respectively for detailed information.
- *
- * Not providing any search query returns the limited default response of event
- * objects indexed by event start time. That is, the list of events that are
- * going on right now, including events that already happened, and events that
- * will happen in the near future.
- *
  * @generated from protobuf message event.SearchI_Object
  */
 export interface SearchI_Object {
@@ -82,6 +73,10 @@ export interface SearchI_Object {
    * @generated from protobuf field: event.SearchI_Object_Public public = 200;
    */
   public?: SearchI_Object_Public;
+  /**
+   * @generated from protobuf field: event.SearchI_Object_Symbol symbol = 300;
+   */
+  symbol?: SearchI_Object_Symbol;
 }
 /**
  * @generated from protobuf message event.SearchI_Object_Intern
@@ -122,6 +117,30 @@ export interface SearchI_Object_Public {
    * @generated from protobuf field: string host = 200;
    */
   host: string;
+}
+/**
+ * @generated from protobuf message event.SearchI_Object_Symbol
+ */
+export interface SearchI_Object_Symbol {
+  /**
+   * ltst set to "default" returns the latest event objects indexed by event
+   * start time. That is, the list of events that are going on right now,
+   * including events that already happened, and events that will happen in the
+   * near future. The time horizon of the search query is limited to one week in
+   * the past and one week in the future.
+   *
+   * @generated from protobuf field: string ltst = 100;
+   */
+  ltst: string;
+  /**
+   * rctn set to "default" returns the event objects indexed by the calling
+   * user's reactions. That is, the list of events that the calling user reacted
+   * to in the past. Neither the amount nor the kind of reactions to any event
+   * matter. If the calling user reacted to an event, it will be returned here.
+   *
+   * @generated from protobuf field: string rctn = 200;
+   */
+  rctn: string;
 }
 /**
  * SearchO is the output for searching events.
@@ -359,6 +378,25 @@ declare class SearchI_Object_Public$Type extends MessageType<SearchI_Object_Publ
  * @generated MessageType for protobuf message event.SearchI_Object_Public
  */
 export declare const SearchI_Object_Public: SearchI_Object_Public$Type;
+declare class SearchI_Object_Symbol$Type extends MessageType<SearchI_Object_Symbol> {
+  constructor();
+  create(value?: PartialMessage<SearchI_Object_Symbol>): SearchI_Object_Symbol;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchI_Object_Symbol,
+  ): SearchI_Object_Symbol;
+  internalBinaryWrite(
+    message: SearchI_Object_Symbol,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message event.SearchI_Object_Symbol
+ */
+export declare const SearchI_Object_Symbol: SearchI_Object_Symbol$Type;
 declare class SearchO$Type extends MessageType<SearchO> {
   constructor();
   create(value?: PartialMessage<SearchO>): SearchO;
