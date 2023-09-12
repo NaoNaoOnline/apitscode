@@ -1,6 +1,6 @@
 {
   "name": "@naonaoonline/apitscode",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "apischema based generated typescript code",
   "type": "module",
   "scripts": {
@@ -26,7 +26,7 @@
     "abort-controller": "^3.0.0",
     "node-fetch": "^3.3.2",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.8"
