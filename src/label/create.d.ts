@@ -75,8 +75,11 @@ export interface CreateI_Object_Public {
    */
   disc: string;
   /**
-   * kind is the label type, e.g. host for host labels and cate for category
-   * labels.
+   * kind is the label type for which the label is being created.
+   *
+   *     cate for category labels
+   *     host for host labels
+   *
    *
    * @generated from protobuf field: string kind = 300;
    */

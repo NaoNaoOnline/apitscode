@@ -90,8 +90,12 @@ export interface SearchI_Object_Intern {
  */
 export interface SearchI_Object_Public {
   /**
-   * kind is the label type for which events are being searched, e.g. host for
-   * host labels and cate for category labels.
+   * kind is the label type for which labels are being searched.
+   *
+   *     bltn for system labels
+   *     cate for category labels
+   *     host for host labels
+   *
    *
    * @generated from protobuf field: string kind = 100;
    */
@@ -161,27 +165,21 @@ export interface SearchO_Object {
  */
 export interface SearchO_Object_Intern {
   /**
-   * bltn expresses whether this label is natively supported by the system.
-   *
-   * @generated from protobuf field: bool bltn = 100;
-   */
-  bltn: boolean;
-  /**
    * crtd is the unix timestamp in seconds at which the label got created.
    *
-   * @generated from protobuf field: string crtd = 200;
+   * @generated from protobuf field: string crtd = 100;
    */
   crtd: string;
   /**
    * labl is the ID of the label being searched.
    *
-   * @generated from protobuf field: string labl = 300;
+   * @generated from protobuf field: string labl = 200;
    */
   labl: string;
   /**
    * user is the ID of the user who created this label.
    *
-   * @generated from protobuf field: string user = 400;
+   * @generated from protobuf field: string user = 300;
    */
   user: string;
 }
@@ -202,8 +200,12 @@ export interface SearchO_Object_Public {
    */
   disc: string;
   /**
-   * kind is the label type, e.g. host for host labels and cate for category
-   * labels.
+   * kind is the label type.
+   *
+   *     bltn for system labels
+   *     cate for category labels
+   *     host for host labels
+   *
    *
    * @generated from protobuf field: string kind = 300;
    */

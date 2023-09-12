@@ -244,19 +244,40 @@ export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchI_Object_Public$Type extends MessageType {
     constructor() {
-        super("reaction.SearchI_Object_Public", []);
+        super("reaction.SearchI_Object_Public", [
+            { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value) {
-        const message = {};
+        const message = { kind: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string kind */ 100:
+                    message.kind = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string kind = 100; */
+        if (message.kind !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.kind);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -405,14 +426,13 @@ export const SearchO_Object = new SearchO_Object$Type();
 class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
         super("reaction.SearchO_Object_Intern", [
-            { no: 100, name: "bltn", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 200, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "rctn", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "rctn", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { bltn: false, crtd: "", rctn: "", user: "" };
+        const message = { crtd: "", rctn: "", user: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -423,16 +443,13 @@ class SearchO_Object_Intern$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* bool bltn */ 100:
-                    message.bltn = reader.bool();
-                    break;
-                case /* string crtd */ 200:
+                case /* string crtd */ 100:
                     message.crtd = reader.string();
                     break;
-                case /* string rctn */ 300:
+                case /* string rctn */ 200:
                     message.rctn = reader.string();
                     break;
-                case /* string user */ 400:
+                case /* string user */ 300:
                     message.user = reader.string();
                     break;
                 default:
@@ -447,18 +464,15 @@ class SearchO_Object_Intern$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* bool bltn = 100; */
-        if (message.bltn !== false)
-            writer.tag(100, WireType.Varint).bool(message.bltn);
-        /* string crtd = 200; */
+        /* string crtd = 100; */
         if (message.crtd !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.crtd);
-        /* string rctn = 300; */
+            writer.tag(100, WireType.LengthDelimited).string(message.crtd);
+        /* string rctn = 200; */
         if (message.rctn !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.rctn);
-        /* string user = 400; */
+            writer.tag(200, WireType.LengthDelimited).string(message.rctn);
+        /* string user = 300; */
         if (message.user !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.user);
+            writer.tag(300, WireType.LengthDelimited).string(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -474,11 +488,12 @@ class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("reaction.SearchO_Object_Public", [
             { no: 100, name: "html", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { html: "", name: "" };
+        const message = { html: "", kind: "", name: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -492,7 +507,10 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string html */ 100:
                     message.html = reader.string();
                     break;
-                case /* string name */ 200:
+                case /* string kind */ 200:
+                    message.kind = reader.string();
+                    break;
+                case /* string name */ 300:
                     message.name = reader.string();
                     break;
                 default:
@@ -510,9 +528,12 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string html = 100; */
         if (message.html !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.html);
-        /* string name = 200; */
+        /* string kind = 200; */
+        if (message.kind !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.kind);
+        /* string name = 300; */
         if (message.name !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.name);
+            writer.tag(300, WireType.LengthDelimited).string(message.name);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

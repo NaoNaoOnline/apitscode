@@ -17,7 +17,13 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "pointer": "100"
  *             }
  *         ],
- *         "object": []
+ *         "object": [
+ *             {
+ *                 "public": {
+ *                     "kind": "bltn"
+ *                 }
+ *             }
+ *         ]
  *     }
  *
  *
@@ -75,7 +81,18 @@ export interface SearchI_Object_Intern {}
 /**
  * @generated from protobuf message reaction.SearchI_Object_Public
  */
-export interface SearchI_Object_Public {}
+export interface SearchI_Object_Public {
+  /**
+   * kind is the reaction type for which reactions are being searched.
+   *
+   *     bltn for system reactions
+   *     user for custom reactions
+   *
+   *
+   * @generated from protobuf field: string kind = 100;
+   */
+  kind: string;
+}
 /**
  * SearchO is the output for searching reactions.
  *
@@ -94,8 +111,9 @@ export interface SearchI_Object_Public {}
  *                     "user": "551265"
  *                 },
  *                 "public": {
- *                     "html": "<svg width="15" height="15" >...</svg>",
- *                     "name": "heart"
+ *                     "html": "😍",
+ *                     "kind": "bltn",
+ *                     "name": "Smiling Face With Heart Eyes"
  *                 }
  *             },
  *             ...
@@ -137,27 +155,21 @@ export interface SearchO_Object {
  */
 export interface SearchO_Object_Intern {
   /**
-   * bltn expresses whether this reaction is natively supported by the system.
-   *
-   * @generated from protobuf field: bool bltn = 100;
-   */
-  bltn: boolean;
-  /**
    * crtd is the unix timestamp in seconds at which the reaction got created.
    *
-   * @generated from protobuf field: string crtd = 200;
+   * @generated from protobuf field: string crtd = 100;
    */
   crtd: string;
   /**
    * rctn is the ID of the reaction being searched.
    *
-   * @generated from protobuf field: string rctn = 300;
+   * @generated from protobuf field: string rctn = 200;
    */
   rctn: string;
   /**
    * user is the ID of the user who created this reaction.
    *
-   * @generated from protobuf field: string user = 400;
+   * @generated from protobuf field: string user = 300;
    */
   user: string;
 }
@@ -172,9 +184,19 @@ export interface SearchO_Object_Public {
    */
   html: string;
   /**
+   * kind is the reaction type.
+   *
+   *     bltn for system reactions
+   *     user for custom reactions
+   *
+   *
+   * @generated from protobuf field: string kind = 200;
+   */
+  kind: string;
+  /**
    * name is the reaction name.
    *
-   * @generated from protobuf field: string name = 200;
+   * @generated from protobuf field: string name = 300;
    */
   name: string;
 }
