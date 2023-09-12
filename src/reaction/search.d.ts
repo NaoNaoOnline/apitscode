@@ -137,21 +137,27 @@ export interface SearchO_Object {
  */
 export interface SearchO_Object_Intern {
   /**
+   * bltn expresses whether this reaction is natively supported by the system.
+   *
+   * @generated from protobuf field: bool bltn = 100;
+   */
+  bltn: boolean;
+  /**
    * crtd is the unix timestamp in seconds at which the reaction got created.
    *
-   * @generated from protobuf field: string crtd = 100;
+   * @generated from protobuf field: string crtd = 200;
    */
   crtd: string;
   /**
    * rctn is the ID of the reaction being searched.
    *
-   * @generated from protobuf field: string rctn = 200;
+   * @generated from protobuf field: string rctn = 300;
    */
   rctn: string;
   /**
    * user is the ID of the user who created this reaction.
    *
-   * @generated from protobuf field: string user = 300;
+   * @generated from protobuf field: string user = 400;
    */
   user: string;
 }

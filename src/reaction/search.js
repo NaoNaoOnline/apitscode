@@ -405,13 +405,14 @@ export const SearchO_Object = new SearchO_Object$Type();
 class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
         super("reaction.SearchO_Object_Intern", [
-            { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "rctn", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "bltn", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 200, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "rctn", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { crtd: "", rctn: "", user: "" };
+        const message = { bltn: false, crtd: "", rctn: "", user: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -422,13 +423,16 @@ class SearchO_Object_Intern$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string crtd */ 100:
+                case /* bool bltn */ 100:
+                    message.bltn = reader.bool();
+                    break;
+                case /* string crtd */ 200:
                     message.crtd = reader.string();
                     break;
-                case /* string rctn */ 200:
+                case /* string rctn */ 300:
                     message.rctn = reader.string();
                     break;
-                case /* string user */ 300:
+                case /* string user */ 400:
                     message.user = reader.string();
                     break;
                 default:
@@ -443,15 +447,18 @@ class SearchO_Object_Intern$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string crtd = 100; */
+        /* bool bltn = 100; */
+        if (message.bltn !== false)
+            writer.tag(100, WireType.Varint).bool(message.bltn);
+        /* string crtd = 200; */
         if (message.crtd !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.crtd);
-        /* string rctn = 200; */
+            writer.tag(200, WireType.LengthDelimited).string(message.crtd);
+        /* string rctn = 300; */
         if (message.rctn !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.rctn);
-        /* string user = 300; */
+            writer.tag(300, WireType.LengthDelimited).string(message.rctn);
+        /* string user = 400; */
         if (message.user !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.user);
+            writer.tag(400, WireType.LengthDelimited).string(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

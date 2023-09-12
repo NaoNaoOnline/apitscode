@@ -161,21 +161,27 @@ export interface SearchO_Object {
  */
 export interface SearchO_Object_Intern {
   /**
+   * bltn expresses whether this label is natively supported by the system.
+   *
+   * @generated from protobuf field: bool bltn = 100;
+   */
+  bltn: boolean;
+  /**
    * crtd is the unix timestamp in seconds at which the label got created.
    *
-   * @generated from protobuf field: string crtd = 100;
+   * @generated from protobuf field: string crtd = 200;
    */
   crtd: string;
   /**
    * labl is the ID of the label being searched.
    *
-   * @generated from protobuf field: string labl = 200;
+   * @generated from protobuf field: string labl = 300;
    */
   labl: string;
   /**
    * user is the ID of the user who created this label.
    *
-   * @generated from protobuf field: string user = 300;
+   * @generated from protobuf field: string user = 400;
    */
   user: string;
 }
