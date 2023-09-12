@@ -1,6 +1,6 @@
 {
   "name": "@naonaoonline/apitscode",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "apischema based generated typescript code",
   "type": "module",
   "scripts": {
