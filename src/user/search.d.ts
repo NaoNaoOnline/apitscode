@@ -81,7 +81,7 @@ export interface SearchI_Object_Intern {
   /**
    * user is the ID of the user being searched. If user is left empty, the
    * current user sending the request is looked up and returned based on the
-   * given authorization parameters. Given an OAuth access token its encoded
+   * given authorization parameters. Given an OAuth access token, its encoded
    * subject claim may refer to the internally persisted user object.
    *
    * @generated from protobuf field: string user = 100;
@@ -91,7 +91,14 @@ export interface SearchI_Object_Intern {
 /**
  * @generated from protobuf message user.SearchI_Object_Public
  */
-export interface SearchI_Object_Public {}
+export interface SearchI_Object_Public {
+  /**
+   * name is the name of the user being searched.
+   *
+   * @generated from protobuf field: string name = 100;
+   */
+  name: string;
+}
 /**
  * SearchO is the output for searching users.
  *
