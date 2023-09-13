@@ -84,12 +84,19 @@ export interface SearchI_Object {
 export interface SearchI_Object_Intern {
   /**
    * evnt is the ID of the event being searched. If searching for a particular
-   * event, the search query object must neither contain cate or host within the
-   * same search query object.
+   * event, the search query object must not contain any other fields.
    *
    * @generated from protobuf field: string evnt = 100;
    */
   evnt: string;
+  /**
+   * user is the ID of the user having created the events being searched. If
+   * searching for events created by a particular user, the search query object
+   * must not contain any other fields.
+   *
+   * @generated from protobuf field: string user = 200;
+   */
+  user: string;
 }
 /**
  * @generated from protobuf message event.SearchI_Object_Public
