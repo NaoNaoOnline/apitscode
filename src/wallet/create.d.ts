@@ -18,7 +18,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *             {
  *                 "public": {
  *                     "kind": "eth",
- *                     "mess": "It's-a me, Mario!",
+ *                     "mess": "signing ownership of 0x001 at 1689001255",
  *                     "pubk": "0x1234",
  *                     "sign": "0x2345"
  *                 }
@@ -74,20 +74,23 @@ export interface CreateI_Object_Public {
    */
   kind: string;
   /**
-   * mess is the message to sign.
+   * mess is the message to sign. It is ephemeral and will not be stored in the
+   * backend.
    *
    * @generated from protobuf field: string mess = 200;
    */
   mess: string;
   /**
-   * pubk is the hex encoded compressed public key expected to be recovered from
-   * the given signature.
+   * pubk is the hex encoded public key expected to be recovered from the given
+   * signature during the signature verification challenge. It is ephemeral and
+   * will not be stored in the backend.
    *
    * @generated from protobuf field: string pubk = 300;
    */
   pubk: string;
   /**
-   * sign is the signature of the signed message.
+   * sign is the signature of the signed message. It is ephemeral and will not
+   * be stored in the backend.
    *
    * @generated from protobuf field: string sign = 400;
    */

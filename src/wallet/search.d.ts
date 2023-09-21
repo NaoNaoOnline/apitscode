@@ -116,14 +116,13 @@ export interface SearchI_Object_Public {
  *             {
  *                 "intern": {
  *                     "crtd": "1689001255",
+ *                     "last": "1695326765",
  *                     "user": "551265",
  *                     "wllt": "338912367"
  *                 },
  *                 "public": {
- *                     "kind": "eth",
- *                     "mess": "It's-a me, Mario!",
- *                     "pubk": "0x1234",
- *                     "sign": "0x2345"
+ *                     "addr": "0x0001",
+ *                     "kind": "eth"
  *                 }
  *             },
  *             ...
@@ -171,15 +170,22 @@ export interface SearchO_Object_Intern {
    */
   crtd: string;
   /**
+   * Last is the unix timestamp in seconds of the most recent time at which this
+   * wallet got re-validated by signing a message again.
+   *
+   * @generated from protobuf field: string last = 200;
+   */
+  last: string;
+  /**
    * user is the ID of the user who created this wallet.
    *
-   * @generated from protobuf field: string user = 200;
+   * @generated from protobuf field: string user = 300;
    */
   user: string;
   /**
    * wllt is the ID of the wallet being searched.
    *
-   * @generated from protobuf field: string wllt = 300;
+   * @generated from protobuf field: string wllt = 400;
    */
   wllt: string;
 }
@@ -188,33 +194,21 @@ export interface SearchO_Object_Intern {
  */
 export interface SearchO_Object_Public {
   /**
+   * addr is the hex encoded wallet address derived from the public key provided
+   * during signature verification.
+   *
+   * @generated from protobuf field: string addr = 100;
+   */
+  addr: string;
+  /**
    * kind is the wallet type.
    *
    *     eth for ethereum wallets
    *
    *
-   * @generated from protobuf field: string kind = 100;
+   * @generated from protobuf field: string kind = 200;
    */
   kind: string;
-  /**
-   * mess is the message being signed.
-   *
-   * @generated from protobuf field: string mess = 200;
-   */
-  mess: string;
-  /**
-   * pubk is the hex encoded compressed public key recovered from the given
-   * signature.
-   *
-   * @generated from protobuf field: string pubk = 300;
-   */
-  pubk: string;
-  /**
-   * sign is the signature of the signed message.
-   *
-   * @generated from protobuf field: string sign = 400;
-   */
-  sign: string;
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();

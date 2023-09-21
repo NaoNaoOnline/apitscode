@@ -448,12 +448,13 @@ class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
         super("wallet.SearchO_Object_Intern", [
             { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "wllt", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "last", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "wllt", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { crtd: "", user: "", wllt: "" };
+        const message = { crtd: "", last: "", user: "", wllt: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -467,10 +468,13 @@ class SearchO_Object_Intern$Type extends MessageType {
                 case /* string crtd */ 100:
                     message.crtd = reader.string();
                     break;
-                case /* string user */ 200:
+                case /* string last */ 200:
+                    message.last = reader.string();
+                    break;
+                case /* string user */ 300:
                     message.user = reader.string();
                     break;
-                case /* string wllt */ 300:
+                case /* string wllt */ 400:
                     message.wllt = reader.string();
                     break;
                 default:
@@ -488,12 +492,15 @@ class SearchO_Object_Intern$Type extends MessageType {
         /* string crtd = 100; */
         if (message.crtd !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.crtd);
-        /* string user = 200; */
+        /* string last = 200; */
+        if (message.last !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.last);
+        /* string user = 300; */
         if (message.user !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.user);
-        /* string wllt = 300; */
+            writer.tag(300, WireType.LengthDelimited).string(message.user);
+        /* string wllt = 400; */
         if (message.wllt !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.wllt);
+            writer.tag(400, WireType.LengthDelimited).string(message.wllt);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -508,14 +515,12 @@ export const SearchO_Object_Intern = new SearchO_Object_Intern$Type();
 class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("wallet.SearchO_Object_Public", [
-            { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "mess", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "pubk", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "sign", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "addr", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { kind: "", mess: "", pubk: "", sign: "" };
+        const message = { addr: "", kind: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -526,17 +531,11 @@ class SearchO_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string kind */ 100:
+                case /* string addr */ 100:
+                    message.addr = reader.string();
+                    break;
+                case /* string kind */ 200:
                     message.kind = reader.string();
-                    break;
-                case /* string mess */ 200:
-                    message.mess = reader.string();
-                    break;
-                case /* string pubk */ 300:
-                    message.pubk = reader.string();
-                    break;
-                case /* string sign */ 400:
-                    message.sign = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -550,18 +549,12 @@ class SearchO_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string kind = 100; */
+        /* string addr = 100; */
+        if (message.addr !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.addr);
+        /* string kind = 200; */
         if (message.kind !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.kind);
-        /* string mess = 200; */
-        if (message.mess !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.mess);
-        /* string pubk = 300; */
-        if (message.pubk !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.pubk);
-        /* string sign = 400; */
-        if (message.sign !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.sign);
+            writer.tag(200, WireType.LengthDelimited).string(message.kind);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
