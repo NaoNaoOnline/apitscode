@@ -53,9 +53,9 @@ export interface UpdateI_Object {
    */
   intern?: UpdateI_Object_Intern;
   /**
-   * @generated from protobuf field: repeated user.UpdateI_Object_Public public = 200;
+   * @generated from protobuf field: user.UpdateI_Object_Public public = 200;
    */
-  public: UpdateI_Object_Public[];
+  public?: UpdateI_Object_Public;
   /**
    * @generated from protobuf field: repeated user.UpdateI_Object_Update update = 300;
    */

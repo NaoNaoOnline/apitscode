@@ -91,12 +91,12 @@ class UpdateI_Object$Type extends MessageType {
     constructor() {
         super("event.UpdateI_Object", [
             { no: 100, name: "intern", kind: "message", T: () => UpdateI_Object_Intern },
-            { no: 200, name: "public", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Public },
+            { no: 200, name: "public", kind: "message", T: () => UpdateI_Object_Public },
             { no: 300, name: "update", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Update }
         ]);
     }
     create(value) {
-        const message = { public: [], update: [] };
+        const message = { update: [] };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -110,8 +110,8 @@ class UpdateI_Object$Type extends MessageType {
                 case /* event.UpdateI_Object_Intern intern */ 100:
                     message.intern = UpdateI_Object_Intern.internalBinaryRead(reader, reader.uint32(), options, message.intern);
                     break;
-                case /* repeated event.UpdateI_Object_Public public */ 200:
-                    message.public.push(UpdateI_Object_Public.internalBinaryRead(reader, reader.uint32(), options));
+                case /* event.UpdateI_Object_Public public */ 200:
+                    message.public = UpdateI_Object_Public.internalBinaryRead(reader, reader.uint32(), options, message.public);
                     break;
                 case /* repeated event.UpdateI_Object_Update update */ 300:
                     message.update.push(UpdateI_Object_Update.internalBinaryRead(reader, reader.uint32(), options));
@@ -131,9 +131,9 @@ class UpdateI_Object$Type extends MessageType {
         /* event.UpdateI_Object_Intern intern = 100; */
         if (message.intern)
             UpdateI_Object_Intern.internalBinaryWrite(message.intern, writer.tag(100, WireType.LengthDelimited).fork(), options).join();
-        /* repeated event.UpdateI_Object_Public public = 200; */
-        for (let i = 0; i < message.public.length; i++)
-            UpdateI_Object_Public.internalBinaryWrite(message.public[i], writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+        /* event.UpdateI_Object_Public public = 200; */
+        if (message.public)
+            UpdateI_Object_Public.internalBinaryWrite(message.public, writer.tag(200, WireType.LengthDelimited).fork(), options).join();
         /* repeated event.UpdateI_Object_Update update = 300; */
         for (let i = 0; i < message.update.length; i++)
             UpdateI_Object_Update.internalBinaryWrite(message.update[i], writer.tag(300, WireType.LengthDelimited).fork(), options).join();
