@@ -40,7 +40,11 @@ export interface UpdateI_Object {
    */
   intern?: UpdateI_Object_Intern;
   /**
-   * @generated from protobuf field: repeated reaction.UpdateI_Object_Update update = 200;
+   * @generated from protobuf field: repeated reaction.UpdateI_Object_Public public = 200;
+   */
+  public: UpdateI_Object_Public[];
+  /**
+   * @generated from protobuf field: repeated reaction.UpdateI_Object_Update update = 300;
    */
   update: UpdateI_Object_Update[];
 }
@@ -48,6 +52,10 @@ export interface UpdateI_Object {
  * @generated from protobuf message reaction.UpdateI_Object_Intern
  */
 export interface UpdateI_Object_Intern {}
+/**
+ * @generated from protobuf message reaction.UpdateI_Object_Public
+ */
+export interface UpdateI_Object_Public {}
 /**
  * @generated from protobuf message reaction.UpdateI_Object_Update
  */
@@ -173,6 +181,25 @@ declare class UpdateI_Object_Intern$Type extends MessageType<UpdateI_Object_Inte
  * @generated MessageType for protobuf message reaction.UpdateI_Object_Intern
  */
 export declare const UpdateI_Object_Intern: UpdateI_Object_Intern$Type;
+declare class UpdateI_Object_Public$Type extends MessageType<UpdateI_Object_Public> {
+  constructor();
+  create(value?: PartialMessage<UpdateI_Object_Public>): UpdateI_Object_Public;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: UpdateI_Object_Public,
+  ): UpdateI_Object_Public;
+  internalBinaryWrite(
+    message: UpdateI_Object_Public,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message reaction.UpdateI_Object_Public
+ */
+export declare const UpdateI_Object_Public: UpdateI_Object_Public$Type;
 declare class UpdateI_Object_Update$Type extends MessageType<UpdateI_Object_Update> {
   constructor();
   create(value?: PartialMessage<UpdateI_Object_Update>): UpdateI_Object_Update;

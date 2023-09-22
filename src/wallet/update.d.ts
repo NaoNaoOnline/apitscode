@@ -8,10 +8,23 @@ import type { IBinaryReader } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
- * UpdateI is the input for updating wallets.
+ * UpdateI is the input for updating wallets. Solving the signature verification
+ * challenge again for an existing wallet updates object.intern.last. That is,
+ * refreshing the wallet's validity and its user's ownership claim.
  *
  *     {
- *         "object": []
+ *         "object": [
+ *             {
+ *                 "intern": {
+ *                     "wllt": "338912367"
+ *                 },
+ *                 "public": {
+ *                     "mess": "signing ownership of 0x001 at 1689001255",
+ *                     "pubk": "0x1234",
+ *                     "sign": "0x2345"
+ *                 }
+ *             }
+ *         ]
  *     }
  *
  *
@@ -40,14 +53,52 @@ export interface UpdateI_Object {
    */
   intern?: UpdateI_Object_Intern;
   /**
-   * @generated from protobuf field: repeated wallet.UpdateI_Object_Update update = 200;
+   * @generated from protobuf field: repeated wallet.UpdateI_Object_Public public = 200;
+   */
+  public: UpdateI_Object_Public[];
+  /**
+   * @generated from protobuf field: repeated wallet.UpdateI_Object_Update update = 300;
    */
   update: UpdateI_Object_Update[];
 }
 /**
  * @generated from protobuf message wallet.UpdateI_Object_Intern
  */
-export interface UpdateI_Object_Intern {}
+export interface UpdateI_Object_Intern {
+  /**
+   * wllt is the ID of the wallet being updated.
+   *
+   * @generated from protobuf field: string wllt = 100;
+   */
+  wllt: string;
+}
+/**
+ * @generated from protobuf message wallet.UpdateI_Object_Public
+ */
+export interface UpdateI_Object_Public {
+  /**
+   * mess is the message to sign. It is ephemeral and will not be stored in the
+   * backend.
+   *
+   * @generated from protobuf field: string mess = 100;
+   */
+  mess: string;
+  /**
+   * pubk is the hex encoded public key expected to be recovered from the given
+   * signature during the signature verification challenge. It is ephemeral and
+   * will not be stored in the backend.
+   *
+   * @generated from protobuf field: string pubk = 200;
+   */
+  pubk: string;
+  /**
+   * sign is the signature of the signed message. It is ephemeral and will not
+   * be stored in the backend.
+   *
+   * @generated from protobuf field: string sign = 300;
+   */
+  sign: string;
+}
 /**
  * @generated from protobuf message wallet.UpdateI_Object_Update
  */
@@ -56,7 +107,13 @@ export interface UpdateI_Object_Update {}
  * UpdateO is the output for updating wallets.
  *
  *     {
- *         "object": []
+ *         "object": [
+ *             {
+ *                 "intern": {
+ *                     "stts": "updated"
+ *                 }
+ *             }
+ *         ]
  *     }
  *
  *
@@ -92,7 +149,14 @@ export interface UpdateO_Object {
 /**
  * @generated from protobuf message wallet.UpdateO_Object_Intern
  */
-export interface UpdateO_Object_Intern {}
+export interface UpdateO_Object_Intern {
+  /**
+   * stts is the resource status upon successful wallet modification.
+   *
+   * @generated from protobuf field: string stts = 100;
+   */
+  stts: string;
+}
 /**
  * @generated from protobuf message wallet.UpdateO_Object_Public
  */
@@ -173,6 +237,25 @@ declare class UpdateI_Object_Intern$Type extends MessageType<UpdateI_Object_Inte
  * @generated MessageType for protobuf message wallet.UpdateI_Object_Intern
  */
 export declare const UpdateI_Object_Intern: UpdateI_Object_Intern$Type;
+declare class UpdateI_Object_Public$Type extends MessageType<UpdateI_Object_Public> {
+  constructor();
+  create(value?: PartialMessage<UpdateI_Object_Public>): UpdateI_Object_Public;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: UpdateI_Object_Public,
+  ): UpdateI_Object_Public;
+  internalBinaryWrite(
+    message: UpdateI_Object_Public,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message wallet.UpdateI_Object_Public
+ */
+export declare const UpdateI_Object_Public: UpdateI_Object_Public$Type;
 declare class UpdateI_Object_Update$Type extends MessageType<UpdateI_Object_Update> {
   constructor();
   create(value?: PartialMessage<UpdateI_Object_Update>): UpdateI_Object_Update;

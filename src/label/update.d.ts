@@ -16,7 +16,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "intern": {
  *                     "labl": "863826"
  *                 }
- *                 "public": [
+ *                 "update": [
  *                     {
  *                         "ope": "replace",
  *                         "pat": "/obj/property/name",
@@ -56,6 +56,10 @@ export interface UpdateI_Object {
    * @generated from protobuf field: repeated label.UpdateI_Object_Public public = 200;
    */
   public: UpdateI_Object_Public[];
+  /**
+   * @generated from protobuf field: repeated label.UpdateI_Object_Update update = 300;
+   */
+  update: UpdateI_Object_Update[];
 }
 /**
  * @generated from protobuf message label.UpdateI_Object_Intern
@@ -71,7 +75,11 @@ export interface UpdateI_Object_Intern {
 /**
  * @generated from protobuf message label.UpdateI_Object_Public
  */
-export interface UpdateI_Object_Public {
+export interface UpdateI_Object_Public {}
+/**
+ * @generated from protobuf message label.UpdateI_Object_Update
+ */
+export interface UpdateI_Object_Update {
   /**
    * @generated from protobuf field: string ope = 100;
    */
@@ -238,6 +246,25 @@ declare class UpdateI_Object_Public$Type extends MessageType<UpdateI_Object_Publ
  * @generated MessageType for protobuf message label.UpdateI_Object_Public
  */
 export declare const UpdateI_Object_Public: UpdateI_Object_Public$Type;
+declare class UpdateI_Object_Update$Type extends MessageType<UpdateI_Object_Update> {
+  constructor();
+  create(value?: PartialMessage<UpdateI_Object_Update>): UpdateI_Object_Update;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: UpdateI_Object_Update,
+  ): UpdateI_Object_Update;
+  internalBinaryWrite(
+    message: UpdateI_Object_Update,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message label.UpdateI_Object_Update
+ */
+export declare const UpdateI_Object_Update: UpdateI_Object_Update$Type;
 declare class UpdateO$Type extends MessageType<UpdateO> {
   constructor();
   create(value?: PartialMessage<UpdateO>): UpdateO;

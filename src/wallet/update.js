@@ -91,11 +91,12 @@ class UpdateI_Object$Type extends MessageType {
     constructor() {
         super("wallet.UpdateI_Object", [
             { no: 100, name: "intern", kind: "message", T: () => UpdateI_Object_Intern },
-            { no: 200, name: "update", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Update }
+            { no: 200, name: "public", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Public },
+            { no: 300, name: "update", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Update }
         ]);
     }
     create(value) {
-        const message = { update: [] };
+        const message = { public: [], update: [] };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -109,7 +110,10 @@ class UpdateI_Object$Type extends MessageType {
                 case /* wallet.UpdateI_Object_Intern intern */ 100:
                     message.intern = UpdateI_Object_Intern.internalBinaryRead(reader, reader.uint32(), options, message.intern);
                     break;
-                case /* repeated wallet.UpdateI_Object_Update update */ 200:
+                case /* repeated wallet.UpdateI_Object_Public public */ 200:
+                    message.public.push(UpdateI_Object_Public.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* repeated wallet.UpdateI_Object_Update update */ 300:
                     message.update.push(UpdateI_Object_Update.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
@@ -127,9 +131,12 @@ class UpdateI_Object$Type extends MessageType {
         /* wallet.UpdateI_Object_Intern intern = 100; */
         if (message.intern)
             UpdateI_Object_Intern.internalBinaryWrite(message.intern, writer.tag(100, WireType.LengthDelimited).fork(), options).join();
-        /* repeated wallet.UpdateI_Object_Update update = 200; */
+        /* repeated wallet.UpdateI_Object_Public public = 200; */
+        for (let i = 0; i < message.public.length; i++)
+            UpdateI_Object_Public.internalBinaryWrite(message.public[i], writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+        /* repeated wallet.UpdateI_Object_Update update = 300; */
         for (let i = 0; i < message.update.length; i++)
-            UpdateI_Object_Update.internalBinaryWrite(message.update[i], writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+            UpdateI_Object_Update.internalBinaryWrite(message.update[i], writer.tag(300, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -143,19 +150,40 @@ export const UpdateI_Object = new UpdateI_Object$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateI_Object_Intern$Type extends MessageType {
     constructor() {
-        super("wallet.UpdateI_Object_Intern", []);
+        super("wallet.UpdateI_Object_Intern", [
+            { no: 100, name: "wllt", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value) {
-        const message = {};
+        const message = { wllt: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string wllt */ 100:
+                    message.wllt = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string wllt = 100; */
+        if (message.wllt !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.wllt);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -166,6 +194,67 @@ class UpdateI_Object_Intern$Type extends MessageType {
  * @generated MessageType for protobuf message wallet.UpdateI_Object_Intern
  */
 export const UpdateI_Object_Intern = new UpdateI_Object_Intern$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateI_Object_Public$Type extends MessageType {
+    constructor() {
+        super("wallet.UpdateI_Object_Public", [
+            { no: 100, name: "mess", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "pubk", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "sign", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = { mess: "", pubk: "", sign: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string mess */ 100:
+                    message.mess = reader.string();
+                    break;
+                case /* string pubk */ 200:
+                    message.pubk = reader.string();
+                    break;
+                case /* string sign */ 300:
+                    message.sign = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string mess = 100; */
+        if (message.mess !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.mess);
+        /* string pubk = 200; */
+        if (message.pubk !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.pubk);
+        /* string sign = 300; */
+        if (message.sign !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.sign);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message wallet.UpdateI_Object_Public
+ */
+export const UpdateI_Object_Public = new UpdateI_Object_Public$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateI_Object_Update$Type extends MessageType {
     constructor() {
@@ -329,19 +418,40 @@ export const UpdateO_Object = new UpdateO_Object$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateO_Object_Intern$Type extends MessageType {
     constructor() {
-        super("wallet.UpdateO_Object_Intern", []);
+        super("wallet.UpdateO_Object_Intern", [
+            { no: 100, name: "stts", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value) {
-        const message = {};
+        const message = { stts: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string stts */ 100:
+                    message.stts = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string stts = 100; */
+        if (message.stts !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.stts);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

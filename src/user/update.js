@@ -91,11 +91,12 @@ class UpdateI_Object$Type extends MessageType {
     constructor() {
         super("user.UpdateI_Object", [
             { no: 100, name: "intern", kind: "message", T: () => UpdateI_Object_Intern },
-            { no: 200, name: "public", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Public }
+            { no: 200, name: "public", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Public },
+            { no: 300, name: "update", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Update }
         ]);
     }
     create(value) {
-        const message = { public: [] };
+        const message = { public: [], update: [] };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -111,6 +112,9 @@ class UpdateI_Object$Type extends MessageType {
                     break;
                 case /* repeated user.UpdateI_Object_Public public */ 200:
                     message.public.push(UpdateI_Object_Public.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* repeated user.UpdateI_Object_Update update */ 300:
+                    message.update.push(UpdateI_Object_Update.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -130,6 +134,9 @@ class UpdateI_Object$Type extends MessageType {
         /* repeated user.UpdateI_Object_Public public = 200; */
         for (let i = 0; i < message.public.length; i++)
             UpdateI_Object_Public.internalBinaryWrite(message.public[i], writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+        /* repeated user.UpdateI_Object_Update update = 300; */
+        for (let i = 0; i < message.update.length; i++)
+            UpdateI_Object_Update.internalBinaryWrite(message.update[i], writer.tag(300, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -190,7 +197,33 @@ export const UpdateI_Object_Intern = new UpdateI_Object_Intern$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateI_Object_Public$Type extends MessageType {
     constructor() {
-        super("user.UpdateI_Object_Public", [
+        super("user.UpdateI_Object_Public", []);
+    }
+    create(value) {
+        const message = {};
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        return target ?? this.create();
+    }
+    internalBinaryWrite(message, writer, options) {
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message user.UpdateI_Object_Public
+ */
+export const UpdateI_Object_Public = new UpdateI_Object_Public$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateI_Object_Update$Type extends MessageType {
+    constructor() {
+        super("user.UpdateI_Object_Update", [
             { no: 100, name: "ope", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "pat", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 300, name: "val", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
@@ -245,9 +278,9 @@ class UpdateI_Object_Public$Type extends MessageType {
     }
 }
 /**
- * @generated MessageType for protobuf message user.UpdateI_Object_Public
+ * @generated MessageType for protobuf message user.UpdateI_Object_Update
  */
-export const UpdateI_Object_Public = new UpdateI_Object_Public$Type();
+export const UpdateI_Object_Update = new UpdateI_Object_Update$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateO$Type extends MessageType {
     constructor() {
