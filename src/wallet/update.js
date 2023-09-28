@@ -419,7 +419,8 @@ export const UpdateO_Object = new UpdateO_Object$Type();
 class UpdateO_Object_Intern$Type extends MessageType {
     constructor() {
         super("wallet.UpdateO_Object_Intern", [
-            { no: 100, name: "stts", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "addr", kind: "message", T: () => UpdateO_Object_Intern_Addr },
+            { no: 200, name: "stts", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
@@ -434,7 +435,10 @@ class UpdateO_Object_Intern$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string stts */ 100:
+                case /* wallet.UpdateO_Object_Intern_Addr addr */ 100:
+                    message.addr = UpdateO_Object_Intern_Addr.internalBinaryRead(reader, reader.uint32(), options, message.addr);
+                    break;
+                case /* string stts */ 200:
                     message.stts = reader.string();
                     break;
                 default:
@@ -449,9 +453,12 @@ class UpdateO_Object_Intern$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string stts = 100; */
+        /* wallet.UpdateO_Object_Intern_Addr addr = 100; */
+        if (message.addr)
+            UpdateO_Object_Intern_Addr.internalBinaryWrite(message.addr, writer.tag(100, WireType.LengthDelimited).fork(), options).join();
+        /* string stts = 200; */
         if (message.stts !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.stts);
+            writer.tag(200, WireType.LengthDelimited).string(message.stts);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -462,6 +469,53 @@ class UpdateO_Object_Intern$Type extends MessageType {
  * @generated MessageType for protobuf message wallet.UpdateO_Object_Intern
  */
 export const UpdateO_Object_Intern = new UpdateO_Object_Intern$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateO_Object_Intern_Addr$Type extends MessageType {
+    constructor() {
+        super("wallet.UpdateO_Object_Intern_Addr", [
+            { no: 100, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = { time: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string time */ 100:
+                    message.time = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string time = 100; */
+        if (message.time !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.time);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message wallet.UpdateO_Object_Intern_Addr
+ */
+export const UpdateO_Object_Intern_Addr = new UpdateO_Object_Intern_Addr$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateO_Object_Public$Type extends MessageType {
     constructor() {

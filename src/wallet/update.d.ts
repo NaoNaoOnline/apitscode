@@ -110,6 +110,9 @@ export interface UpdateI_Object_Update {}
  *         "object": [
  *             {
  *                 "intern": {
+ *                     "addr": {
+ *                         "time": "1695326765"
+ *                     },
  *                     "stts": "updated"
  *                 }
  *             }
@@ -151,11 +154,29 @@ export interface UpdateO_Object {
  */
 export interface UpdateO_Object_Intern {
   /**
+   * addr contains lifecycle metadata for this wallet object.
+   *
+   * @generated from protobuf field: wallet.UpdateO_Object_Intern_Addr addr = 100;
+   */
+  addr?: UpdateO_Object_Intern_Addr;
+  /**
    * stts is the resource status upon successful wallet modification.
    *
-   * @generated from protobuf field: string stts = 100;
+   * @generated from protobuf field: string stts = 200;
    */
   stts: string;
+}
+/**
+ * @generated from protobuf message wallet.UpdateO_Object_Intern_Addr
+ */
+export interface UpdateO_Object_Intern_Addr {
+  /**
+   * Time is the unix timestamp in seconds of the most recent time at which this
+   * wallet got re-validated by signing a message again.
+   *
+   * @generated from protobuf field: string time = 100;
+   */
+  time: string;
 }
 /**
  * @generated from protobuf message wallet.UpdateO_Object_Public
@@ -351,6 +372,27 @@ declare class UpdateO_Object_Intern$Type extends MessageType<UpdateO_Object_Inte
  * @generated MessageType for protobuf message wallet.UpdateO_Object_Intern
  */
 export declare const UpdateO_Object_Intern: UpdateO_Object_Intern$Type;
+declare class UpdateO_Object_Intern_Addr$Type extends MessageType<UpdateO_Object_Intern_Addr> {
+  constructor();
+  create(
+    value?: PartialMessage<UpdateO_Object_Intern_Addr>,
+  ): UpdateO_Object_Intern_Addr;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: UpdateO_Object_Intern_Addr,
+  ): UpdateO_Object_Intern_Addr;
+  internalBinaryWrite(
+    message: UpdateO_Object_Intern_Addr,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message wallet.UpdateO_Object_Intern_Addr
+ */
+export declare const UpdateO_Object_Intern_Addr: UpdateO_Object_Intern_Addr$Type;
 declare class UpdateO_Object_Public$Type extends MessageType<UpdateO_Object_Public> {
   constructor();
   create(value?: PartialMessage<UpdateO_Object_Public>): UpdateO_Object_Public;

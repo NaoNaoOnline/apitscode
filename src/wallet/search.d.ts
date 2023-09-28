@@ -115,8 +115,10 @@ export interface SearchI_Object_Public {
  *         "object": [
  *             {
  *                 "intern": {
+ *                     "addr": {
+ *                         "time": "1695326765"
+ *                     },
  *                     "crtd": "1689001255",
- *                     "last": "1695326765",
  *                     "user": "551265",
  *                     "wllt": "338912367"
  *                 },
@@ -164,18 +166,17 @@ export interface SearchO_Object {
  */
 export interface SearchO_Object_Intern {
   /**
+   * addr contains lifecycle metadata for this wallet object.
+   *
+   * @generated from protobuf field: wallet.SearchO_Object_Intern_Addr addr = 100;
+   */
+  addr?: SearchO_Object_Intern_Addr;
+  /**
    * crtd is the unix timestamp in seconds at which the wallet got created.
    *
-   * @generated from protobuf field: string crtd = 100;
+   * @generated from protobuf field: string crtd = 200;
    */
   crtd: string;
-  /**
-   * Last is the unix timestamp in seconds of the most recent time at which this
-   * wallet got re-validated by signing a message again.
-   *
-   * @generated from protobuf field: string last = 200;
-   */
-  last: string;
   /**
    * user is the ID of the user who created this wallet.
    *
@@ -188,6 +189,18 @@ export interface SearchO_Object_Intern {
    * @generated from protobuf field: string wllt = 400;
    */
   wllt: string;
+}
+/**
+ * @generated from protobuf message wallet.SearchO_Object_Intern_Addr
+ */
+export interface SearchO_Object_Intern_Addr {
+  /**
+   * Time is the unix timestamp in seconds of the most recent time at which this
+   * wallet got re-validated by signing a message again.
+   *
+   * @generated from protobuf field: string time = 100;
+   */
+  time: string;
 }
 /**
  * @generated from protobuf message wallet.SearchO_Object_Public
@@ -402,6 +415,27 @@ declare class SearchO_Object_Intern$Type extends MessageType<SearchO_Object_Inte
  * @generated MessageType for protobuf message wallet.SearchO_Object_Intern
  */
 export declare const SearchO_Object_Intern: SearchO_Object_Intern$Type;
+declare class SearchO_Object_Intern_Addr$Type extends MessageType<SearchO_Object_Intern_Addr> {
+  constructor();
+  create(
+    value?: PartialMessage<SearchO_Object_Intern_Addr>,
+  ): SearchO_Object_Intern_Addr;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchO_Object_Intern_Addr,
+  ): SearchO_Object_Intern_Addr;
+  internalBinaryWrite(
+    message: SearchO_Object_Intern_Addr,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message wallet.SearchO_Object_Intern_Addr
+ */
+export declare const SearchO_Object_Intern_Addr: SearchO_Object_Intern_Addr$Type;
 declare class SearchO_Object_Public$Type extends MessageType<SearchO_Object_Public> {
   constructor();
   create(value?: PartialMessage<SearchO_Object_Public>): SearchO_Object_Public;
