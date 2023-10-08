@@ -89,7 +89,7 @@ export interface SearchI_Object {
 export interface SearchI_Object_Intern {
   /**
    * kind is the record type for which policies are being searched. Providing
-   * kind may only be allowed if ltst is set to "raw".
+   * kind may only be allowed if ltst is set to "proxy".
    *
    *     CreateMember for records of members being created within a system
    *     CreateSystem for records of systems being created
@@ -122,9 +122,9 @@ export interface SearchI_Object_Symbol {
    * authorization states, minus the list of records that have been removed so
    * far.
    *
-   * ltst set to "raw" returns the complete list of records submitted so far.
-   * This raw data is not aggregated, transparently representing the onchain
-   * state of emitted smart contract events currently cached internally.
+   * ltst set to "proxy" returns the complete list of records submitted so far
+   * onchain. This raw data is not aggregated, transparently representing the
+   * onchain state of emitted smart contract events currently cached internally.
    *
    * Note that indexing happens periodically in a background process, which can
    * be triggered by policy members to update the cached state on demand using
@@ -147,13 +147,15 @@ export interface SearchI_Object_Symbol {
  *         "object": [
  *             {
  *                 "intern": {
- *                     "chid": "42161",
- *                     "from": "0x1234",
- *                     "hash": "0x2345",
- *                     "kind": "CreateMember"
+ *                     "crtd": "1689001255",
+ *                     "plcy": "1128376"
  *                 },
  *                 "public": {
  *                     "acce": "2",
+ *                     "chid": "42161",
+ *                     "from": "0x1234",
+ *                     "hash": "0x2345",
+ *                     "kind": "CreateMember",
  *                     "memb": "0x3456",
  *                     "syst": "0"
  *                 }
@@ -215,23 +217,49 @@ export interface SearchO_Object {
  */
 export interface SearchO_Object_Intern {
   /**
+   * crtd is the unix timestamp in seconds at which the record got created. Note
+   * that policy records are external data objects that get created somewhere
+   * else and thus must bring a created timestamp with them. So the created
+   * timestamp here originates from some blockchain network.
+   *
+   * @generated from protobuf field: string crtd = 100;
+   */
+  crtd: string;
+  /**
+   * plcy is the ID of the record being searched.
+   *
+   * @generated from protobuf field: string plcy = 200;
+   */
+  plcy: string;
+}
+/**
+ * @generated from protobuf message policy.SearchO_Object_Public
+ */
+export interface SearchO_Object_Public {
+  /**
+   * acce is the SMA record level, permission or role.
+   *
+   * @generated from protobuf field: string acce = 100;
+   */
+  acce: string;
+  /**
    * chid is the chain ID, the unique identifier representing the blockchain
    * network on which this record is located.
    *
-   * @generated from protobuf field: string chid = 100;
+   * @generated from protobuf field: string chid = 200;
    */
   chid: string;
   /**
    * from is the record creator, the sender of the transaction that submitted
    * this record.
    *
-   * @generated from protobuf field: string from = 200;
+   * @generated from protobuf field: string from = 300;
    */
   from: string;
   /**
    * hash is the onchain transaction hash that submitted this record.
    *
-   * @generated from protobuf field: string hash = 300;
+   * @generated from protobuf field: string hash = 400;
    */
   hash: string;
   /**
@@ -243,30 +271,19 @@ export interface SearchO_Object_Intern {
    *     DeleteSystem for records of systems being deleted
    *
    *
-   * @generated from protobuf field: string kind = 400;
+   * @generated from protobuf field: string kind = 500;
    */
   kind: string;
-}
-/**
- * @generated from protobuf message policy.SearchO_Object_Public
- */
-export interface SearchO_Object_Public {
   /**
-   * acce is the record level, permission or role.
+   * memb is the SMA record account, identity or user.
    *
-   * @generated from protobuf field: string acce = 100;
-   */
-  acce: string;
-  /**
-   * memb is the record account, identity or user.
-   *
-   * @generated from protobuf field: string memb = 200;
+   * @generated from protobuf field: string memb = 600;
    */
   memb: string;
   /**
-   * syst is the record context, resource or scope.
+   * syst is the SMA record context, resource or scope.
    *
-   * @generated from protobuf field: string syst = 300;
+   * @generated from protobuf field: string syst = 700;
    */
   syst: string;
 }
