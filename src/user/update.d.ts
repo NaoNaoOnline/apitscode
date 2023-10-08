@@ -57,7 +57,11 @@ export interface UpdateI_Object {
    */
   public?: UpdateI_Object_Public;
   /**
-   * @generated from protobuf field: repeated user.UpdateI_Object_Update update = 300;
+   * @generated from protobuf field: user.UpdateI_Object_Symbol symbol = 300;
+   */
+  symbol?: UpdateI_Object_Symbol;
+  /**
+   * @generated from protobuf field: repeated user.UpdateI_Object_Update update = 400;
    */
   update: UpdateI_Object_Update[];
 }
@@ -76,6 +80,10 @@ export interface UpdateI_Object_Intern {
  * @generated from protobuf message user.UpdateI_Object_Public
  */
 export interface UpdateI_Object_Public {}
+/**
+ * @generated from protobuf message user.UpdateI_Object_Symbol
+ */
+export interface UpdateI_Object_Symbol {}
 /**
  * @generated from protobuf message user.UpdateI_Object_Update
  */
@@ -246,6 +254,25 @@ declare class UpdateI_Object_Public$Type extends MessageType<UpdateI_Object_Publ
  * @generated MessageType for protobuf message user.UpdateI_Object_Public
  */
 export declare const UpdateI_Object_Public: UpdateI_Object_Public$Type;
+declare class UpdateI_Object_Symbol$Type extends MessageType<UpdateI_Object_Symbol> {
+  constructor();
+  create(value?: PartialMessage<UpdateI_Object_Symbol>): UpdateI_Object_Symbol;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: UpdateI_Object_Symbol,
+  ): UpdateI_Object_Symbol;
+  internalBinaryWrite(
+    message: UpdateI_Object_Symbol,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message user.UpdateI_Object_Symbol
+ */
+export declare const UpdateI_Object_Symbol: UpdateI_Object_Symbol$Type;
 declare class UpdateI_Object_Update$Type extends MessageType<UpdateI_Object_Update> {
   constructor();
   create(value?: PartialMessage<UpdateI_Object_Update>): UpdateI_Object_Update;

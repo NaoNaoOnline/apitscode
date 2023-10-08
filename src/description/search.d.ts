@@ -11,12 +11,12 @@ import { MessageType } from "@protobuf-ts/runtime";
  * SearchI is the input for searching descriptions.
  *
  *     {
- *         "filter": [
- *             "chunking": {
+ *         "filter": {
+ *             "paging": {
  *                 "perpage": "50",
  *                 "pointer": "100"
  *             }
- *         ],
+ *         },
  *         "object": [
  *             {
  *                 "intern": {
@@ -44,14 +44,14 @@ export interface SearchI {
  */
 export interface SearchI_Filter {
   /**
-   * @generated from protobuf field: description.SearchI_Filter_Chunking chunking = 100;
+   * @generated from protobuf field: description.SearchI_Filter_Paging paging = 100;
    */
-  chunking?: SearchI_Filter_Chunking;
+  paging?: SearchI_Filter_Paging;
 }
 /**
- * @generated from protobuf message description.SearchI_Filter_Chunking
+ * @generated from protobuf message description.SearchI_Filter_Paging
  */
-export interface SearchI_Filter_Chunking {
+export interface SearchI_Filter_Paging {
   /**
    * @generated from protobuf field: string perpage = 100;
    */
@@ -93,12 +93,12 @@ export interface SearchI_Object_Public {
  * SearchO is the output for searching descriptions.
  *
  *     {
- *         "filter": [
- *             "chunking": {
- *                 "perpage": "50",
+ *         "filter": {
+ *             "paging": {
+ *                 "intotal": "750",
  *                 "pointer": "150"
  *             }
- *         ],
+ *         },
  *         "object": [
  *             {
  *                 "intern": {
@@ -131,7 +131,25 @@ export interface SearchO {
 /**
  * @generated from protobuf message description.SearchO_Filter
  */
-export interface SearchO_Filter {}
+export interface SearchO_Filter {
+  /**
+   * @generated from protobuf field: description.SearchO_Filter_Paging paging = 100;
+   */
+  paging?: SearchO_Filter_Paging;
+}
+/**
+ * @generated from protobuf message description.SearchO_Filter_Paging
+ */
+export interface SearchO_Filter_Paging {
+  /**
+   * @generated from protobuf field: string intotal = 100;
+   */
+  intotal: string;
+  /**
+   * @generated from protobuf field: string pointer = 200;
+   */
+  pointer: string;
+}
 /**
  * @generated from protobuf message description.SearchO_Object
  */
@@ -223,27 +241,25 @@ declare class SearchI_Filter$Type extends MessageType<SearchI_Filter> {
  * @generated MessageType for protobuf message description.SearchI_Filter
  */
 export declare const SearchI_Filter: SearchI_Filter$Type;
-declare class SearchI_Filter_Chunking$Type extends MessageType<SearchI_Filter_Chunking> {
+declare class SearchI_Filter_Paging$Type extends MessageType<SearchI_Filter_Paging> {
   constructor();
-  create(
-    value?: PartialMessage<SearchI_Filter_Chunking>,
-  ): SearchI_Filter_Chunking;
+  create(value?: PartialMessage<SearchI_Filter_Paging>): SearchI_Filter_Paging;
   internalBinaryRead(
     reader: IBinaryReader,
     length: number,
     options: BinaryReadOptions,
-    target?: SearchI_Filter_Chunking,
-  ): SearchI_Filter_Chunking;
+    target?: SearchI_Filter_Paging,
+  ): SearchI_Filter_Paging;
   internalBinaryWrite(
-    message: SearchI_Filter_Chunking,
+    message: SearchI_Filter_Paging,
     writer: IBinaryWriter,
     options: BinaryWriteOptions,
   ): IBinaryWriter;
 }
 /**
- * @generated MessageType for protobuf message description.SearchI_Filter_Chunking
+ * @generated MessageType for protobuf message description.SearchI_Filter_Paging
  */
-export declare const SearchI_Filter_Chunking: SearchI_Filter_Chunking$Type;
+export declare const SearchI_Filter_Paging: SearchI_Filter_Paging$Type;
 declare class SearchI_Object$Type extends MessageType<SearchI_Object> {
   constructor();
   create(value?: PartialMessage<SearchI_Object>): SearchI_Object;
@@ -339,6 +355,25 @@ declare class SearchO_Filter$Type extends MessageType<SearchO_Filter> {
  * @generated MessageType for protobuf message description.SearchO_Filter
  */
 export declare const SearchO_Filter: SearchO_Filter$Type;
+declare class SearchO_Filter_Paging$Type extends MessageType<SearchO_Filter_Paging> {
+  constructor();
+  create(value?: PartialMessage<SearchO_Filter_Paging>): SearchO_Filter_Paging;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchO_Filter_Paging,
+  ): SearchO_Filter_Paging;
+  internalBinaryWrite(
+    message: SearchO_Filter_Paging,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message description.SearchO_Filter_Paging
+ */
+export declare const SearchO_Filter_Paging: SearchO_Filter_Paging$Type;
 declare class SearchO_Object$Type extends MessageType<SearchO_Object> {
   constructor();
   create(value?: PartialMessage<SearchO_Object>): SearchO_Object;

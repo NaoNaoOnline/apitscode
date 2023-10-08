@@ -92,7 +92,8 @@ class UpdateI_Object$Type extends MessageType {
         super("description.UpdateI_Object", [
             { no: 100, name: "intern", kind: "message", T: () => UpdateI_Object_Intern },
             { no: 200, name: "public", kind: "message", T: () => UpdateI_Object_Public },
-            { no: 300, name: "update", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Update }
+            { no: 300, name: "symbol", kind: "message", T: () => UpdateI_Object_Symbol },
+            { no: 400, name: "update", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => UpdateI_Object_Update }
         ]);
     }
     create(value) {
@@ -113,7 +114,10 @@ class UpdateI_Object$Type extends MessageType {
                 case /* description.UpdateI_Object_Public public */ 200:
                     message.public = UpdateI_Object_Public.internalBinaryRead(reader, reader.uint32(), options, message.public);
                     break;
-                case /* repeated description.UpdateI_Object_Update update */ 300:
+                case /* description.UpdateI_Object_Symbol symbol */ 300:
+                    message.symbol = UpdateI_Object_Symbol.internalBinaryRead(reader, reader.uint32(), options, message.symbol);
+                    break;
+                case /* repeated description.UpdateI_Object_Update update */ 400:
                     message.update.push(UpdateI_Object_Update.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
@@ -134,9 +138,12 @@ class UpdateI_Object$Type extends MessageType {
         /* description.UpdateI_Object_Public public = 200; */
         if (message.public)
             UpdateI_Object_Public.internalBinaryWrite(message.public, writer.tag(200, WireType.LengthDelimited).fork(), options).join();
-        /* repeated description.UpdateI_Object_Update update = 300; */
+        /* description.UpdateI_Object_Symbol symbol = 300; */
+        if (message.symbol)
+            UpdateI_Object_Symbol.internalBinaryWrite(message.symbol, writer.tag(300, WireType.LengthDelimited).fork(), options).join();
+        /* repeated description.UpdateI_Object_Update update = 400; */
         for (let i = 0; i < message.update.length; i++)
-            UpdateI_Object_Update.internalBinaryWrite(message.update[i], writer.tag(300, WireType.LengthDelimited).fork(), options).join();
+            UpdateI_Object_Update.internalBinaryWrite(message.update[i], writer.tag(400, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -220,6 +227,32 @@ class UpdateI_Object_Public$Type extends MessageType {
  * @generated MessageType for protobuf message description.UpdateI_Object_Public
  */
 export const UpdateI_Object_Public = new UpdateI_Object_Public$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateI_Object_Symbol$Type extends MessageType {
+    constructor() {
+        super("description.UpdateI_Object_Symbol", []);
+    }
+    create(value) {
+        const message = {};
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        return target ?? this.create();
+    }
+    internalBinaryWrite(message, writer, options) {
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message description.UpdateI_Object_Symbol
+ */
+export const UpdateI_Object_Symbol = new UpdateI_Object_Symbol$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateI_Object_Update$Type extends MessageType {
     constructor() {

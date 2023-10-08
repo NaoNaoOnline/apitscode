@@ -64,7 +64,7 @@ export const SearchI = new SearchI$Type();
 class SearchI_Filter$Type extends MessageType {
     constructor() {
         super("event.SearchI_Filter", [
-            { no: 100, name: "chunking", kind: "message", T: () => SearchI_Filter_Chunking }
+            { no: 100, name: "paging", kind: "message", T: () => SearchI_Filter_Paging }
         ]);
     }
     create(value) {
@@ -79,8 +79,8 @@ class SearchI_Filter$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* event.SearchI_Filter_Chunking chunking */ 100:
-                    message.chunking = SearchI_Filter_Chunking.internalBinaryRead(reader, reader.uint32(), options, message.chunking);
+                case /* event.SearchI_Filter_Paging paging */ 100:
+                    message.paging = SearchI_Filter_Paging.internalBinaryRead(reader, reader.uint32(), options, message.paging);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -94,9 +94,9 @@ class SearchI_Filter$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* event.SearchI_Filter_Chunking chunking = 100; */
-        if (message.chunking)
-            SearchI_Filter_Chunking.internalBinaryWrite(message.chunking, writer.tag(100, WireType.LengthDelimited).fork(), options).join();
+        /* event.SearchI_Filter_Paging paging = 100; */
+        if (message.paging)
+            SearchI_Filter_Paging.internalBinaryWrite(message.paging, writer.tag(100, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -108,9 +108,9 @@ class SearchI_Filter$Type extends MessageType {
  */
 export const SearchI_Filter = new SearchI_Filter$Type();
 // @generated message type with reflection information, may provide speed optimized methods
-class SearchI_Filter_Chunking$Type extends MessageType {
+class SearchI_Filter_Paging$Type extends MessageType {
     constructor() {
-        super("event.SearchI_Filter_Chunking", [
+        super("event.SearchI_Filter_Paging", [
             { no: 100, name: "perpage", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "pointer", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
@@ -158,9 +158,9 @@ class SearchI_Filter_Chunking$Type extends MessageType {
     }
 }
 /**
- * @generated MessageType for protobuf message event.SearchI_Filter_Chunking
+ * @generated MessageType for protobuf message event.SearchI_Filter_Paging
  */
-export const SearchI_Filter_Chunking = new SearchI_Filter_Chunking$Type();
+export const SearchI_Filter_Paging = new SearchI_Filter_Paging$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchI_Object$Type extends MessageType {
     constructor() {
@@ -441,7 +441,9 @@ export const SearchO = new SearchO$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchO_Filter$Type extends MessageType {
     constructor() {
-        super("event.SearchO_Filter", []);
+        super("event.SearchO_Filter", [
+            { no: 100, name: "paging", kind: "message", T: () => SearchO_Filter_Paging }
+        ]);
     }
     create(value) {
         const message = {};
@@ -451,9 +453,28 @@ class SearchO_Filter$Type extends MessageType {
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* event.SearchO_Filter_Paging paging */ 100:
+                    message.paging = SearchO_Filter_Paging.internalBinaryRead(reader, reader.uint32(), options, message.paging);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* event.SearchO_Filter_Paging paging = 100; */
+        if (message.paging)
+            SearchO_Filter_Paging.internalBinaryWrite(message.paging, writer.tag(100, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -464,6 +485,60 @@ class SearchO_Filter$Type extends MessageType {
  * @generated MessageType for protobuf message event.SearchO_Filter
  */
 export const SearchO_Filter = new SearchO_Filter$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class SearchO_Filter_Paging$Type extends MessageType {
+    constructor() {
+        super("event.SearchO_Filter_Paging", [
+            { no: 100, name: "intotal", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "pointer", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = { intotal: "", pointer: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string intotal */ 100:
+                    message.intotal = reader.string();
+                    break;
+                case /* string pointer */ 200:
+                    message.pointer = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string intotal = 100; */
+        if (message.intotal !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.intotal);
+        /* string pointer = 200; */
+        if (message.pointer !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.pointer);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message event.SearchO_Filter_Paging
+ */
+export const SearchO_Filter_Paging = new SearchO_Filter_Paging$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchO_Object$Type extends MessageType {
     constructor() {
