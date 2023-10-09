@@ -146,16 +146,20 @@ export interface SearchI_Object_Symbol {
  *         },
  *         "object": [
  *             {
+ *                 "extern": {
+ *                     "blck": "18312712",
+ *                     "chid": "42161",
+ *                     "from": "0x1234",
+ *                     "hash": "0x2345",
+ *                     "kind": "CreateMember",
+ *                     "time": "1689001255"
+ *                 },
  *                 "intern": {
  *                     "crtd": "1689001255",
  *                     "plcy": "1128376"
  *                 },
  *                 "public": {
  *                     "acce": "2",
- *                     "chid": "42161",
- *                     "from": "0x1234",
- *                     "hash": "0x2345",
- *                     "kind": "CreateMember",
  *                     "memb": "0x3456",
  *                     "syst": "0"
  *                 }
@@ -213,35 +217,15 @@ export interface SearchO_Object {
   public?: SearchO_Object_Public;
 }
 /**
- * @generated from protobuf message policy.SearchO_Object_Intern
+ * @generated from protobuf message policy.SearchO_Object_Extern
  */
-export interface SearchO_Object_Intern {
+export interface SearchO_Object_Extern {
   /**
-   * crtd is the unix timestamp in seconds at which the record got created. Note
-   * that policy records are external data objects that get created somewhere
-   * else and thus must bring a created timestamp with them. So the created
-   * timestamp here originates from some blockchain network.
+   * blck is the block height at which this record got created.
    *
-   * @generated from protobuf field: string crtd = 100;
+   * @generated from protobuf field: string blck = 100;
    */
-  crtd: string;
-  /**
-   * plcy is the ID of the record being searched.
-   *
-   * @generated from protobuf field: string plcy = 200;
-   */
-  plcy: string;
-}
-/**
- * @generated from protobuf message policy.SearchO_Object_Public
- */
-export interface SearchO_Object_Public {
-  /**
-   * acce is the SMA record level, permission or role.
-   *
-   * @generated from protobuf field: string acce = 100;
-   */
-  acce: string;
+  blck: string;
   /**
    * chid is the chain ID, the unique identifier representing the blockchain
    * network on which this record is located.
@@ -275,15 +259,54 @@ export interface SearchO_Object_Public {
    */
   kind: string;
   /**
+   * time is the unix timestamp in seconds at which the record got created
+   * externally. Note that policy records are external data objects that get
+   * created somewhere else, in this case onchain, and thus must bring a
+   * creation timestamp with them. So the created timestamp here originates from
+   * some blockchain network.
+   *
+   * @generated from protobuf field: string time = 600;
+   */
+  time: string;
+}
+/**
+ * @generated from protobuf message policy.SearchO_Object_Intern
+ */
+export interface SearchO_Object_Intern {
+  /**
+   * crtd is the unix timestamp in seconds at which the record got cached
+   * internally.
+   *
+   * @generated from protobuf field: string crtd = 100;
+   */
+  crtd: string;
+  /**
+   * plcy is the internal ID of the record being searched.
+   *
+   * @generated from protobuf field: string plcy = 200;
+   */
+  plcy: string;
+}
+/**
+ * @generated from protobuf message policy.SearchO_Object_Public
+ */
+export interface SearchO_Object_Public {
+  /**
+   * acce is the SMA record level, permission or role.
+   *
+   * @generated from protobuf field: string acce = 100;
+   */
+  acce: string;
+  /**
    * memb is the SMA record account, identity or user.
    *
-   * @generated from protobuf field: string memb = 600;
+   * @generated from protobuf field: string memb = 200;
    */
   memb: string;
   /**
    * syst is the SMA record context, resource or scope.
    *
-   * @generated from protobuf field: string syst = 700;
+   * @generated from protobuf field: string syst = 300;
    */
   syst: string;
 }
@@ -496,6 +519,25 @@ declare class SearchO_Object$Type extends MessageType<SearchO_Object> {
  * @generated MessageType for protobuf message policy.SearchO_Object
  */
 export declare const SearchO_Object: SearchO_Object$Type;
+declare class SearchO_Object_Extern$Type extends MessageType<SearchO_Object_Extern> {
+  constructor();
+  create(value?: PartialMessage<SearchO_Object_Extern>): SearchO_Object_Extern;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchO_Object_Extern,
+  ): SearchO_Object_Extern;
+  internalBinaryWrite(
+    message: SearchO_Object_Extern,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message policy.SearchO_Object_Extern
+ */
+export declare const SearchO_Object_Extern: SearchO_Object_Extern$Type;
 declare class SearchO_Object_Intern$Type extends MessageType<SearchO_Object_Intern> {
   constructor();
   create(value?: PartialMessage<SearchO_Object_Intern>): SearchO_Object_Intern;
