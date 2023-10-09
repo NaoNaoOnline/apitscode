@@ -225,7 +225,33 @@ export const SearchI_Object = new SearchI_Object$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchI_Object_Intern$Type extends MessageType {
     constructor() {
-        super("policy.SearchI_Object_Intern", [
+        super("policy.SearchI_Object_Intern", []);
+    }
+    create(value) {
+        const message = {};
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        return target ?? this.create();
+    }
+    internalBinaryWrite(message, writer, options) {
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message policy.SearchI_Object_Intern
+ */
+export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class SearchI_Object_Public$Type extends MessageType {
+    constructor() {
+        super("policy.SearchI_Object_Public", [
             { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
@@ -259,32 +285,6 @@ class SearchI_Object_Intern$Type extends MessageType {
         /* string kind = 100; */
         if (message.kind !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.kind);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message policy.SearchI_Object_Intern
- */
-export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class SearchI_Object_Public$Type extends MessageType {
-    constructor() {
-        super("policy.SearchI_Object_Public", []);
-    }
-    create(value) {
-        const message = {};
-        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-        if (value !== undefined)
-            reflectionMergePartial(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
-    }
-    internalBinaryWrite(message, writer, options) {
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -501,12 +501,13 @@ export const SearchO_Filter_Paging = new SearchO_Filter_Paging$Type();
 class SearchO_Object$Type extends MessageType {
     constructor() {
         super("policy.SearchO_Object", [
-            { no: 100, name: "intern", kind: "message", T: () => SearchO_Object_Intern },
-            { no: 200, name: "public", kind: "message", T: () => SearchO_Object_Public }
+            { no: 100, name: "extern", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => SearchO_Object_Extern },
+            { no: 200, name: "intern", kind: "message", T: () => SearchO_Object_Intern },
+            { no: 300, name: "public", kind: "message", T: () => SearchO_Object_Public }
         ]);
     }
     create(value) {
-        const message = {};
+        const message = { extern: [] };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -517,10 +518,13 @@ class SearchO_Object$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* policy.SearchO_Object_Intern intern */ 100:
+                case /* repeated policy.SearchO_Object_Extern extern */ 100:
+                    message.extern.push(SearchO_Object_Extern.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* policy.SearchO_Object_Intern intern */ 200:
                     message.intern = SearchO_Object_Intern.internalBinaryRead(reader, reader.uint32(), options, message.intern);
                     break;
-                case /* policy.SearchO_Object_Public public */ 200:
+                case /* policy.SearchO_Object_Public public */ 300:
                     message.public = SearchO_Object_Public.internalBinaryRead(reader, reader.uint32(), options, message.public);
                     break;
                 default:
@@ -535,12 +539,15 @@ class SearchO_Object$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* policy.SearchO_Object_Intern intern = 100; */
+        /* repeated policy.SearchO_Object_Extern extern = 100; */
+        for (let i = 0; i < message.extern.length; i++)
+            SearchO_Object_Extern.internalBinaryWrite(message.extern[i], writer.tag(100, WireType.LengthDelimited).fork(), options).join();
+        /* policy.SearchO_Object_Intern intern = 200; */
         if (message.intern)
-            SearchO_Object_Intern.internalBinaryWrite(message.intern, writer.tag(100, WireType.LengthDelimited).fork(), options).join();
-        /* policy.SearchO_Object_Public public = 200; */
+            SearchO_Object_Intern.internalBinaryWrite(message.intern, writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+        /* policy.SearchO_Object_Public public = 300; */
         if (message.public)
-            SearchO_Object_Public.internalBinaryWrite(message.public, writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+            SearchO_Object_Public.internalBinaryWrite(message.public, writer.tag(300, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -559,12 +566,11 @@ class SearchO_Object_Extern$Type extends MessageType {
             { no: 200, name: "chid", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 300, name: "from", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 400, name: "hash", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 600, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 500, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { blck: "", chid: "", from: "", hash: "", kind: "", time: "" };
+        const message = { blck: "", chid: "", from: "", hash: "", time: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -587,10 +593,7 @@ class SearchO_Object_Extern$Type extends MessageType {
                 case /* string hash */ 400:
                     message.hash = reader.string();
                     break;
-                case /* string kind */ 500:
-                    message.kind = reader.string();
-                    break;
-                case /* string time */ 600:
+                case /* string time */ 500:
                     message.time = reader.string();
                     break;
                 default:
@@ -617,12 +620,9 @@ class SearchO_Object_Extern$Type extends MessageType {
         /* string hash = 400; */
         if (message.hash !== "")
             writer.tag(400, WireType.LengthDelimited).string(message.hash);
-        /* string kind = 500; */
-        if (message.kind !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.kind);
-        /* string time = 600; */
+        /* string time = 500; */
         if (message.time !== "")
-            writer.tag(600, WireType.LengthDelimited).string(message.time);
+            writer.tag(500, WireType.LengthDelimited).string(message.time);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -693,11 +693,12 @@ class SearchO_Object_Public$Type extends MessageType {
         super("policy.SearchO_Object_Public", [
             { no: 100, name: "acce", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "memb", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "syst", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 300, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "syst", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { acce: "", memb: "", syst: "" };
+        const message = { acce: "", memb: "", kind: "", syst: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -714,7 +715,10 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string memb */ 200:
                     message.memb = reader.string();
                     break;
-                case /* string syst */ 300:
+                case /* string kind */ 300:
+                    message.kind = reader.string();
+                    break;
+                case /* string syst */ 400:
                     message.syst = reader.string();
                     break;
                 default:
@@ -735,9 +739,12 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string memb = 200; */
         if (message.memb !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.memb);
-        /* string syst = 300; */
+        /* string kind = 300; */
+        if (message.kind !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.kind);
+        /* string syst = 400; */
         if (message.syst !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.syst);
+            writer.tag(400, WireType.LengthDelimited).string(message.syst);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

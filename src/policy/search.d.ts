@@ -86,7 +86,11 @@ export interface SearchI_Object {
 /**
  * @generated from protobuf message policy.SearchI_Object_Intern
  */
-export interface SearchI_Object_Intern {
+export interface SearchI_Object_Intern {}
+/**
+ * @generated from protobuf message policy.SearchI_Object_Public
+ */
+export interface SearchI_Object_Public {
   /**
    * kind is the record type for which policies are being searched. Providing
    * kind may only be allowed if ltst is set to "proxy".
@@ -101,10 +105,6 @@ export interface SearchI_Object_Intern {
    */
   kind: string;
 }
-/**
- * @generated from protobuf message policy.SearchI_Object_Public
- */
-export interface SearchI_Object_Public {}
 /**
  * @generated from protobuf message policy.SearchI_Object_Symbol
  */
@@ -146,14 +146,15 @@ export interface SearchI_Object_Symbol {
  *         },
  *         "object": [
  *             {
- *                 "extern": {
- *                     "blck": "18312712",
- *                     "chid": "42161",
- *                     "from": "0x1234",
- *                     "hash": "0x2345",
- *                     "kind": "CreateMember",
- *                     "time": "1689001255"
- *                 },
+ *                 "extern": [
+ *                     {
+ *                         "blck": "18312712",
+ *                         "chid": "42161",
+ *                         "from": "0x1234",
+ *                         "hash": "0x2345",
+ *                         "time": "1689001255"
+ *                     }
+ *                 ],
  *                 "intern": {
  *                     "crtd": "1689001255",
  *                     "plcy": "1128376"
@@ -161,6 +162,7 @@ export interface SearchI_Object_Symbol {
  *                 "public": {
  *                     "acce": "2",
  *                     "memb": "0x3456",
+ *                     "kind": "CreateMember",
  *                     "syst": "0"
  *                 }
  *             },
@@ -208,11 +210,15 @@ export interface SearchO_Filter_Paging {
  */
 export interface SearchO_Object {
   /**
-   * @generated from protobuf field: policy.SearchO_Object_Intern intern = 100;
+   * @generated from protobuf field: repeated policy.SearchO_Object_Extern extern = 100;
+   */
+  extern: SearchO_Object_Extern[];
+  /**
+   * @generated from protobuf field: policy.SearchO_Object_Intern intern = 200;
    */
   intern?: SearchO_Object_Intern;
   /**
-   * @generated from protobuf field: policy.SearchO_Object_Public public = 200;
+   * @generated from protobuf field: policy.SearchO_Object_Public public = 300;
    */
   public?: SearchO_Object_Public;
 }
@@ -247,25 +253,13 @@ export interface SearchO_Object_Extern {
    */
   hash: string;
   /**
-   * kind is the record type.
-   *
-   *     CreateMember for records of members being created within a system
-   *     CreateSystem for records of systems being created
-   *     DeleteMember for records of members being deleted within a system
-   *     DeleteSystem for records of systems being deleted
-   *
-   *
-   * @generated from protobuf field: string kind = 500;
-   */
-  kind: string;
-  /**
    * time is the unix timestamp in seconds at which the record got created
    * externally. Note that policy records are external data objects that get
    * created somewhere else, in this case onchain, and thus must bring a
    * creation timestamp with them. So the created timestamp here originates from
    * some blockchain network.
    *
-   * @generated from protobuf field: string time = 600;
+   * @generated from protobuf field: string time = 500;
    */
   time: string;
 }
@@ -304,9 +298,21 @@ export interface SearchO_Object_Public {
    */
   memb: string;
   /**
+   * kind is the record type.
+   *
+   *     CreateMember for records of members being created within a system
+   *     CreateSystem for records of systems being created
+   *     DeleteMember for records of members being deleted within a system
+   *     DeleteSystem for records of systems being deleted
+   *
+   *
+   * @generated from protobuf field: string kind = 300;
+   */
+  kind: string;
+  /**
    * syst is the SMA record context, resource or scope.
    *
-   * @generated from protobuf field: string syst = 300;
+   * @generated from protobuf field: string syst = 400;
    */
   syst: string;
 }
