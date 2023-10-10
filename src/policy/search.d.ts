@@ -161,8 +161,8 @@ export interface SearchI_Object_Symbol {
  *                 },
  *                 "public": {
  *                     "acce": "2",
- *                     "memb": "0x3456",
  *                     "kind": "CreateMember",
+ *                     "memb": "0x3456",
  *                     "syst": "0"
  *                 }
  *             },
@@ -292,12 +292,6 @@ export interface SearchO_Object_Public {
    */
   acce: string;
   /**
-   * memb is the SMA record account, identity or user.
-   *
-   * @generated from protobuf field: string memb = 200;
-   */
-  memb: string;
-  /**
    * kind is the record type.
    *
    *     CreateMember for records of members being created within a system
@@ -306,9 +300,15 @@ export interface SearchO_Object_Public {
    *     DeleteSystem for records of systems being deleted
    *
    *
-   * @generated from protobuf field: string kind = 300;
+   * @generated from protobuf field: string kind = 200;
    */
   kind: string;
+  /**
+   * memb is the SMA record account, identity or user.
+   *
+   * @generated from protobuf field: string memb = 300;
+   */
+  memb: string;
   /**
    * syst is the SMA record context, resource or scope.
    *

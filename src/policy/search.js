@@ -692,13 +692,13 @@ class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("policy.SearchO_Object_Public", [
             { no: 100, name: "acce", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "memb", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "memb", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 400, name: "syst", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { acce: "", memb: "", kind: "", syst: "" };
+        const message = { acce: "", kind: "", memb: "", syst: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -712,11 +712,11 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string acce */ 100:
                     message.acce = reader.string();
                     break;
-                case /* string memb */ 200:
-                    message.memb = reader.string();
-                    break;
-                case /* string kind */ 300:
+                case /* string kind */ 200:
                     message.kind = reader.string();
+                    break;
+                case /* string memb */ 300:
+                    message.memb = reader.string();
                     break;
                 case /* string syst */ 400:
                     message.syst = reader.string();
@@ -736,12 +736,12 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string acce = 100; */
         if (message.acce !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.acce);
-        /* string memb = 200; */
-        if (message.memb !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.memb);
-        /* string kind = 300; */
+        /* string kind = 200; */
         if (message.kind !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.kind);
+            writer.tag(200, WireType.LengthDelimited).string(message.kind);
+        /* string memb = 300; */
+        if (message.memb !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.memb);
         /* string syst = 400; */
         if (message.syst !== "")
             writer.tag(400, WireType.LengthDelimited).string(message.syst);
