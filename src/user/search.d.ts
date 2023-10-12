@@ -73,16 +73,17 @@ export interface SearchI_Object {
    * @generated from protobuf field: user.SearchI_Object_Public public = 200;
    */
   public?: SearchI_Object_Public;
+  /**
+   * @generated from protobuf field: user.SearchI_Object_Symbol symbol = 300;
+   */
+  symbol?: SearchI_Object_Symbol;
 }
 /**
  * @generated from protobuf message user.SearchI_Object_Intern
  */
 export interface SearchI_Object_Intern {
   /**
-   * user is the ID of the user being searched. If user is left empty, the
-   * current user sending the request is looked up and returned based on the
-   * given authorization parameters. Given an OAuth access token, its encoded
-   * subject claim may refer to the internally persisted user object.
+   * user is the ID of the user being searched.
    *
    * @generated from protobuf field: string user = 100;
    */
@@ -98,6 +99,19 @@ export interface SearchI_Object_Public {
    * @generated from protobuf field: string name = 100;
    */
   name: string;
+}
+/**
+ * @generated from protobuf message user.SearchI_Object_Symbol
+ */
+export interface SearchI_Object_Symbol {
+  /**
+   * user set to "self" returns the current user sending the request, based on
+   * the given authorization parameters. Given an OAuth access token, its
+   * encoded subject claim may refer to the internally persisted user object.
+   *
+   * @generated from protobuf field: string user = 100;
+   */
+  user: string;
 }
 /**
  * SearchO is the output for searching users.
@@ -320,6 +334,25 @@ declare class SearchI_Object_Public$Type extends MessageType<SearchI_Object_Publ
  * @generated MessageType for protobuf message user.SearchI_Object_Public
  */
 export declare const SearchI_Object_Public: SearchI_Object_Public$Type;
+declare class SearchI_Object_Symbol$Type extends MessageType<SearchI_Object_Symbol> {
+  constructor();
+  create(value?: PartialMessage<SearchI_Object_Symbol>): SearchI_Object_Symbol;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchI_Object_Symbol,
+  ): SearchI_Object_Symbol;
+  internalBinaryWrite(
+    message: SearchI_Object_Symbol,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message user.SearchI_Object_Symbol
+ */
+export declare const SearchI_Object_Symbol: SearchI_Object_Symbol$Type;
 declare class SearchO$Type extends MessageType<SearchO> {
   constructor();
   create(value?: PartialMessage<SearchO>): SearchO;
