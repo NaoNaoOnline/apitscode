@@ -638,11 +638,12 @@ class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
         super("policy.SearchO_Object_Intern", [
             { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "plcy", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "plcy", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { crtd: "", plcy: "" };
+        const message = { crtd: "", plcy: "", user: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -658,6 +659,9 @@ class SearchO_Object_Intern$Type extends MessageType {
                     break;
                 case /* string plcy */ 200:
                     message.plcy = reader.string();
+                    break;
+                case /* string user */ 300:
+                    message.user = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -677,6 +681,9 @@ class SearchO_Object_Intern$Type extends MessageType {
         /* string plcy = 200; */
         if (message.plcy !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.plcy);
+        /* string user = 300; */
+        if (message.user !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

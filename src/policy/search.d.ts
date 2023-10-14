@@ -157,7 +157,8 @@ export interface SearchI_Object_Symbol {
  *                 ],
  *                 "intern": {
  *                     "crtd": "1689001255",
- *                     "plcy": "1128376"
+ *                     "plcy": "1128376",
+ *                     "user": "551265"
  *                 },
  *                 "public": {
  *                     "acce": "2",
@@ -280,6 +281,16 @@ export interface SearchO_Object_Intern {
    * @generated from protobuf field: string plcy = 200;
    */
   plcy: string;
+  /**
+   * user is the user ID matched to this wallet on the fly, if any. We do not
+   * persist the direct relationship between policy and user because of several
+   * synchronization issues. The user ID will be looked up on demand when
+   * searching for polices. It might as well also be that there is no user
+   * association for a policy object intermittently.
+   *
+   * @generated from protobuf field: string user = 300;
+   */
+  user: string;
 }
 /**
  * @generated from protobuf message policy.SearchO_Object_Public
