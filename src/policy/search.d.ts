@@ -90,21 +90,7 @@ export interface SearchI_Object_Intern {}
 /**
  * @generated from protobuf message policy.SearchI_Object_Public
  */
-export interface SearchI_Object_Public {
-  /**
-   * kind is the record type for which policies are being searched. Providing
-   * kind may only be allowed if ltst is set to "proxy".
-   *
-   *     CreateMember for records of members being created within a system
-   *     CreateSystem for records of systems being created
-   *     DeleteMember for records of members being deleted within a system
-   *     DeleteSystem for records of systems being deleted
-   *
-   *
-   * @generated from protobuf field: string kind = 100;
-   */
-  kind: string;
-}
+export interface SearchI_Object_Public {}
 /**
  * @generated from protobuf message policy.SearchI_Object_Symbol
  */
@@ -113,18 +99,7 @@ export interface SearchI_Object_Symbol {
    * ltst set to "default" returns the latest aggregated version of cached
    * policy records indexed from all onchain smart contracts configured. That
    * is, the list of aggregated records representing the currently active
-   * authorization states, plus the list of records that have been removed so
-   * far.
-   *
-   * ltst set to "aggregated" returns the latest aggregated version of cached
-   * policy records indexed from all onchain smart contracts configured. That
-   * is, the list of aggregated records representing the currently active
-   * authorization states, minus the list of records that have been removed so
-   * far.
-   *
-   * ltst set to "proxy" returns the complete list of records submitted so far
-   * onchain. This raw data is not aggregated, transparently representing the
-   * onchain state of emitted smart contract events currently cached internally.
+   * authorization states.
    *
    * Note that indexing happens periodically in a background process, which can
    * be triggered by policy members to update the cached state on demand using
@@ -148,21 +123,14 @@ export interface SearchI_Object_Symbol {
  *             {
  *                 "extern": [
  *                     {
- *                         "blck": "18312712",
- *                         "chid": "42161",
- *                         "from": "0x1234",
- *                         "hash": "0x2345",
- *                         "time": "1689001255"
+ *                         "chid": "42161"
  *                     }
  *                 ],
  *                 "intern": {
- *                     "crtd": "1689001255",
- *                     "plcy": "1128376",
  *                     "user": "551265"
  *                 },
  *                 "public": {
  *                     "acce": "2",
- *                     "kind": "CreateMember",
  *                     "memb": "0x3456",
  *                     "syst": "0"
  *                 }
@@ -228,59 +196,17 @@ export interface SearchO_Object {
  */
 export interface SearchO_Object_Extern {
   /**
-   * blck is the block height at which this record got created.
-   *
-   * @generated from protobuf field: string blck = 100;
-   */
-  blck: string;
-  /**
    * chid is the chain ID, the unique identifier representing the blockchain
    * network on which this record is located.
    *
-   * @generated from protobuf field: string chid = 200;
+   * @generated from protobuf field: string chid = 100;
    */
   chid: string;
-  /**
-   * from is the record creator, the sender of the transaction that submitted
-   * this record.
-   *
-   * @generated from protobuf field: string from = 300;
-   */
-  from: string;
-  /**
-   * hash is the onchain transaction hash that submitted this record.
-   *
-   * @generated from protobuf field: string hash = 400;
-   */
-  hash: string;
-  /**
-   * time is the unix timestamp in seconds at which the record got created
-   * externally. Note that policy records are external data objects that get
-   * created somewhere else, in this case onchain, and thus must bring a
-   * creation timestamp with them. So the created timestamp here originates from
-   * some blockchain network.
-   *
-   * @generated from protobuf field: string time = 500;
-   */
-  time: string;
 }
 /**
  * @generated from protobuf message policy.SearchO_Object_Intern
  */
 export interface SearchO_Object_Intern {
-  /**
-   * crtd is the unix timestamp in seconds at which the record got cached
-   * internally.
-   *
-   * @generated from protobuf field: string crtd = 100;
-   */
-  crtd: string;
-  /**
-   * plcy is the internal ID of the record being searched.
-   *
-   * @generated from protobuf field: string plcy = 200;
-   */
-  plcy: string;
   /**
    * user is the user ID matched to this wallet on the fly, if any. We do not
    * persist the direct relationship between policy and user because of several
@@ -288,7 +214,7 @@ export interface SearchO_Object_Intern {
    * searching for polices. It might as well also be that there is no user
    * association for a policy object intermittently.
    *
-   * @generated from protobuf field: string user = 300;
+   * @generated from protobuf field: string user = 100;
    */
   user: string;
 }
@@ -303,27 +229,15 @@ export interface SearchO_Object_Public {
    */
   acce: string;
   /**
-   * kind is the record type.
-   *
-   *     CreateMember for records of members being created within a system
-   *     CreateSystem for records of systems being created
-   *     DeleteMember for records of members being deleted within a system
-   *     DeleteSystem for records of systems being deleted
-   *
-   *
-   * @generated from protobuf field: string kind = 200;
-   */
-  kind: string;
-  /**
    * memb is the SMA record account, identity or user.
    *
-   * @generated from protobuf field: string memb = 300;
+   * @generated from protobuf field: string memb = 200;
    */
   memb: string;
   /**
    * syst is the SMA record context, resource or scope.
    *
-   * @generated from protobuf field: string syst = 400;
+   * @generated from protobuf field: string syst = 300;
    */
   syst: string;
 }
