@@ -151,6 +151,10 @@ export interface SearchO {
    * @generated from protobuf field: repeated policy.SearchO_Object object = 200;
    */
   object: SearchO_Object[];
+  /**
+   * @generated from protobuf field: repeated policy.SearchO_Reason reason = 300;
+   */
+  reason: SearchO_Reason[];
 }
 /**
  * @generated from protobuf message policy.SearchO_Filter
@@ -241,6 +245,25 @@ export interface SearchO_Object_Public {
    * @generated from protobuf field: string syst = 300;
    */
   syst: string;
+}
+/**
+ * @generated from protobuf message policy.SearchO_Reason
+ */
+export interface SearchO_Reason {
+  /**
+   * desc provides some contextual information about decision making logic
+   * inside the API that let to the returned result.
+   *
+   * @generated from protobuf field: string desc = 100;
+   */
+  desc: string;
+  /**
+   * kind is the human readable type information of the soft error code provided
+   * with associated description.
+   *
+   * @generated from protobuf field: string kind = 200;
+   */
+  kind: string;
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();
@@ -508,4 +531,23 @@ declare class SearchO_Object_Public$Type extends MessageType<SearchO_Object_Publ
  * @generated MessageType for protobuf message policy.SearchO_Object_Public
  */
 export declare const SearchO_Object_Public: SearchO_Object_Public$Type;
+declare class SearchO_Reason$Type extends MessageType<SearchO_Reason> {
+  constructor();
+  create(value?: PartialMessage<SearchO_Reason>): SearchO_Reason;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchO_Reason,
+  ): SearchO_Reason;
+  internalBinaryWrite(
+    message: SearchO_Reason,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message policy.SearchO_Reason
+ */
+export declare const SearchO_Reason: SearchO_Reason$Type;
 export {};
