@@ -83,7 +83,15 @@ export interface UpdateI_Object_Public {}
 /**
  * @generated from protobuf message description.UpdateI_Object_Symbol
  */
-export interface UpdateI_Object_Symbol {}
+export interface UpdateI_Object_Symbol {
+  /**
+   * xtrn set to "like" indexes a new reaction for the given description,
+   * tracking the description like for the calling user.
+   *
+   * @generated from protobuf field: string xtrn = 100;
+   */
+  xtrn: string;
+}
 /**
  * @generated from protobuf message description.UpdateI_Object_Update
  */

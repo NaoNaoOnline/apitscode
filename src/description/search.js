@@ -372,12 +372,13 @@ export const SearchO_Filter = new SearchO_Filter$Type();
 class SearchO_Object$Type extends MessageType {
     constructor() {
         super("description.SearchO_Object", [
-            { no: 100, name: "intern", kind: "message", T: () => SearchO_Object_Intern },
-            { no: 200, name: "public", kind: "message", T: () => SearchO_Object_Public }
+            { no: 100, name: "extern", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => SearchO_Object_Extern },
+            { no: 200, name: "intern", kind: "message", T: () => SearchO_Object_Intern },
+            { no: 300, name: "public", kind: "message", T: () => SearchO_Object_Public }
         ]);
     }
     create(value) {
-        const message = {};
+        const message = { extern: [] };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -388,10 +389,13 @@ class SearchO_Object$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* description.SearchO_Object_Intern intern */ 100:
+                case /* repeated description.SearchO_Object_Extern extern */ 100:
+                    message.extern.push(SearchO_Object_Extern.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* description.SearchO_Object_Intern intern */ 200:
                     message.intern = SearchO_Object_Intern.internalBinaryRead(reader, reader.uint32(), options, message.intern);
                     break;
-                case /* description.SearchO_Object_Public public */ 200:
+                case /* description.SearchO_Object_Public public */ 300:
                     message.public = SearchO_Object_Public.internalBinaryRead(reader, reader.uint32(), options, message.public);
                     break;
                 default:
@@ -406,12 +410,15 @@ class SearchO_Object$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* description.SearchO_Object_Intern intern = 100; */
+        /* repeated description.SearchO_Object_Extern extern = 100; */
+        for (let i = 0; i < message.extern.length; i++)
+            SearchO_Object_Extern.internalBinaryWrite(message.extern[i], writer.tag(100, WireType.LengthDelimited).fork(), options).join();
+        /* description.SearchO_Object_Intern intern = 200; */
         if (message.intern)
-            SearchO_Object_Intern.internalBinaryWrite(message.intern, writer.tag(100, WireType.LengthDelimited).fork(), options).join();
-        /* description.SearchO_Object_Public public = 200; */
+            SearchO_Object_Intern.internalBinaryWrite(message.intern, writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+        /* description.SearchO_Object_Public public = 300; */
         if (message.public)
-            SearchO_Object_Public.internalBinaryWrite(message.public, writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+            SearchO_Object_Public.internalBinaryWrite(message.public, writer.tag(300, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -422,6 +429,67 @@ class SearchO_Object$Type extends MessageType {
  * @generated MessageType for protobuf message description.SearchO_Object
  */
 export const SearchO_Object = new SearchO_Object$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class SearchO_Object_Extern$Type extends MessageType {
+    constructor() {
+        super("description.SearchO_Object_Extern", [
+            { no: 100, name: "amnt", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = { amnt: "", kind: "", user: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string amnt */ 100:
+                    message.amnt = reader.string();
+                    break;
+                case /* string kind */ 200:
+                    message.kind = reader.string();
+                    break;
+                case /* string user */ 300:
+                    message.user = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string amnt = 100; */
+        if (message.amnt !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.amnt);
+        /* string kind = 200; */
+        if (message.kind !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.kind);
+        /* string user = 300; */
+        if (message.user !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.user);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message description.SearchO_Object_Extern
+ */
+export const SearchO_Object_Extern = new SearchO_Object_Extern$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchO_Object_Intern$Type extends MessageType {
     constructor() {

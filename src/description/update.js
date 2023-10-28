@@ -230,19 +230,40 @@ export const UpdateI_Object_Public = new UpdateI_Object_Public$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class UpdateI_Object_Symbol$Type extends MessageType {
     constructor() {
-        super("description.UpdateI_Object_Symbol", []);
+        super("description.UpdateI_Object_Symbol", [
+            { no: 100, name: "xtrn", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value) {
-        const message = {};
+        const message = { xtrn: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string xtrn */ 100:
+                    message.xtrn = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string xtrn = 100; */
+        if (message.xtrn !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.xtrn);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

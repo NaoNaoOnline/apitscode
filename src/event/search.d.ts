@@ -168,6 +168,13 @@ export interface SearchI_Object_Symbol {
  *     {
  *         "object": [
  *             {
+ *                 "extern": [
+ *                     {
+ *                         "amnt": "1047",
+ *                         "kind": "link",
+ *                         "user": true
+ *                     }
+ *                 ],
  *                 "intern": {
  *                     "crtd": "1689001255",
  *                     "evnt": "778237",
@@ -207,13 +214,44 @@ export interface SearchO_Filter {}
  */
 export interface SearchO_Object {
   /**
-   * @generated from protobuf field: event.SearchO_Object_Intern intern = 100;
+   * @generated from protobuf field: repeated event.SearchO_Object_Extern extern = 100;
+   */
+  extern: SearchO_Object_Extern[];
+  /**
+   * @generated from protobuf field: event.SearchO_Object_Intern intern = 200;
    */
   intern?: SearchO_Object_Intern;
   /**
-   * @generated from protobuf field: event.SearchO_Object_Public public = 200;
+   * @generated from protobuf field: event.SearchO_Object_Public public = 300;
    */
   public?: SearchO_Object_Public;
+}
+/**
+ * @generated from protobuf message event.SearchO_Object_Extern
+ */
+export interface SearchO_Object_Extern {
+  /**
+   * amnt is the number of reactions this event received for the specified kind.
+   *
+   * @generated from protobuf field: string amnt = 100;
+   */
+  amnt: string;
+  /**
+   * kind is the type of reaction this event received.
+   *
+   *     link for users clicking the event link while the event is happening
+   *
+   *
+   * @generated from protobuf field: string kind = 200;
+   */
+  kind: string;
+  /**
+   * user expresses whether the calling user reacted to this event with the
+   * specified reaction kind.
+   *
+   * @generated from protobuf field: string user = 300;
+   */
+  user: string;
 }
 /**
  * @generated from protobuf message event.SearchO_Object_Intern
@@ -466,6 +504,25 @@ declare class SearchO_Object$Type extends MessageType<SearchO_Object> {
  * @generated MessageType for protobuf message event.SearchO_Object
  */
 export declare const SearchO_Object: SearchO_Object$Type;
+declare class SearchO_Object_Extern$Type extends MessageType<SearchO_Object_Extern> {
+  constructor();
+  create(value?: PartialMessage<SearchO_Object_Extern>): SearchO_Object_Extern;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchO_Object_Extern,
+  ): SearchO_Object_Extern;
+  internalBinaryWrite(
+    message: SearchO_Object_Extern,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message event.SearchO_Object_Extern
+ */
+export declare const SearchO_Object_Extern: SearchO_Object_Extern$Type;
 declare class SearchO_Object_Intern$Type extends MessageType<SearchO_Object_Intern> {
   constructor();
   create(value?: PartialMessage<SearchO_Object_Intern>): SearchO_Object_Intern;
