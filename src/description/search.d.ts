@@ -174,9 +174,9 @@ export interface SearchO_Object_Extern {
    * user expresses whether the calling user reacted to this description with
    * the specified reaction kind.
    *
-   * @generated from protobuf field: string user = 300;
+   * @generated from protobuf field: bool user = 300;
    */
-  user: string;
+  user: boolean;
 }
 /**
  * @generated from protobuf message description.SearchO_Object_Intern

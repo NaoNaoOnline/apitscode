@@ -86,7 +86,8 @@ export interface UpdateI_Object_Public {}
 export interface UpdateI_Object_Symbol {
   /**
    * xtrn set to "like" indexes a new reaction for the given description,
-   * tracking the description like for the calling user.
+   * tracking the description like for the calling user. xtrn set to "ulik"
+   * removes a user like for the given description, if one existed.
    *
    * @generated from protobuf field: string xtrn = 100;
    */

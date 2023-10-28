@@ -538,11 +538,11 @@ class SearchO_Object_Extern$Type extends MessageType {
         super("event.SearchO_Object_Extern", [
             { no: 100, name: "amnt", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 300, name: "user", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value) {
-        const message = { amnt: "", kind: "", user: "" };
+        const message = { amnt: "", kind: "", user: false };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -559,8 +559,8 @@ class SearchO_Object_Extern$Type extends MessageType {
                 case /* string kind */ 200:
                     message.kind = reader.string();
                     break;
-                case /* string user */ 300:
-                    message.user = reader.string();
+                case /* bool user */ 300:
+                    message.user = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -580,9 +580,9 @@ class SearchO_Object_Extern$Type extends MessageType {
         /* string kind = 200; */
         if (message.kind !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.kind);
-        /* string user = 300; */
-        if (message.user !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.user);
+        /* bool user = 300; */
+        if (message.user !== false)
+            writer.tag(300, WireType.Varint).bool(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
