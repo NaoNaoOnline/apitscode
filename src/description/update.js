@@ -231,11 +231,11 @@ export const UpdateI_Object_Public = new UpdateI_Object_Public$Type();
 class UpdateI_Object_Symbol$Type extends MessageType {
     constructor() {
         super("description.UpdateI_Object_Symbol", [
-            { no: 100, name: "xtrn", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "like", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { xtrn: "" };
+        const message = { like: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -246,8 +246,8 @@ class UpdateI_Object_Symbol$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string xtrn */ 100:
-                    message.xtrn = reader.string();
+                case /* string like */ 100:
+                    message.like = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -261,9 +261,9 @@ class UpdateI_Object_Symbol$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string xtrn = 100; */
-        if (message.xtrn !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.xtrn);
+        /* string like = 100; */
+        if (message.like !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.like);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

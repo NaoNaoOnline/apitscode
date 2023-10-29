@@ -85,12 +85,12 @@ export interface UpdateI_Object_Public {}
  */
 export interface UpdateI_Object_Symbol {
   /**
-   * xtrn set to "link" indexes a new reaction for the given event, tracking the
+   * link set to "add" indexes a new reaction for the given event, tracking the
    * event link click for the calling user.
    *
-   * @generated from protobuf field: string xtrn = 100;
+   * @generated from protobuf field: string link = 100;
    */
-  xtrn: string;
+  link: string;
 }
 /**
  * @generated from protobuf message event.UpdateI_Object_Update
