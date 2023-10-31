@@ -335,12 +335,12 @@ class SearchI_Object_Symbol$Type extends MessageType {
     constructor() {
         super("event.SearchI_Object_Symbol", [
             { no: 100, name: "list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "ltst", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "rctn", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "rctn", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { list: "", ltst: "", rctn: "" };
+        const message = { list: "", rctn: "", time: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -354,11 +354,11 @@ class SearchI_Object_Symbol$Type extends MessageType {
                 case /* string list */ 100:
                     message.list = reader.string();
                     break;
-                case /* string ltst */ 200:
-                    message.ltst = reader.string();
-                    break;
-                case /* string rctn */ 300:
+                case /* string rctn */ 200:
                     message.rctn = reader.string();
+                    break;
+                case /* string time */ 300:
+                    message.time = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -375,12 +375,12 @@ class SearchI_Object_Symbol$Type extends MessageType {
         /* string list = 100; */
         if (message.list !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.list);
-        /* string ltst = 200; */
-        if (message.ltst !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.ltst);
-        /* string rctn = 300; */
+        /* string rctn = 200; */
         if (message.rctn !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.rctn);
+            writer.tag(200, WireType.LengthDelimited).string(message.rctn);
+        /* string time = 300; */
+        if (message.time !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.time);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

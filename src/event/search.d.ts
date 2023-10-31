@@ -138,19 +138,6 @@ export interface SearchI_Object_Symbol {
    */
   list: string;
   /**
-   * ltst set to "default" returns the latest event objects indexed by event
-   * start time. That is, the list of events that are going on right now,
-   * including events that already happened, and events that will happen in the
-   * near future. The time horizon of the "default" search query is limited to
-   * one week in the past and one week in the future. Paging is available by
-   * providing unix timestamps as pointers for the underyling ordered objects,
-   * where the unix timestamps refer to the start time of the respective events,
-   * that is, when they are happening.
-   *
-   * @generated from protobuf field: string ltst = 200;
-   */
-  ltst: string;
-  /**
    * rctn set to "default" returns the event objects indexed by the calling
    * user's reactions. That is, the list of events that the calling user reacted
    * to in the past. Neither the amount nor the kind of reactions to any event
@@ -158,9 +145,32 @@ export interface SearchI_Object_Symbol {
    * Paging is available by providing absolute numbers as pointers for the
    * underyling ordered objects.
    *
-   * @generated from protobuf field: string rctn = 300;
+   * @generated from protobuf field: string rctn = 200;
    */
   rctn: string;
+  /**
+   * time set to a valid symbol or a unix time range returns the list of events
+   * known to happen within the specified boundaries. Note that the default
+   * event retention for past events is one week. The premium subscriber event
+   * retention for past events is three months.
+   *
+   *     time set to "hpnd" returns the list of happened events known to have
+   *     already concluded within the past week.
+   *
+   *     time set to "upcm" returns the list of upcoming events known to happen
+   *     within the next week.
+   *
+   *     time set to "page" returns the list of events known to happen, or
+   *     have happened, within the specified boundaries of filter.paging.strt
+   *     and filter.paging.stop. The first paging pointer here is the unix
+   *     timestamp in seconds of the lower boundary, read min. The second paging
+   *     pointer here is the unix timestamp in seconds of the upper boundary,
+   *     read max.
+   *
+   *
+   * @generated from protobuf field: string time = 300;
+   */
+  time: string;
 }
 /**
  * SearchO is the output for searching events.
