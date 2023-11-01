@@ -138,12 +138,12 @@ export interface SearchI_Object_Symbol {
    */
   list: string;
   /**
-   * rctn set to "default" returns the event objects indexed by the calling
-   * user's reactions. That is, the list of events that the calling user reacted
-   * to in the past. Neither the amount nor the kind of reactions to any event
-   * matter. If the calling user reacted to an event, it will be returned here.
-   * Paging is available by providing absolute numbers as pointers for the
-   * underyling ordered objects.
+   * rctn set to "page" returns the list of events that the calling user reacted
+   * to in the form of a like, within the specified boundaries of
+   * filter.paging.strt and filter.paging.stop. The first paging pointer here is
+   * the absolute lower boundary of the requested page, read min. The second
+   * paging pointer here is the absolute upper boundary of the requested page,
+   * read max.
    *
    * @generated from protobuf field: string rctn = 200;
    */
