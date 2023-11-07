@@ -19,7 +19,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "update": [
  *                     {
  *                         "ope": "replace",
- *                         "pat": "/obj/property/desc",
+ *                         "pat": "/desc",
  *                         "val": "Where CT personalities meet!"
  *                     }
  *                 ]

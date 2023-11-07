@@ -19,7 +19,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "update": [
  *                     {
  *                         "ope": "replace",
- *                         "pat": "/obj/property/time",
+ *                         "pat": "/time",
  *                         "val": "1689001255"
  *                     }
  *                 ]

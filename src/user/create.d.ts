@@ -14,6 +14,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "public": {
+ *                     "home": "986763351",
  *                     "imag": "https://gravatar.com/9050f8ea",
  *                     "name": "xh3b4sd"
  *                 }
@@ -60,15 +61,24 @@ export interface CreateI_Object_Intern {}
  */
 export interface CreateI_Object_Public {
   /**
+   * home is the list ID describing a custom default view, optionally configured
+   * by premium subscribers. The default "default view" is "/", that is, the
+   * index page of the platform showing some derivative of the latest events
+   * globally.
+   *
+   * @generated from protobuf field: string home = 100;
+   */
+  home: string;
+  /**
    * imag is the URL pointing to the user's profile picture.
    *
-   * @generated from protobuf field: string imag = 100;
+   * @generated from protobuf field: string imag = 200;
    */
   imag: string;
   /**
    * name is the user name.
    *
-   * @generated from protobuf field: string name = 200;
+   * @generated from protobuf field: string name = 300;
    */
   name: string;
 }
