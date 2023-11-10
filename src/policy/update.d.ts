@@ -71,12 +71,24 @@ export interface UpdateI_Object_Public {}
  */
 export interface UpdateI_Object_Symbol {
   /**
+   * pntr must be left empty when initiating a new update lifecycle with sync
+   * set to "default". As shown below, the update response contains a pointer
+   * that can be provided in a delayed consecutive call, again with sync set to
+   * "default". As long as the provided pointer equals the internally tracked
+   * value, the background process to synchronize onchain and offchain state is
+   * still in progress. Once the internal pointer differs from the provided pntr
+   * value here, the status "updated" will be returned.
+   *
+   * @generated from protobuf field: string pntr = 100;
+   */
+  pntr: string;
+  /**
    * sync set to "default" starts a background process to synchronize onchain
    * and offchain state. That way the current state can be fetched on demand by
    * policy members without having to wait for the scheduled background job to
    * be triggered.
    *
-   * @generated from protobuf field: string sync = 100;
+   * @generated from protobuf field: string sync = 200;
    */
   sync: string;
 }
@@ -92,6 +104,9 @@ export interface UpdateI_Object_Update {}
  *             {
  *                 "intern": {
  *                     "stts": "started"
+ *                 },
+ *                 "symbol": {
+ *                     "pntr": "1689001255"
  *                 }
  *             }
  *         ]
@@ -126,6 +141,10 @@ export interface UpdateO_Object {
    * @generated from protobuf field: policy.UpdateO_Object_Public public = 200;
    */
   public?: UpdateO_Object_Public;
+  /**
+   * @generated from protobuf field: policy.UpdateO_Object_Symbol symbol = 300;
+   */
+  symbol?: UpdateO_Object_Symbol;
 }
 /**
  * @generated from protobuf message policy.UpdateO_Object_Intern
@@ -133,6 +152,11 @@ export interface UpdateO_Object {
 export interface UpdateO_Object_Intern {
   /**
    * stts is the resource status upon successful policy modification.
+   *
+   *     started for the first call when a new update lifecycle was initiated
+   *     waiting for consecutive calls, as long as pointers are equal
+   *     updated for finished lifecycle updates, as soon as pointers differ
+   *
    *
    * @generated from protobuf field: string stts = 100;
    */
@@ -142,6 +166,19 @@ export interface UpdateO_Object_Intern {
  * @generated from protobuf message policy.UpdateO_Object_Public
  */
 export interface UpdateO_Object_Public {}
+/**
+ * @generated from protobuf message policy.UpdateO_Object_Symbol
+ */
+export interface UpdateO_Object_Symbol {
+  /**
+   * pntr is the internally tracked timestamp of the most recent update
+   * lifecycle. The pointer returned here can be provided in a delayed
+   * consecutive call, again with sync set to "default".
+   *
+   * @generated from protobuf field: string pntr = 100;
+   */
+  pntr: string;
+}
 declare class UpdateI$Type extends MessageType<UpdateI> {
   constructor();
   create(value?: PartialMessage<UpdateI>): UpdateI;
@@ -370,4 +407,23 @@ declare class UpdateO_Object_Public$Type extends MessageType<UpdateO_Object_Publ
  * @generated MessageType for protobuf message policy.UpdateO_Object_Public
  */
 export declare const UpdateO_Object_Public: UpdateO_Object_Public$Type;
+declare class UpdateO_Object_Symbol$Type extends MessageType<UpdateO_Object_Symbol> {
+  constructor();
+  create(value?: PartialMessage<UpdateO_Object_Symbol>): UpdateO_Object_Symbol;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: UpdateO_Object_Symbol,
+  ): UpdateO_Object_Symbol;
+  internalBinaryWrite(
+    message: UpdateO_Object_Symbol,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message policy.UpdateO_Object_Symbol
+ */
+export declare const UpdateO_Object_Symbol: UpdateO_Object_Symbol$Type;
 export {};

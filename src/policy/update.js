@@ -210,11 +210,12 @@ export const UpdateI_Object_Public = new UpdateI_Object_Public$Type();
 class UpdateI_Object_Symbol$Type extends MessageType {
     constructor() {
         super("policy.UpdateI_Object_Symbol", [
-            { no: 100, name: "sync", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "pntr", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "sync", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { sync: "" };
+        const message = { pntr: "", sync: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -225,7 +226,10 @@ class UpdateI_Object_Symbol$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string sync */ 100:
+                case /* string pntr */ 100:
+                    message.pntr = reader.string();
+                    break;
+                case /* string sync */ 200:
                     message.sync = reader.string();
                     break;
                 default:
@@ -240,9 +244,12 @@ class UpdateI_Object_Symbol$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string sync = 100; */
+        /* string pntr = 100; */
+        if (message.pntr !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.pntr);
+        /* string sync = 200; */
         if (message.sync !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.sync);
+            writer.tag(200, WireType.LengthDelimited).string(message.sync);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -364,7 +371,8 @@ class UpdateO_Object$Type extends MessageType {
     constructor() {
         super("policy.UpdateO_Object", [
             { no: 100, name: "intern", kind: "message", T: () => UpdateO_Object_Intern },
-            { no: 200, name: "public", kind: "message", T: () => UpdateO_Object_Public }
+            { no: 200, name: "public", kind: "message", T: () => UpdateO_Object_Public },
+            { no: 300, name: "symbol", kind: "message", T: () => UpdateO_Object_Symbol }
         ]);
     }
     create(value) {
@@ -385,6 +393,9 @@ class UpdateO_Object$Type extends MessageType {
                 case /* policy.UpdateO_Object_Public public */ 200:
                     message.public = UpdateO_Object_Public.internalBinaryRead(reader, reader.uint32(), options, message.public);
                     break;
+                case /* policy.UpdateO_Object_Symbol symbol */ 300:
+                    message.symbol = UpdateO_Object_Symbol.internalBinaryRead(reader, reader.uint32(), options, message.symbol);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -403,6 +414,9 @@ class UpdateO_Object$Type extends MessageType {
         /* policy.UpdateO_Object_Public public = 200; */
         if (message.public)
             UpdateO_Object_Public.internalBinaryWrite(message.public, writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+        /* policy.UpdateO_Object_Symbol symbol = 300; */
+        if (message.symbol)
+            UpdateO_Object_Symbol.internalBinaryWrite(message.symbol, writer.tag(300, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -486,3 +500,50 @@ class UpdateO_Object_Public$Type extends MessageType {
  * @generated MessageType for protobuf message policy.UpdateO_Object_Public
  */
 export const UpdateO_Object_Public = new UpdateO_Object_Public$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateO_Object_Symbol$Type extends MessageType {
+    constructor() {
+        super("policy.UpdateO_Object_Symbol", [
+            { no: 100, name: "pntr", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = { pntr: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string pntr */ 100:
+                    message.pntr = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string pntr = 100; */
+        if (message.pntr !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.pntr);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message policy.UpdateO_Object_Symbol
+ */
+export const UpdateO_Object_Symbol = new UpdateO_Object_Symbol$Type();
