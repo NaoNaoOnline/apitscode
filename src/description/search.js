@@ -218,19 +218,40 @@ export const SearchI_Object = new SearchI_Object$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SearchI_Object_Intern$Type extends MessageType {
     constructor() {
-        super("description.SearchI_Object_Intern", []);
+        super("description.SearchI_Object_Intern", [
+            { no: 100, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value) {
-        const message = {};
+        const message = { user: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
     }
     internalBinaryRead(reader, length, options, target) {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string user */ 100:
+                    message.user = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string user = 100; */
+        if (message.user !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

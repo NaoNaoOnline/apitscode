@@ -82,7 +82,9 @@ export interface SearchI_Object {
  */
 export interface SearchI_Object_Intern {
   /**
-   * user is the ID of the user who created this list.
+   * user is the ID of the user having created the lists being searched. If
+   * searching for lists created by a particular user, the search query object
+   * must not contain any other fields.
    *
    * @generated from protobuf field: string user = 100;
    */

@@ -84,6 +84,14 @@ export interface SearchI_Object_Intern {
    * @generated from protobuf field: string labl = 100;
    */
   labl: string;
+  /**
+   * user is the ID of the user having created the labels being searched. If
+   * searching for labels created by a particular user, the search query object
+   * must not contain any other fields.
+   *
+   * @generated from protobuf field: string user = 200;
+   */
+  user: string;
 }
 /**
  * @generated from protobuf message label.SearchI_Object_Public

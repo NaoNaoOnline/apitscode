@@ -77,7 +77,16 @@ export interface SearchI_Object {
 /**
  * @generated from protobuf message description.SearchI_Object_Intern
  */
-export interface SearchI_Object_Intern {}
+export interface SearchI_Object_Intern {
+  /**
+   * user is the ID of the user having created the descriptions being searched.
+   * If searching for descriptions created by a particular user, the search
+   * query object must not contain any other fields.
+   *
+   * @generated from protobuf field: string user = 100;
+   */
+  user: string;
+}
 /**
  * @generated from protobuf message description.SearchI_Object_Public
  */
