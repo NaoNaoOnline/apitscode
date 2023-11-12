@@ -334,13 +334,13 @@ export const SearchI_Object_Public = new SearchI_Object_Public$Type();
 class SearchI_Object_Symbol$Type extends MessageType {
     constructor() {
         super("event.SearchI_Object_Symbol", [
+            { no: 200, name: "like", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 100, name: "list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "rctn", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 300, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { list: "", rctn: "", time: "" };
+        const message = { like: "", list: "", time: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -351,11 +351,11 @@ class SearchI_Object_Symbol$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
+                case /* string like */ 200:
+                    message.like = reader.string();
+                    break;
                 case /* string list */ 100:
                     message.list = reader.string();
-                    break;
-                case /* string rctn */ 200:
-                    message.rctn = reader.string();
                     break;
                 case /* string time */ 300:
                     message.time = reader.string();
@@ -372,12 +372,12 @@ class SearchI_Object_Symbol$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
+        /* string like = 200; */
+        if (message.like !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.like);
         /* string list = 100; */
         if (message.list !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.list);
-        /* string rctn = 200; */
-        if (message.rctn !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.rctn);
         /* string time = 300; */
         if (message.time !== "")
             writer.tag(300, WireType.LengthDelimited).string(message.time);

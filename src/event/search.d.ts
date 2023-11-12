@@ -130,6 +130,17 @@ export interface SearchI_Object_Public {
  */
 export interface SearchI_Object_Symbol {
   /**
+   * like set to any valid user ID returns the list of events that the calling
+   * user reacted to in the form of a like, within the specified boundaries of
+   * filter.paging.strt and filter.paging.stop. The first paging pointer here is
+   * the absolute lower boundary of the requested page, read min. The second
+   * paging pointer here is the absolute upper boundary of the requested page,
+   * read max.
+   *
+   * @generated from protobuf field: string like = 200;
+   */
+  like: string;
+  /**
    * list set to any valid list ID returns all of the event objects matching the
    * provided list's criteria. Paging is available by providing absolute numbers
    * as pointers for the underyling ordered objects.
@@ -137,17 +148,6 @@ export interface SearchI_Object_Symbol {
    * @generated from protobuf field: string list = 100;
    */
   list: string;
-  /**
-   * rctn set to "page" returns the list of events that the calling user reacted
-   * to in the form of a like, within the specified boundaries of
-   * filter.paging.strt and filter.paging.stop. The first paging pointer here is
-   * the absolute lower boundary of the requested page, read min. The second
-   * paging pointer here is the absolute upper boundary of the requested page,
-   * read max.
-   *
-   * @generated from protobuf field: string rctn = 200;
-   */
-  rctn: string;
   /**
    * time set to a valid symbol or a unix time range returns the list of events
    * known to happen within the specified boundaries. Note that the default
