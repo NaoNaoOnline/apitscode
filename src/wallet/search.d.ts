@@ -113,12 +113,16 @@ export interface SearchI_Object_Public {
  *                         "time": "1695326765"
  *                     },
  *                     "crtd": "1689001255",
+ *                     "labl": {
+ *                         "time": "1695326765"
+ *                     },
  *                     "user": "551265",
  *                     "wllt": "338912367"
  *                 },
  *                 "public": {
  *                     "addr": "0x0001",
- *                     "kind": "eth"
+ *                     "kind": "eth",
+ *                     "labl": "accounting"
  *                 }
  *             },
  *             ...
@@ -172,15 +176,21 @@ export interface SearchO_Object_Intern {
    */
   crtd: string;
   /**
+   * labl contains lifecycle metadata for this wallet object.
+   *
+   * @generated from protobuf field: wallet.SearchO_Object_Intern_Labl labl = 300;
+   */
+  labl?: SearchO_Object_Intern_Labl;
+  /**
    * user is the ID of the user who created this wallet.
    *
-   * @generated from protobuf field: string user = 300;
+   * @generated from protobuf field: string user = 400;
    */
   user: string;
   /**
    * wllt is the ID of the wallet being searched.
    *
-   * @generated from protobuf field: string wllt = 400;
+   * @generated from protobuf field: string wllt = 500;
    */
   wllt: string;
 }
@@ -191,6 +201,18 @@ export interface SearchO_Object_Intern_Addr {
   /**
    * Time is the unix timestamp in seconds of the most recent time at which this
    * wallet got re-validated by signing a message again.
+   *
+   * @generated from protobuf field: string time = 100;
+   */
+  time: string;
+}
+/**
+ * @generated from protobuf message wallet.SearchO_Object_Intern_Labl
+ */
+export interface SearchO_Object_Intern_Labl {
+  /**
+   * Time is the unix timestamp in seconds of the most recent time at which the
+   * wallet label got updated.
    *
    * @generated from protobuf field: string time = 100;
    */
@@ -216,6 +238,17 @@ export interface SearchO_Object_Public {
    * @generated from protobuf field: string kind = 200;
    */
   kind: string;
+  /**
+   * labl is the designated purpose this wallet serves. Kept empty at the time
+   * of creation. Can be set after the signature verification challenge.
+   *
+   *     accounting for revenue sharing
+   *     moderation for content moderation
+   *
+   *
+   * @generated from protobuf field: string labl = 300;
+   */
+  labl: string;
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();
@@ -428,6 +461,27 @@ declare class SearchO_Object_Intern_Addr$Type extends MessageType<SearchO_Object
  * @generated MessageType for protobuf message wallet.SearchO_Object_Intern_Addr
  */
 export declare const SearchO_Object_Intern_Addr: SearchO_Object_Intern_Addr$Type;
+declare class SearchO_Object_Intern_Labl$Type extends MessageType<SearchO_Object_Intern_Labl> {
+  constructor();
+  create(
+    value?: PartialMessage<SearchO_Object_Intern_Labl>,
+  ): SearchO_Object_Intern_Labl;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchO_Object_Intern_Labl,
+  ): SearchO_Object_Intern_Labl;
+  internalBinaryWrite(
+    message: SearchO_Object_Intern_Labl,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message wallet.SearchO_Object_Intern_Labl
+ */
+export declare const SearchO_Object_Intern_Labl: SearchO_Object_Intern_Labl$Type;
 declare class SearchO_Object_Public$Type extends MessageType<SearchO_Object_Public> {
   constructor();
   create(value?: PartialMessage<SearchO_Object_Public>): SearchO_Object_Public;

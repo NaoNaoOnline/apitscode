@@ -116,7 +116,20 @@ export interface UpdateI_Object_Symbol {}
 /**
  * @generated from protobuf message wallet.UpdateI_Object_Update
  */
-export interface UpdateI_Object_Update {}
+export interface UpdateI_Object_Update {
+  /**
+   * @generated from protobuf field: string ope = 100;
+   */
+  ope: string;
+  /**
+   * @generated from protobuf field: string pat = 200;
+   */
+  pat: string;
+  /**
+   * @generated from protobuf field: optional string val = 300;
+   */
+  val?: string;
+}
 /**
  * UpdateO is the output for updating wallets.
  *
@@ -125,6 +138,9 @@ export interface UpdateI_Object_Update {}
  *             {
  *                 "intern": {
  *                     "addr": {
+ *                         "time": "1695326765"
+ *                     },
+ *                     "labl": {
  *                         "time": "1695326765"
  *                     },
  *                     "stts": "updated"
@@ -174,9 +190,15 @@ export interface UpdateO_Object_Intern {
    */
   addr?: UpdateO_Object_Intern_Addr;
   /**
+   * labl contains lifecycle metadata for this wallet object.
+   *
+   * @generated from protobuf field: wallet.UpdateO_Object_Intern_Labl labl = 200;
+   */
+  labl?: UpdateO_Object_Intern_Labl;
+  /**
    * stts is the resource status upon successful wallet modification.
    *
-   * @generated from protobuf field: string stts = 200;
+   * @generated from protobuf field: string stts = 300;
    */
   stts: string;
 }
@@ -187,6 +209,18 @@ export interface UpdateO_Object_Intern_Addr {
   /**
    * Time is the unix timestamp in seconds of the most recent time at which this
    * wallet got re-validated by signing a message again.
+   *
+   * @generated from protobuf field: string time = 100;
+   */
+  time: string;
+}
+/**
+ * @generated from protobuf message wallet.UpdateO_Object_Intern_Labl
+ */
+export interface UpdateO_Object_Intern_Labl {
+  /**
+   * Time is the unix timestamp in seconds of the most recent time at which the
+   * wallet label got updated.
    *
    * @generated from protobuf field: string time = 100;
    */
@@ -426,6 +460,27 @@ declare class UpdateO_Object_Intern_Addr$Type extends MessageType<UpdateO_Object
  * @generated MessageType for protobuf message wallet.UpdateO_Object_Intern_Addr
  */
 export declare const UpdateO_Object_Intern_Addr: UpdateO_Object_Intern_Addr$Type;
+declare class UpdateO_Object_Intern_Labl$Type extends MessageType<UpdateO_Object_Intern_Labl> {
+  constructor();
+  create(
+    value?: PartialMessage<UpdateO_Object_Intern_Labl>,
+  ): UpdateO_Object_Intern_Labl;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: UpdateO_Object_Intern_Labl,
+  ): UpdateO_Object_Intern_Labl;
+  internalBinaryWrite(
+    message: UpdateO_Object_Intern_Labl,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message wallet.UpdateO_Object_Intern_Labl
+ */
+export declare const UpdateO_Object_Intern_Labl: UpdateO_Object_Intern_Labl$Type;
 declare class UpdateO_Object_Public$Type extends MessageType<UpdateO_Object_Public> {
   constructor();
   create(value?: PartialMessage<UpdateO_Object_Public>): UpdateO_Object_Public;

@@ -449,8 +449,9 @@ class SearchO_Object_Intern$Type extends MessageType {
         super("wallet.SearchO_Object_Intern", [
             { no: 100, name: "addr", kind: "message", T: () => SearchO_Object_Intern_Addr },
             { no: 200, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "wllt", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 300, name: "labl", kind: "message", T: () => SearchO_Object_Intern_Labl },
+            { no: 400, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 500, name: "wllt", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
@@ -471,10 +472,13 @@ class SearchO_Object_Intern$Type extends MessageType {
                 case /* string crtd */ 200:
                     message.crtd = reader.string();
                     break;
-                case /* string user */ 300:
+                case /* wallet.SearchO_Object_Intern_Labl labl */ 300:
+                    message.labl = SearchO_Object_Intern_Labl.internalBinaryRead(reader, reader.uint32(), options, message.labl);
+                    break;
+                case /* string user */ 400:
                     message.user = reader.string();
                     break;
-                case /* string wllt */ 400:
+                case /* string wllt */ 500:
                     message.wllt = reader.string();
                     break;
                 default:
@@ -495,12 +499,15 @@ class SearchO_Object_Intern$Type extends MessageType {
         /* string crtd = 200; */
         if (message.crtd !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.crtd);
-        /* string user = 300; */
+        /* wallet.SearchO_Object_Intern_Labl labl = 300; */
+        if (message.labl)
+            SearchO_Object_Intern_Labl.internalBinaryWrite(message.labl, writer.tag(300, WireType.LengthDelimited).fork(), options).join();
+        /* string user = 400; */
         if (message.user !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.user);
-        /* string wllt = 400; */
+            writer.tag(400, WireType.LengthDelimited).string(message.user);
+        /* string wllt = 500; */
         if (message.wllt !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.wllt);
+            writer.tag(500, WireType.LengthDelimited).string(message.wllt);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -559,15 +566,63 @@ class SearchO_Object_Intern_Addr$Type extends MessageType {
  */
 export const SearchO_Object_Intern_Addr = new SearchO_Object_Intern_Addr$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class SearchO_Object_Intern_Labl$Type extends MessageType {
+    constructor() {
+        super("wallet.SearchO_Object_Intern_Labl", [
+            { no: 100, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = { time: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string time */ 100:
+                    message.time = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string time = 100; */
+        if (message.time !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.time);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message wallet.SearchO_Object_Intern_Labl
+ */
+export const SearchO_Object_Intern_Labl = new SearchO_Object_Intern_Labl$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("wallet.SearchO_Object_Public", [
             { no: 100, name: "addr", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "labl", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { addr: "", kind: "" };
+        const message = { addr: "", kind: "", labl: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -583,6 +638,9 @@ class SearchO_Object_Public$Type extends MessageType {
                     break;
                 case /* string kind */ 200:
                     message.kind = reader.string();
+                    break;
+                case /* string labl */ 300:
+                    message.labl = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -602,6 +660,9 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string kind = 200; */
         if (message.kind !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.kind);
+        /* string labl = 300; */
+        if (message.labl !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.labl);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
