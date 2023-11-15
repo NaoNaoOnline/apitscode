@@ -278,9 +278,10 @@ export const UpdateI_Object_Symbol = new UpdateI_Object_Symbol$Type();
 class UpdateI_Object_Update$Type extends MessageType {
     constructor() {
         super("event.UpdateI_Object_Update", [
-            { no: 100, name: "ope", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "pat", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "val", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "frm", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "ope", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "pat", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "val", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
@@ -295,13 +296,16 @@ class UpdateI_Object_Update$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string ope */ 100:
+                case /* optional string frm */ 100:
+                    message.frm = reader.string();
+                    break;
+                case /* string ope */ 200:
                     message.ope = reader.string();
                     break;
-                case /* string pat */ 200:
+                case /* string pat */ 300:
                     message.pat = reader.string();
                     break;
-                case /* optional string val */ 300:
+                case /* optional string val */ 400:
                     message.val = reader.string();
                     break;
                 default:
@@ -316,15 +320,18 @@ class UpdateI_Object_Update$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string ope = 100; */
+        /* optional string frm = 100; */
+        if (message.frm !== undefined)
+            writer.tag(100, WireType.LengthDelimited).string(message.frm);
+        /* string ope = 200; */
         if (message.ope !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.ope);
-        /* string pat = 200; */
+            writer.tag(200, WireType.LengthDelimited).string(message.ope);
+        /* string pat = 300; */
         if (message.pat !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.pat);
-        /* optional string val = 300; */
+            writer.tag(300, WireType.LengthDelimited).string(message.pat);
+        /* optional string val = 400; */
         if (message.val !== undefined)
-            writer.tag(300, WireType.LengthDelimited).string(message.val);
+            writer.tag(400, WireType.LengthDelimited).string(message.val);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

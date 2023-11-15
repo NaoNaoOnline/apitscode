@@ -170,15 +170,12 @@ export const CreateI_Object_Intern = new CreateI_Object_Intern$Type();
 class CreateI_Object_Public$Type extends MessageType {
     constructor() {
         super("label.CreateI_Object_Public", [
-            { no: 100, name: "desc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "disc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "twit", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { desc: "", disc: "", kind: "", name: "", twit: "" };
+        const message = { kind: "", name: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -189,20 +186,11 @@ class CreateI_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string desc */ 100:
-                    message.desc = reader.string();
-                    break;
-                case /* string disc */ 200:
-                    message.disc = reader.string();
-                    break;
-                case /* string kind */ 300:
+                case /* string kind */ 100:
                     message.kind = reader.string();
                     break;
-                case /* string name */ 400:
+                case /* string name */ 200:
                     message.name = reader.string();
-                    break;
-                case /* string twit */ 500:
-                    message.twit = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -216,21 +204,12 @@ class CreateI_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string desc = 100; */
-        if (message.desc !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.desc);
-        /* string disc = 200; */
-        if (message.disc !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.disc);
-        /* string kind = 300; */
+        /* string kind = 100; */
         if (message.kind !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.kind);
-        /* string name = 400; */
+            writer.tag(100, WireType.LengthDelimited).string(message.kind);
+        /* string name = 200; */
         if (message.name !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.name);
-        /* string twit = 500; */
-        if (message.twit !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.twit);
+            writer.tag(200, WireType.LengthDelimited).string(message.name);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

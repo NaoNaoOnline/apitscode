@@ -516,14 +516,13 @@ class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("label.SearchO_Object_Public", [
             { no: 100, name: "desc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "disc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 400, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 500, name: "twit", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "kind", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "prfl", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "scalar", T: 9 /*ScalarType.STRING*/ } }
         ]);
     }
     create(value) {
-        const message = { desc: "", disc: "", kind: "", name: "", twit: "" };
+        const message = { desc: "", kind: "", name: "", prfl: {} };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -537,17 +536,14 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string desc */ 100:
                     message.desc = reader.string();
                     break;
-                case /* string disc */ 200:
-                    message.disc = reader.string();
-                    break;
-                case /* string kind */ 300:
+                case /* string kind */ 200:
                     message.kind = reader.string();
                     break;
-                case /* string name */ 400:
+                case /* string name */ 300:
                     message.name = reader.string();
                     break;
-                case /* string twit */ 500:
-                    message.twit = reader.string();
+                case /* map<string, string> prfl */ 400:
+                    this.binaryReadMap400(message.prfl, reader, options);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -560,22 +556,35 @@ class SearchO_Object_Public$Type extends MessageType {
         }
         return message;
     }
+    binaryReadMap400(map, reader, options) {
+        let len = reader.uint32(), end = reader.pos + len, key, val;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    key = reader.string();
+                    break;
+                case 2:
+                    val = reader.string();
+                    break;
+                default: throw new globalThis.Error("unknown map entry field for field label.SearchO_Object_Public.prfl");
+            }
+        }
+        map[key ?? ""] = val ?? "";
+    }
     internalBinaryWrite(message, writer, options) {
         /* string desc = 100; */
         if (message.desc !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.desc);
-        /* string disc = 200; */
-        if (message.disc !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.disc);
-        /* string kind = 300; */
+        /* string kind = 200; */
         if (message.kind !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.kind);
-        /* string name = 400; */
+            writer.tag(200, WireType.LengthDelimited).string(message.kind);
+        /* string name = 300; */
         if (message.name !== "")
-            writer.tag(400, WireType.LengthDelimited).string(message.name);
-        /* string twit = 500; */
-        if (message.twit !== "")
-            writer.tag(500, WireType.LengthDelimited).string(message.twit);
+            writer.tag(300, WireType.LengthDelimited).string(message.name);
+        /* map<string, string> prfl = 400; */
+        for (let k of Object.keys(message.prfl))
+            writer.tag(400, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.LengthDelimited).string(message.prfl[k]).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

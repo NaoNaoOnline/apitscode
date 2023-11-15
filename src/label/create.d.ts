@@ -14,11 +14,8 @@ import { MessageType } from "@protobuf-ts/runtime";
  *         "object": [
  *             {
  *                 "public": {
- *                     "desc": "Flashbots researches implications of MEV",
- *                     "disc": "https://discord.gg/Flashbots",
  *                     "kind": "host",
- *                     "name": "Flashbots",
- *                     "twit": "https://twitter.com/Flashbots"
+ *                     "name": "Flashbots"
  *                 }
  *             }
  *         ]
@@ -63,39 +60,21 @@ export interface CreateI_Object_Intern {}
  */
 export interface CreateI_Object_Public {
   /**
-   * desc is the label's description.
-   *
-   * @generated from protobuf field: string desc = 100;
-   */
-  desc: string;
-  /**
-   * disc is the label's Discord link.
-   *
-   * @generated from protobuf field: string disc = 200;
-   */
-  disc: string;
-  /**
    * kind is the label type for which the label is being created.
    *
    *     cate for category labels
    *     host for host labels
    *
    *
-   * @generated from protobuf field: string kind = 300;
+   * @generated from protobuf field: string kind = 100;
    */
   kind: string;
   /**
    * name is the label name.
    *
-   * @generated from protobuf field: string name = 400;
+   * @generated from protobuf field: string name = 200;
    */
   name: string;
-  /**
-   * twit is the label's Twitter link.
-   *
-   * @generated from protobuf field: string twit = 500;
-   */
-  twit: string;
 }
 /**
  * CreateO is the output for creating labels.

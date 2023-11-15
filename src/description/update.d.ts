@@ -19,7 +19,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  *                 "update": [
  *                     {
  *                         "ope": "replace",
- *                         "pat": "/text",
+ *                         "pat": "/text/data",
  *                         "val": "In this Hackathon we build a rocket ship!"
  *                     }
  *                 ]
@@ -98,15 +98,19 @@ export interface UpdateI_Object_Symbol {
  */
 export interface UpdateI_Object_Update {
   /**
-   * @generated from protobuf field: string ope = 100;
+   * @generated from protobuf field: optional string frm = 100;
+   */
+  frm?: string;
+  /**
+   * @generated from protobuf field: string ope = 200;
    */
   ope: string;
   /**
-   * @generated from protobuf field: string pat = 200;
+   * @generated from protobuf field: string pat = 300;
    */
   pat: string;
   /**
-   * @generated from protobuf field: optional string val = 300;
+   * @generated from protobuf field: optional string val = 400;
    */
   val?: string;
 }

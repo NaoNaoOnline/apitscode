@@ -122,10 +122,12 @@ export interface SearchI_Object_Public {
  *                 },
  *                 "public": {
  *                     "desc": "Flashbots researches implications of MEV",
- *                     "disc": "https://discord.gg/Flashbots",
  *                     "kind": "host",
  *                     "name": "Flashbots",
- *                     "twit": "https://twitter.com/Flashbots"
+ *                     "prfl": {
+ *                         "Twitter": "FlashbotsFDN",
+ *                         "Warpcast": "flashbots"
+ *                     }
  *                 }
  *             },
  *             ...
@@ -196,12 +198,6 @@ export interface SearchO_Object_Public {
    */
   desc: string;
   /**
-   * disc is the label's Discord link.
-   *
-   * @generated from protobuf field: string disc = 200;
-   */
-  disc: string;
-  /**
    * kind is the label type.
    *
    *     bltn for system labels
@@ -209,21 +205,25 @@ export interface SearchO_Object_Public {
    *     host for host labels
    *
    *
-   * @generated from protobuf field: string kind = 300;
+   * @generated from protobuf field: string kind = 200;
    */
   kind: string;
   /**
    * name is the label name.
    *
-   * @generated from protobuf field: string name = 400;
+   * @generated from protobuf field: string name = 300;
    */
   name: string;
   /**
-   * twit is the label's Twitter link.
+   * prfl is the map of external accounts related to this label. These accounts
+   * may point to references about this label or to the label owner on other
+   * platforms.
    *
-   * @generated from protobuf field: string twit = 500;
+   * @generated from protobuf field: map<string, string> prfl = 400;
    */
-  twit: string;
+  prfl: {
+    [key: string]: string;
+  };
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();
@@ -424,6 +424,7 @@ declare class SearchO_Object_Public$Type extends MessageType<SearchO_Object_Publ
     options: BinaryReadOptions,
     target?: SearchO_Object_Public,
   ): SearchO_Object_Public;
+  private binaryReadMap400;
   internalBinaryWrite(
     message: SearchO_Object_Public,
     writer: IBinaryWriter,
