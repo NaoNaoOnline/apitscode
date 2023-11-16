@@ -108,6 +108,12 @@ export interface SearchI_Object_Public {
    * @generated from protobuf field: string kind = 100;
    */
   kind: string;
+  /**
+   * name is the label name to search for.
+   *
+   * @generated from protobuf field: string name = 200;
+   */
+  name: string;
 }
 /**
  * SearchO is the output for searching labels.
