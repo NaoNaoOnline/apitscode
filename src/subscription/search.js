@@ -455,12 +455,14 @@ class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
         super("subscription.SearchO_Object_Intern", [
             { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "subs", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "fail", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 300, name: "stts", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 400, name: "subs", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 500, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { crtd: "", subs: "", user: "" };
+        const message = { crtd: "", stts: false, subs: "", user: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -474,10 +476,16 @@ class SearchO_Object_Intern$Type extends MessageType {
                 case /* string crtd */ 100:
                     message.crtd = reader.string();
                     break;
-                case /* string subs */ 200:
+                case /* optional string fail */ 200:
+                    message.fail = reader.string();
+                    break;
+                case /* bool stts */ 300:
+                    message.stts = reader.bool();
+                    break;
+                case /* string subs */ 400:
                     message.subs = reader.string();
                     break;
-                case /* string user */ 300:
+                case /* string user */ 500:
                     message.user = reader.string();
                     break;
                 default:
@@ -495,12 +503,18 @@ class SearchO_Object_Intern$Type extends MessageType {
         /* string crtd = 100; */
         if (message.crtd !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.crtd);
-        /* string subs = 200; */
+        /* optional string fail = 200; */
+        if (message.fail !== undefined)
+            writer.tag(200, WireType.LengthDelimited).string(message.fail);
+        /* bool stts = 300; */
+        if (message.stts !== false)
+            writer.tag(300, WireType.Varint).bool(message.stts);
+        /* string subs = 400; */
         if (message.subs !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.subs);
-        /* string user = 300; */
+            writer.tag(400, WireType.LengthDelimited).string(message.subs);
+        /* string user = 500; */
         if (message.user !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.user);
+            writer.tag(500, WireType.LengthDelimited).string(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

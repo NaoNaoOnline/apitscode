@@ -117,6 +117,7 @@ export interface SearchI_Object_Public {
  *             {
  *                 "intern": {
  *                     "crtd": "1689001255",
+ *                     "stts": "success",
  *                     "subs": "98762362635",
  *                     "user": "551265"
  *                 },
@@ -172,15 +173,37 @@ export interface SearchO_Object_Intern {
    */
   crtd: string;
   /**
+   * fail is the description explaining why a subscription could not be verified
+   * successfully. Most subscriptions should not be accompanied by a failure
+   * message.
+   *
+   * @generated from protobuf field: optional string fail = 200;
+   */
+  fail?: string;
+  /**
+   * stts is the resource status expressing whether this subscription is active.
+   * An active subscription is verified by comparing its offchain and onchain
+   * state. Subscriptions found to be invalid will not be marked as active, but
+   * will instead be accompanied by
+   *
+   *     created for a newly registered subscriptions
+   *     failure for successfully processed subscriptions
+   *     success for processed subscriptions found to be invalid
+   *
+   *
+   * @generated from protobuf field: bool stts = 300;
+   */
+  stts: boolean;
+  /**
    * subs is the ID of the subscription being searched.
    *
-   * @generated from protobuf field: string subs = 200;
+   * @generated from protobuf field: string subs = 400;
    */
   subs: string;
   /**
    * user is the ID of the user who registered this subscription.
    *
-   * @generated from protobuf field: string user = 300;
+   * @generated from protobuf field: string user = 500;
    */
   user: string;
 }
