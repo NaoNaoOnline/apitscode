@@ -456,13 +456,13 @@ class SearchO_Object_Intern$Type extends MessageType {
         super("subscription.SearchO_Object_Intern", [
             { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 200, name: "fail", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "stts", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 300, name: "stts", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 400, name: "subs", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 500, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { crtd: "", stts: false, subs: "", user: "" };
+        const message = { crtd: "", stts: "", subs: "", user: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -479,8 +479,8 @@ class SearchO_Object_Intern$Type extends MessageType {
                 case /* optional string fail */ 200:
                     message.fail = reader.string();
                     break;
-                case /* bool stts */ 300:
-                    message.stts = reader.bool();
+                case /* string stts */ 300:
+                    message.stts = reader.string();
                     break;
                 case /* string subs */ 400:
                     message.subs = reader.string();
@@ -506,9 +506,9 @@ class SearchO_Object_Intern$Type extends MessageType {
         /* optional string fail = 200; */
         if (message.fail !== undefined)
             writer.tag(200, WireType.LengthDelimited).string(message.fail);
-        /* bool stts = 300; */
-        if (message.stts !== false)
-            writer.tag(300, WireType.Varint).bool(message.stts);
+        /* string stts = 300; */
+        if (message.stts !== "")
+            writer.tag(300, WireType.LengthDelimited).string(message.stts);
         /* string subs = 400; */
         if (message.subs !== "")
             writer.tag(400, WireType.LengthDelimited).string(message.subs);

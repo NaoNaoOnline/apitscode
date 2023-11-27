@@ -191,9 +191,9 @@ export interface SearchO_Object_Intern {
    *     success for processed subscriptions found to be invalid
    *
    *
-   * @generated from protobuf field: bool stts = 300;
+   * @generated from protobuf field: string stts = 300;
    */
-  stts: boolean;
+  stts: string;
   /**
    * subs is the ID of the subscription being searched.
    *
