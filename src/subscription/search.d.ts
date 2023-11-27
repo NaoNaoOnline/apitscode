@@ -101,13 +101,13 @@ export interface SearchI_Object_Intern {
  */
 export interface SearchI_Object_Public {
   /**
-   * sbsc is the wallet address of the user getting access to premium features.
+   * recv is the wallet address of the user getting access to premium features.
    * The wallet addresses here should refer to the users who enjoy premium
    * subscriptions.
    *
-   * @generated from protobuf field: string sbsc = 100;
+   * @generated from protobuf field: string recv = 100;
    */
-  sbsc: string;
+  recv: string;
 }
 /**
  * SearchO is the output for searching subscriptions.
@@ -123,7 +123,7 @@ export interface SearchI_Object_Public {
  *                 },
  *                 "public": {
  *                     "crtr": "0x2345",
- *                     "sbsc": "0x1234",
+ *                     "recv": "0x1234",
  *                     "unix": "1698793200"
  *                 }
  *             },
@@ -220,12 +220,12 @@ export interface SearchO_Object_Public {
    */
   crtr: string;
   /**
-   * sbsc is the wallet address of the user getting access to premium features
+   * recv is the wallet address of the user getting access to premium features
    * upon asynchronous subscription verification.
    *
-   * @generated from protobuf field: string sbsc = 200;
+   * @generated from protobuf field: string recv = 200;
    */
-  sbsc: string;
+  recv: string;
   /**
    * unix is the timestamp of the subscription period. This timestamp must be
    * represented in unix seconds, that is in UTC, pointing to the start of any

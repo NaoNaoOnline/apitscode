@@ -273,11 +273,11 @@ export const SearchI_Object_Intern = new SearchI_Object_Intern$Type();
 class SearchI_Object_Public$Type extends MessageType {
     constructor() {
         super("subscription.SearchI_Object_Public", [
-            { no: 100, name: "sbsc", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "recv", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { sbsc: "" };
+        const message = { recv: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -288,8 +288,8 @@ class SearchI_Object_Public$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string sbsc */ 100:
-                    message.sbsc = reader.string();
+                case /* string recv */ 100:
+                    message.recv = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -303,9 +303,9 @@ class SearchI_Object_Public$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* string sbsc = 100; */
-        if (message.sbsc !== "")
-            writer.tag(100, WireType.LengthDelimited).string(message.sbsc);
+        /* string recv = 100; */
+        if (message.recv !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.recv);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -530,12 +530,12 @@ class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("subscription.SearchO_Object_Public", [
             { no: 100, name: "crtr", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "sbsc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "recv", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 300, name: "unix", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { crtr: "", sbsc: "", unix: "" };
+        const message = { crtr: "", recv: "", unix: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -549,8 +549,8 @@ class SearchO_Object_Public$Type extends MessageType {
                 case /* string crtr */ 100:
                     message.crtr = reader.string();
                     break;
-                case /* string sbsc */ 200:
-                    message.sbsc = reader.string();
+                case /* string recv */ 200:
+                    message.recv = reader.string();
                     break;
                 case /* string unix */ 300:
                     message.unix = reader.string();
@@ -570,9 +570,9 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string crtr = 100; */
         if (message.crtr !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.crtr);
-        /* string sbsc = 200; */
-        if (message.sbsc !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.sbsc);
+        /* string recv = 200; */
+        if (message.recv !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.recv);
         /* string unix = 300; */
         if (message.unix !== "")
             writer.tag(300, WireType.LengthDelimited).string(message.unix);
