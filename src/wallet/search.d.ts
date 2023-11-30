@@ -76,6 +76,10 @@ export interface SearchI_Object {
    * @generated from protobuf field: wallet.SearchI_Object_Public public = 200;
    */
   public?: SearchI_Object_Public;
+  /**
+   * @generated from protobuf field: wallet.SearchI_Object_Symbol symbol = 300;
+   */
+  symbol?: SearchI_Object_Symbol;
 }
 /**
  * @generated from protobuf message wallet.SearchI_Object_Intern
@@ -101,6 +105,19 @@ export interface SearchI_Object_Public {
    * @generated from protobuf field: string kind = 100;
    */
   kind: string;
+}
+/**
+ * @generated from protobuf message wallet.SearchI_Object_Symbol
+ */
+export interface SearchI_Object_Symbol {
+  /**
+   * crtr set to "default" returns the wallet objects representing the
+   * legitimate content creators that the calling user enjoyed content from, in
+   * the form of an event link click.
+   *
+   * @generated from protobuf field: string crtr = 100;
+   */
+  crtr: string;
 }
 /**
  * SearchO is the output for searching wallets.
@@ -364,6 +381,25 @@ declare class SearchI_Object_Public$Type extends MessageType<SearchI_Object_Publ
  * @generated MessageType for protobuf message wallet.SearchI_Object_Public
  */
 export declare const SearchI_Object_Public: SearchI_Object_Public$Type;
+declare class SearchI_Object_Symbol$Type extends MessageType<SearchI_Object_Symbol> {
+  constructor();
+  create(value?: PartialMessage<SearchI_Object_Symbol>): SearchI_Object_Symbol;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchI_Object_Symbol,
+  ): SearchI_Object_Symbol;
+  internalBinaryWrite(
+    message: SearchI_Object_Symbol,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message wallet.SearchI_Object_Symbol
+ */
+export declare const SearchI_Object_Symbol: SearchI_Object_Symbol$Type;
 declare class SearchO$Type extends MessageType<SearchO> {
   constructor();
   create(value?: PartialMessage<SearchO>): SearchO;
