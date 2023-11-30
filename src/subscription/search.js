@@ -455,14 +455,14 @@ class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
         super("subscription.SearchO_Object_Intern", [
             { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "fail", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "fail", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 300, name: "stts", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 400, name: "subs", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 500, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
-        const message = { crtd: "", stts: "", subs: "", user: "" };
+        const message = { crtd: "", fail: "", stts: "", subs: "", user: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -476,7 +476,7 @@ class SearchO_Object_Intern$Type extends MessageType {
                 case /* string crtd */ 100:
                     message.crtd = reader.string();
                     break;
-                case /* optional string fail */ 200:
+                case /* string fail */ 200:
                     message.fail = reader.string();
                     break;
                 case /* string stts */ 300:
@@ -503,8 +503,8 @@ class SearchO_Object_Intern$Type extends MessageType {
         /* string crtd = 100; */
         if (message.crtd !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.crtd);
-        /* optional string fail = 200; */
-        if (message.fail !== undefined)
+        /* string fail = 200; */
+        if (message.fail !== "")
             writer.tag(200, WireType.LengthDelimited).string(message.fail);
         /* string stts = 300; */
         if (message.stts !== "")

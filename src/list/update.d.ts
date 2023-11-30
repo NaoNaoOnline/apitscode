@@ -89,9 +89,9 @@ export interface UpdateI_Object_Symbol {}
  */
 export interface UpdateI_Object_Update {
   /**
-   * @generated from protobuf field: optional string frm = 100;
+   * @generated from protobuf field: string frm = 100;
    */
-  frm?: string;
+  frm: string;
   /**
    * @generated from protobuf field: string ope = 200;
    */
@@ -101,9 +101,9 @@ export interface UpdateI_Object_Update {
    */
   pat: string;
   /**
-   * @generated from protobuf field: optional string val = 400;
+   * @generated from protobuf field: string val = 400;
    */
-  val?: string;
+  val: string;
 }
 /**
  * UpdateO is the output for updating lists.

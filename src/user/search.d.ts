@@ -121,6 +121,7 @@ export interface SearchI_Object_Symbol {
  *             {
  *                 "intern": {
  *                     "crtd": "1689001255",
+ *                     "prem": "1698793200",
  *                     "user": "551265"
  *                 },
  *                 "public": {
@@ -174,9 +175,15 @@ export interface SearchO_Object_Intern {
    */
   crtd: string;
   /**
+   * prem is the time until the user got a valid premium subscription, if any.
+   *
+   * @generated from protobuf field: string prem = 200;
+   */
+  prem: string;
+  /**
    * user is the ID of the user being searched.
    *
-   * @generated from protobuf field: string user = 200;
+   * @generated from protobuf field: string user = 300;
    */
   user: string;
 }

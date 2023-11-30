@@ -177,9 +177,9 @@ export interface SearchO_Object_Intern {
    * successfully. Most subscriptions should not be accompanied by a failure
    * message.
    *
-   * @generated from protobuf field: optional string fail = 200;
+   * @generated from protobuf field: string fail = 200;
    */
-  fail?: string;
+  fail: string;
   /**
    * stts is the resource status expressing whether this subscription is active.
    * An active subscription is verified by comparing its offchain and onchain
