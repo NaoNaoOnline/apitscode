@@ -8,15 +8,16 @@ import type { IBinaryReader } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
- * CreateI is the input for registering subscriptions. Note that create queries
- * for subscriptions must be authenticated.
+ * CreateI is the input for creating subscriptions. Note that create queries for
+ * subscriptions must be authenticated.
  *
  *     {
  *         "object": [
  *             {
  *                 "public": {
  *                     "crtr": "0x2345",
- *                     "recv": "0x1234",
+ *                     "payr": "551265",
+ *                     "rcvr": "551265",
  *                     "unix": "1698793200"
  *                 }
  *             }
@@ -63,31 +64,38 @@ export interface CreateI_Object_Intern {}
 export interface CreateI_Object_Public {
   /**
    * crtr is the wallet address of a content creator designated for the purpose
-   * of accounting. These are the addresses getting paid peer-to-peer by users
-   * subscribing for accessing premium features.
+   * of accounting. These are the creator addresses getting paid peer-to-peer by
+   * users subscribing for accessing premium features.
    *
    * @generated from protobuf field: string crtr = 100;
    */
   crtr: string;
   /**
-   * recv is the wallet address of the user getting access to premium features
-   * upon asynchronous subscription verification.
+   * payr is the user ID of the user paying for the premium subscription. This
+   * is usually the same user ID as rcvr, but it does not have to be the same.
+   * The idea here is that subscriptions can be gifted to other users.
    *
-   * @generated from protobuf field: string recv = 200;
+   * @generated from protobuf field: string payr = 200;
    */
-  recv: string;
+  payr: string;
+  /**
+   * rcvr is the user ID of the user receiving the premium subscription.
+   *
+   * @generated from protobuf field: string rcvr = 300;
+   */
+  rcvr: string;
   /**
    * unix is the timestamp of the subscription period. This timestamp must be
    * represented in unix seconds, that is in UTC, pointing to the start of any
    * given month. For instance, 1698793200 is Wed Nov 01 2023 00:00:00 UTC,
    * which would subscribe for the whole month of November 2023.
    *
-   * @generated from protobuf field: string unix = 300;
+   * @generated from protobuf field: string unix = 400;
    */
   unix: string;
 }
 /**
- * CreateO is the output for registering subscriptions.
+ * CreateO is the output for creating subscriptions.
  *
  *     {
  *         "object": [
@@ -136,13 +144,13 @@ export interface CreateO_Object {
 export interface CreateO_Object_Intern {
   /**
    * crtd is the unix timestamp in seconds at which the subscription got
-   * registered.
+   * created.
    *
    * @generated from protobuf field: string crtd = 100;
    */
   crtd: string;
   /**
-   * subs is the ID of the subscription being registered.
+   * subs is the ID of the subscription being created.
    *
    * @generated from protobuf field: string subs = 200;
    */

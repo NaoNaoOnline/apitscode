@@ -88,9 +88,7 @@ export interface SearchI_Object_Intern {
    */
   subs: string;
   /**
-   * user is the ID of the user having registered the subscription being
-   * searched. The user IDs here should refer to the users who paid for
-   * subscriptions.
+   * user is the ID of the user having created the subscription being searched.
    *
    * @generated from protobuf field: string user = 200;
    */
@@ -101,13 +99,19 @@ export interface SearchI_Object_Intern {
  */
 export interface SearchI_Object_Public {
   /**
-   * recv is the wallet address of the user getting access to premium features.
-   * The wallet addresses here should refer to the users who enjoy premium
-   * subscriptions.
+   * payr is the user ID of the user paying for the premium subscription being
+   * searched.
    *
-   * @generated from protobuf field: string recv = 100;
+   * @generated from protobuf field: string payr = 100;
    */
-  recv: string;
+  payr: string;
+  /**
+   * rcvr is the user ID of the user receiving the premium subscription being
+   * searched.
+   *
+   * @generated from protobuf field: string rcvr = 200;
+   */
+  rcvr: string;
 }
 /**
  * SearchO is the output for searching subscriptions.
@@ -123,7 +127,8 @@ export interface SearchI_Object_Public {
  *                 },
  *                 "public": {
  *                     "crtr": "0x2345",
- *                     "recv": "0x1234",
+ *                     "payr": "551265",
+ *                     "rcvr": "551265",
  *                     "unix": "1698793200"
  *                 }
  *             },
@@ -167,7 +172,7 @@ export interface SearchO_Object {
 export interface SearchO_Object_Intern {
   /**
    * crtd is the unix timestamp in seconds at which the subscription got
-   * registered.
+   * created.
    *
    * @generated from protobuf field: string crtd = 100;
    */
@@ -186,7 +191,7 @@ export interface SearchO_Object_Intern {
    * state. Subscriptions found to be invalid will not be marked as active, but
    * will instead be accompanied by
    *
-   *     created for a newly registered subscriptions
+   *     created for a newly created subscriptions
    *     failure for successfully processed subscriptions
    *     success for processed subscriptions found to be invalid
    *
@@ -201,7 +206,7 @@ export interface SearchO_Object_Intern {
    */
   subs: string;
   /**
-   * user is the ID of the user who registered this subscription.
+   * user is the ID of the user who created this subscription.
    *
    * @generated from protobuf field: string user = 500;
    */
@@ -213,26 +218,33 @@ export interface SearchO_Object_Intern {
 export interface SearchO_Object_Public {
   /**
    * crtr is the wallet address of a content creator designated for the purpose
-   * of accounting. These are the addresses getting paid peer-to-peer by users
-   * subscribing for accessing premium features.
+   * of accounting. These are the creator addresses getting paid peer-to-peer by
+   * users subscribing for accessing premium features.
    *
    * @generated from protobuf field: string crtr = 100;
    */
   crtr: string;
   /**
-   * recv is the wallet address of the user getting access to premium features
-   * upon asynchronous subscription verification.
+   * payr is the user ID of the user paying for the premium subscription. This
+   * is usually the same user ID as rcvr, but it does not have to be the same.
+   * The idea here is that subscriptions can be gifted to other users.
    *
-   * @generated from protobuf field: string recv = 200;
+   * @generated from protobuf field: string payr = 200;
    */
-  recv: string;
+  payr: string;
+  /**
+   * rcvr is the user ID of the user receiving the premium subscription.
+   *
+   * @generated from protobuf field: string rcvr = 300;
+   */
+  rcvr: string;
   /**
    * unix is the timestamp of the subscription period. This timestamp must be
    * represented in unix seconds, that is in UTC, pointing to the start of any
    * given month. For instance, 1698793200 is Wed Nov 01 2023 00:00:00 UTC,
    * which would subscribe for the whole month of November 2023.
    *
-   * @generated from protobuf field: string unix = 300;
+   * @generated from protobuf field: string unix = 400;
    */
   unix: string;
 }
