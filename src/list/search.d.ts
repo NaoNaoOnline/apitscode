@@ -208,7 +208,8 @@ export interface SearchO_Object_Public {
    * most recently. The delta between feed and the current time can be used to
    * fetch the delta of event objects that the user has not seen yet in this
    * list. This way clients display notifications for users in a pull based
-   * system.
+   * system. If this timestamp is zero, it means the list's notifications are
+   * disabled.
    *
    * @generated from protobuf field: string feed = 200;
    */

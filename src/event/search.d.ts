@@ -142,15 +142,15 @@ export interface SearchI_Object_Symbol {
    * paging pointer here is the absolute upper boundary of the requested page,
    * read max.
    *
-   * @generated from protobuf field: string like = 200;
+   * @generated from protobuf field: string like = 100;
    */
   like: string;
   /**
    * list set to any valid list ID returns all of the event objects matching the
-   * provided list's criteria. Paging is available by providing absolute numbers
-   * as pointers for the underyling ordered objects.
+   * provided list's criteria. Paging is available for paging kind page and
+   * unix.
    *
-   * @generated from protobuf field: string list = 100;
+   * @generated from protobuf field: string list = 200;
    */
   list: string;
   /**
@@ -285,9 +285,16 @@ export interface SearchO_Object_Intern {
    */
   evnt: string;
   /**
+   * list is the ID of the list this event belongs to, if any. Note that this
+   * field will only be set when searching events using symbol.list.
+   *
+   * @generated from protobuf field: string list = 300;
+   */
+  list: string;
+  /**
    * user is the ID of the user who created this event.
    *
-   * @generated from protobuf field: string user = 300;
+   * @generated from protobuf field: string user = 400;
    */
   user: string;
 }
