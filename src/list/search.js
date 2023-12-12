@@ -430,8 +430,9 @@ class SearchO_Object_Intern$Type extends MessageType {
     constructor() {
         super("list.SearchO_Object_Intern", [
             { no: 100, name: "crtd", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 200, name: "list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 300, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 200, name: "feed", kind: "message", T: () => SearchO_Object_Intern_Feed },
+            { no: 300, name: "list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 400, name: "user", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
@@ -451,10 +452,13 @@ class SearchO_Object_Intern$Type extends MessageType {
                 case /* string crtd */ 100:
                     message.crtd = reader.string();
                     break;
-                case /* string list */ 200:
+                case /* list.SearchO_Object_Intern_Feed feed */ 200:
+                    message.feed = SearchO_Object_Intern_Feed.internalBinaryRead(reader, reader.uint32(), options, message.feed);
+                    break;
+                case /* string list */ 300:
                     message.list = reader.string();
                     break;
-                case /* string user */ 300:
+                case /* string user */ 400:
                     message.user = reader.string();
                     break;
                 default:
@@ -472,12 +476,15 @@ class SearchO_Object_Intern$Type extends MessageType {
         /* string crtd = 100; */
         if (message.crtd !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.crtd);
-        /* string list = 200; */
+        /* list.SearchO_Object_Intern_Feed feed = 200; */
+        if (message.feed)
+            SearchO_Object_Intern_Feed.internalBinaryWrite(message.feed, writer.tag(200, WireType.LengthDelimited).fork(), options).join();
+        /* string list = 300; */
         if (message.list !== "")
-            writer.tag(200, WireType.LengthDelimited).string(message.list);
-        /* string user = 300; */
+            writer.tag(300, WireType.LengthDelimited).string(message.list);
+        /* string user = 400; */
         if (message.user !== "")
-            writer.tag(300, WireType.LengthDelimited).string(message.user);
+            writer.tag(400, WireType.LengthDelimited).string(message.user);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -489,15 +496,64 @@ class SearchO_Object_Intern$Type extends MessageType {
  */
 export const SearchO_Object_Intern = new SearchO_Object_Intern$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class SearchO_Object_Intern_Feed$Type extends MessageType {
+    constructor() {
+        super("list.SearchO_Object_Intern_Feed", [
+            { no: 100, name: "time", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.time = "";
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string time */ 100:
+                    message.time = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string time = 100; */
+        if (message.time !== "")
+            writer.tag(100, WireType.LengthDelimited).string(message.time);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message list.SearchO_Object_Intern_Feed
+ */
+export const SearchO_Object_Intern_Feed = new SearchO_Object_Intern_Feed$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class SearchO_Object_Public$Type extends MessageType {
     constructor() {
         super("list.SearchO_Object_Public", [
-            { no: 100, name: "desc", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 100, name: "desc", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 200, name: "feed", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value) {
         const message = globalThis.Object.create((this.messagePrototype));
         message.desc = "";
+        message.feed = "";
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
         return message;
@@ -509,6 +565,9 @@ class SearchO_Object_Public$Type extends MessageType {
             switch (fieldNo) {
                 case /* string desc */ 100:
                     message.desc = reader.string();
+                    break;
+                case /* string feed */ 200:
+                    message.feed = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -525,6 +584,9 @@ class SearchO_Object_Public$Type extends MessageType {
         /* string desc = 100; */
         if (message.desc !== "")
             writer.tag(100, WireType.LengthDelimited).string(message.desc);
+        /* string feed = 200; */
+        if (message.feed !== "")
+            writer.tag(200, WireType.LengthDelimited).string(message.feed);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

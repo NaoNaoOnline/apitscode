@@ -107,11 +107,15 @@ export interface SearchI_Object_Public {}
  *             {
  *                 "intern": {
  *                     "crtd": "1689001255",
+ *                     "feed": {
+ *                         "time": "1695326765"
+ *                     },
  *                     "list": "986763351",
  *                     "user": "551265"
  *                 },
  *                 "public": {
- *                     "desc": "where CT personalities meet"
+ *                     "desc": "where CT personalities meet",
+ *                     "feed": "1695326765"
  *                 }
  *             },
  *             ...
@@ -159,17 +163,35 @@ export interface SearchO_Object_Intern {
    */
   crtd: string;
   /**
+   * feed contains lifecycle metadata for this list object.
+   *
+   * @generated from protobuf field: list.SearchO_Object_Intern_Feed feed = 200;
+   */
+  feed?: SearchO_Object_Intern_Feed;
+  /**
    * list is the ID of the list being searched.
    *
-   * @generated from protobuf field: string list = 200;
+   * @generated from protobuf field: string list = 300;
    */
   list: string;
   /**
    * user is the ID of the user who created this list.
    *
-   * @generated from protobuf field: string user = 300;
+   * @generated from protobuf field: string user = 400;
    */
   user: string;
+}
+/**
+ * @generated from protobuf message list.SearchO_Object_Intern_Feed
+ */
+export interface SearchO_Object_Intern_Feed {
+  /**
+   * Time is the unix timestamp in seconds of the most recent time at which this
+   * list's notification timestamp got updated.
+   *
+   * @generated from protobuf field: string time = 100;
+   */
+  time: string;
 }
 /**
  * @generated from protobuf message list.SearchO_Object_Public
@@ -181,6 +203,16 @@ export interface SearchO_Object_Public {
    * @generated from protobuf field: string desc = 100;
    */
   desc: string;
+  /**
+   * feed is the unix timestamp in seconds at which the user consumed this list
+   * most recently. The delta between feed and the current time can be used to
+   * fetch the delta of event objects that the user has not seen yet in this
+   * list. This way clients display notifications for users in a pull based
+   * system.
+   *
+   * @generated from protobuf field: string feed = 200;
+   */
+  feed: string;
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();
@@ -372,6 +404,27 @@ declare class SearchO_Object_Intern$Type extends MessageType<SearchO_Object_Inte
  * @generated MessageType for protobuf message list.SearchO_Object_Intern
  */
 export declare const SearchO_Object_Intern: SearchO_Object_Intern$Type;
+declare class SearchO_Object_Intern_Feed$Type extends MessageType<SearchO_Object_Intern_Feed> {
+  constructor();
+  create(
+    value?: PartialMessage<SearchO_Object_Intern_Feed>,
+  ): SearchO_Object_Intern_Feed;
+  internalBinaryRead(
+    reader: IBinaryReader,
+    length: number,
+    options: BinaryReadOptions,
+    target?: SearchO_Object_Intern_Feed,
+  ): SearchO_Object_Intern_Feed;
+  internalBinaryWrite(
+    message: SearchO_Object_Intern_Feed,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message list.SearchO_Object_Intern_Feed
+ */
+export declare const SearchO_Object_Intern_Feed: SearchO_Object_Intern_Feed$Type;
 declare class SearchO_Object_Public$Type extends MessageType<SearchO_Object_Public> {
   constructor();
   create(value?: PartialMessage<SearchO_Object_Public>): SearchO_Object_Public;
