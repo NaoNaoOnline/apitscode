@@ -132,7 +132,11 @@ export interface SearchI_Object_Symbol {
  *                 "public": {
  *                     "home": "986763351",
  *                     "imag": "https://gravatar.com/9050f8ea",
- *                     "name": "xh3b4sd"
+ *                     "name": "xh3b4sd",
+ *                     "prfl": {
+ *                         "Twitter": "xh3b4sd",
+ *                         "Warpcast": "xh3b4sd"
+ *                     }
  *                 }
  *             },
  *             ...
@@ -217,6 +221,15 @@ export interface SearchO_Object_Public {
    * @generated from protobuf field: string name = 300;
    */
   name: string;
+  /**
+   * prfl is the map of external accounts related to this user. These accounts
+   * may point to references about this user on other platforms.
+   *
+   * @generated from protobuf field: map<string, string> prfl = 400;
+   */
+  prfl: {
+    [key: string]: string;
+  };
 }
 declare class SearchI$Type extends MessageType<SearchI> {
   constructor();
@@ -436,6 +449,7 @@ declare class SearchO_Object_Public$Type extends MessageType<SearchO_Object_Publ
     options: BinaryReadOptions,
     target?: SearchO_Object_Public,
   ): SearchO_Object_Public;
+  private binaryReadMap400;
   internalBinaryWrite(
     message: SearchO_Object_Public,
     writer: IBinaryWriter,
